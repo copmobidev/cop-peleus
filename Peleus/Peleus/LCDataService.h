@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LCDataConfig.h"
 #import "LCDataServiceDelegate.h"
 #import "WhiteRaccoon.h"
 
-#define COP_BIZ_SERVER      @"http://58.210.101.202:59102"
-#define COP_OBD_SERVER      @"http://192.168.1.1"
 
 @class LCTimestamp;
 @class LCDriveData;
@@ -21,7 +20,7 @@
 @property (nonatomic, strong) id<LCDataServiceDelegate> delegate;
 
 
-+ (LCDataService *)sharedDataService;
++ (LCDataService*)sharedDataService;
 
 // 获取配置文件
 - (void)obdConfig;

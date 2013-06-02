@@ -7,7 +7,7 @@
 //
 
 #import "LCNetworkUtil.h"
-#import "LCConfig.h"
+#import "LCDataConfig.h"
 #import "Reachability.h"
 
 @implementation LCNetworkUtil

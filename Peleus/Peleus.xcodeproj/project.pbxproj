@@ -7,6 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B3D28B5175B46EF00FCBA7D /* LCDataServiceDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907E1175AEC1F0021E9BD /* LCDataServiceDelegate.h */; };
+		9B3D28B6175B46EF00FCBA7D /* LCDataService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907E0175AEC1F0021E9BD /* LCDataService.h */; };
+		9B3D28B7175B46EF00FCBA7D /* LCCacheService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90862175AEF790021E9BD /* LCCacheService.h */; };
+		9B3D28B8175B46EF00FCBA7D /* LCEnvironment.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907E2175AEC1F0021E9BD /* LCEnvironment.h */; };
+		9B3D28B9175B46EF00FCBA7D /* LCDriveData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907E6175AEC2E0021E9BD /* LCDriveData.h */; };
+		9B3D28BA175B46EF00FCBA7D /* LCDrivePiece.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907E8175AEC2E0021E9BD /* LCDrivePiece.h */; };
+		9B3D28BB175B46EF00FCBA7D /* LCDrivingSummary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907EA175AEC2E0021E9BD /* LCDrivingSummary.h */; };
+		9B3D28BC175B46EF00FCBA7D /* LCTimestamp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907EC175AEC2E0021E9BD /* LCTimestamp.h */; };
+		9B3D28BD175B46EF00FCBA7D /* ASIAuthenticationDialog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907F0175AEC2E0021E9BD /* ASIAuthenticationDialog.h */; };
+		9B3D28BE175B46EF00FCBA7D /* ASICacheDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907F2175AEC2E0021E9BD /* ASICacheDelegate.h */; };
+		9B3D28BF175B46EF00FCBA7D /* ASIDataCompressor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907F3175AEC2E0021E9BD /* ASIDataCompressor.h */; };
+		9B3D28C0175B46EF00FCBA7D /* ASIDataDecompressor.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907F5175AEC2E0021E9BD /* ASIDataDecompressor.h */; };
+		9B3D28C1175B46EF00FCBA7D /* ASIDownloadCache.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907F7175AEC2E0021E9BD /* ASIDownloadCache.h */; };
+		9B3D28C2175B46EF00FCBA7D /* ASIFormDataRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907F9175AEC2E0021E9BD /* ASIFormDataRequest.h */; };
+		9B3D28C3175B46EF00FCBA7D /* ASIHTTPRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907FB175AEC2E0021E9BD /* ASIHTTPRequest.h */; };
+		9B3D28C4175B46EF00FCBA7D /* ASIHTTPRequestConfig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907FD175AEC2E0021E9BD /* ASIHTTPRequestConfig.h */; };
+		9B3D28C5175B46EF00FCBA7D /* ASIHTTPRequestDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907FE175AEC2E0021E9BD /* ASIHTTPRequestDelegate.h */; };
+		9B3D28C6175B46EF00FCBA7D /* ASIInputStream.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907FF175AEC2E0021E9BD /* ASIInputStream.h */; };
+		9B3D28C7175B46EF00FCBA7D /* ASINetworkQueue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90801175AEC2E0021E9BD /* ASINetworkQueue.h */; };
+		9B3D28C8175B46EF00FCBA7D /* ASIProgressDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90803175AEC2E0021E9BD /* ASIProgressDelegate.h */; };
+		9B3D28C9175B46EF00FCBA7D /* ASIWebPageRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90805175AEC2E0021E9BD /* ASIWebPageRequest.h */; };
+		9B3D28CA175B46EF00FCBA7D /* ASICloudFilesCDNRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90808175AEC2E0021E9BD /* ASICloudFilesCDNRequest.h */; };
+		9B3D28CB175B46EF00FCBA7D /* ASICloudFilesContainer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9080A175AEC2E0021E9BD /* ASICloudFilesContainer.h */; };
+		9B3D28CC175B46EF00FCBA7D /* ASICloudFilesContainerRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9080C175AEC2E0021E9BD /* ASICloudFilesContainerRequest.h */; };
+		9B3D28CD175B46EF00FCBA7D /* ASICloudFilesContainerXMLParserDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9080E175AEC2E0021E9BD /* ASICloudFilesContainerXMLParserDelegate.h */; };
+		9B3D28CE175B46EF00FCBA7D /* ASICloudFilesObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90810175AEC2E0021E9BD /* ASICloudFilesObject.h */; };
+		9B3D28CF175B46EF00FCBA7D /* ASICloudFilesObjectRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90812175AEC2E0021E9BD /* ASICloudFilesObjectRequest.h */; };
+		9B3D28D0175B46EF00FCBA7D /* ASICloudFilesRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90814175AEC2E0021E9BD /* ASICloudFilesRequest.h */; };
+		9B3D28D1175B46EF00FCBA7D /* ASINSXMLParserCompat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90817175AEC2E0021E9BD /* ASINSXMLParserCompat.h */; };
+		9B3D28D2175B46EF00FCBA7D /* ASIS3Bucket.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90818175AEC2E0021E9BD /* ASIS3Bucket.h */; };
+		9B3D28D3175B46EF00FCBA7D /* ASIS3BucketObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9081A175AEC2E0021E9BD /* ASIS3BucketObject.h */; };
+		9B3D28D4175B46EF00FCBA7D /* ASIS3BucketRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9081C175AEC2E0021E9BD /* ASIS3BucketRequest.h */; };
+		9B3D28D5175B46EF00FCBA7D /* ASIS3ObjectRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9081E175AEC2E0021E9BD /* ASIS3ObjectRequest.h */; };
+		9B3D28D6175B46EF00FCBA7D /* ASIS3Request.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90820175AEC2E0021E9BD /* ASIS3Request.h */; };
+		9B3D28D7175B46EF00FCBA7D /* ASIS3ServiceRequest.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90822175AEC2E0021E9BD /* ASIS3ServiceRequest.h */; };
+		9B3D28D8175B46EF00FCBA7D /* Reachability.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC90828175AEC2E0021E9BD /* Reachability.h */; };
+		9B3D28D9175B46EF00FCBA7D /* LCNetworkUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC9083A175AEC2E0021E9BD /* LCNetworkUtil.h */; };
 		9BC907A1175AE3B20021E9BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC907A0175AE3B20021E9BD /* Foundation.framework */; };
 		9BC907A6175AE3B20021E9BD /* Peleus.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9BC907A5175AE3B20021E9BD /* Peleus.h */; };
 		9BC907E3175AEC1F0021E9BD /* LCDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC907DD175AEC1F0021E9BD /* LCDataService.m */; };
@@ -62,6 +99,43 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				9B3D28B5175B46EF00FCBA7D /* LCDataServiceDelegate.h in CopyFiles */,
+				9B3D28B6175B46EF00FCBA7D /* LCDataService.h in CopyFiles */,
+				9B3D28B7175B46EF00FCBA7D /* LCCacheService.h in CopyFiles */,
+				9B3D28B8175B46EF00FCBA7D /* LCEnvironment.h in CopyFiles */,
+				9B3D28B9175B46EF00FCBA7D /* LCDriveData.h in CopyFiles */,
+				9B3D28BA175B46EF00FCBA7D /* LCDrivePiece.h in CopyFiles */,
+				9B3D28BB175B46EF00FCBA7D /* LCDrivingSummary.h in CopyFiles */,
+				9B3D28BC175B46EF00FCBA7D /* LCTimestamp.h in CopyFiles */,
+				9B3D28BD175B46EF00FCBA7D /* ASIAuthenticationDialog.h in CopyFiles */,
+				9B3D28BE175B46EF00FCBA7D /* ASICacheDelegate.h in CopyFiles */,
+				9B3D28BF175B46EF00FCBA7D /* ASIDataCompressor.h in CopyFiles */,
+				9B3D28C0175B46EF00FCBA7D /* ASIDataDecompressor.h in CopyFiles */,
+				9B3D28C1175B46EF00FCBA7D /* ASIDownloadCache.h in CopyFiles */,
+				9B3D28C2175B46EF00FCBA7D /* ASIFormDataRequest.h in CopyFiles */,
+				9B3D28C3175B46EF00FCBA7D /* ASIHTTPRequest.h in CopyFiles */,
+				9B3D28C4175B46EF00FCBA7D /* ASIHTTPRequestConfig.h in CopyFiles */,
+				9B3D28C5175B46EF00FCBA7D /* ASIHTTPRequestDelegate.h in CopyFiles */,
+				9B3D28C6175B46EF00FCBA7D /* ASIInputStream.h in CopyFiles */,
+				9B3D28C7175B46EF00FCBA7D /* ASINetworkQueue.h in CopyFiles */,
+				9B3D28C8175B46EF00FCBA7D /* ASIProgressDelegate.h in CopyFiles */,
+				9B3D28C9175B46EF00FCBA7D /* ASIWebPageRequest.h in CopyFiles */,
+				9B3D28CA175B46EF00FCBA7D /* ASICloudFilesCDNRequest.h in CopyFiles */,
+				9B3D28CB175B46EF00FCBA7D /* ASICloudFilesContainer.h in CopyFiles */,
+				9B3D28CC175B46EF00FCBA7D /* ASICloudFilesContainerRequest.h in CopyFiles */,
+				9B3D28CD175B46EF00FCBA7D /* ASICloudFilesContainerXMLParserDelegate.h in CopyFiles */,
+				9B3D28CE175B46EF00FCBA7D /* ASICloudFilesObject.h in CopyFiles */,
+				9B3D28CF175B46EF00FCBA7D /* ASICloudFilesObjectRequest.h in CopyFiles */,
+				9B3D28D0175B46EF00FCBA7D /* ASICloudFilesRequest.h in CopyFiles */,
+				9B3D28D1175B46EF00FCBA7D /* ASINSXMLParserCompat.h in CopyFiles */,
+				9B3D28D2175B46EF00FCBA7D /* ASIS3Bucket.h in CopyFiles */,
+				9B3D28D3175B46EF00FCBA7D /* ASIS3BucketObject.h in CopyFiles */,
+				9B3D28D4175B46EF00FCBA7D /* ASIS3BucketRequest.h in CopyFiles */,
+				9B3D28D5175B46EF00FCBA7D /* ASIS3ObjectRequest.h in CopyFiles */,
+				9B3D28D6175B46EF00FCBA7D /* ASIS3Request.h in CopyFiles */,
+				9B3D28D7175B46EF00FCBA7D /* ASIS3ServiceRequest.h in CopyFiles */,
+				9B3D28D8175B46EF00FCBA7D /* Reachability.h in CopyFiles */,
+				9B3D28D9175B46EF00FCBA7D /* LCNetworkUtil.h in CopyFiles */,
 				9BC907A6175AE3B20021E9BD /* Peleus.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,7 +149,7 @@
 		9BC907A5175AE3B20021E9BD /* Peleus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Peleus.h; sourceTree = "<group>"; };
 		9BC907DD175AEC1F0021E9BD /* LCDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDataService.m; sourceTree = "<group>"; };
 		9BC907DE175AEC1F0021E9BD /* LCEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEnvironment.m; sourceTree = "<group>"; };
-		9BC907DF175AEC1F0021E9BD /* LCConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCConfig.h; sourceTree = "<group>"; };
+		9BC907DF175AEC1F0021E9BD /* LCDataConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataConfig.h; sourceTree = "<group>"; };
 		9BC907E0175AEC1F0021E9BD /* LCDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataService.h; sourceTree = "<group>"; };
 		9BC907E1175AEC1F0021E9BD /* LCDataServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataServiceDelegate.h; sourceTree = "<group>"; };
 		9BC907E2175AEC1F0021E9BD /* LCEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCEnvironment.h; sourceTree = "<group>"; };
@@ -216,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC907A5175AE3B20021E9BD /* Peleus.h */,
-				9BC907DF175AEC1F0021E9BD /* LCConfig.h */,
+				9BC907DF175AEC1F0021E9BD /* LCDataConfig.h */,
 				9BC907E1175AEC1F0021E9BD /* LCDataServiceDelegate.h */,
 				9BC907E0175AEC1F0021E9BD /* LCDataService.h */,
 				9BC907DD175AEC1F0021E9BD /* LCDataService.m */,
@@ -600,6 +674,7 @@
 				9BC907AD175AE3B20021E9BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

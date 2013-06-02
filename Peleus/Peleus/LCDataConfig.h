@@ -1,5 +1,5 @@
 //
-//  LCConfig.h
+//  LCDataConfig.h
 //  core
 //
 //  Created by chris.liu on 5/21/13.

@@ -13,7 +13,7 @@
 
 static LCDataService* sharedDataService = nil;
 
-+ (LCDataService* )sharedDataService
++ (LCDataService*)sharedDataService
 {
 	@synchronized(self)
     {
