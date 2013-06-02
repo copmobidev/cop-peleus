@@ -18,6 +18,7 @@
 		9BC907D1175AE3E60021E9BD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC907D0175AE3E60021E9BD /* Default-568h@2x.png */; };
 		9BC907D4175AE3E60021E9BD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BC907D2175AE3E60021E9BD /* MainStoryboard.storyboard */; };
 		9BC907D7175AE3E60021E9BD /* LCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC907D6175AE3E60021E9BD /* LCViewController.m */; };
+		9BE918B6175B91EB00C0F27A /* Peleus.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 9BE918B5175B91EB00C0F27A /* Peleus.xcodeproj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		9BC907D3175AE3E60021E9BD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9BC907D5175AE3E60021E9BD /* LCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCViewController.h; sourceTree = "<group>"; };
 		9BC907D6175AE3E60021E9BD /* LCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCViewController.m; sourceTree = "<group>"; };
+		9BE918B5175B91EB00C0F27A /* Peleus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = file; name = Peleus.xcodeproj; path = ../Peleus/Peleus.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		9BC907B9175AE3E60021E9BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BE918B5175B91EB00C0F27A /* Peleus.xcodeproj */,
 				9BC907BA175AE3E60021E9BD /* UIKit.framework */,
 				9BC907BC175AE3E60021E9BD /* Foundation.framework */,
 				9BC907BE175AE3E60021E9BD /* CoreGraphics.framework */,
@@ -164,6 +167,7 @@
 				9BC907CF175AE3E60021E9BD /* Default@2x.png in Resources */,
 				9BC907D1175AE3E60021E9BD /* Default-568h@2x.png in Resources */,
 				9BC907D4175AE3E60021E9BD /* MainStoryboard.storyboard in Resources */,
+				9BE918B6175B91EB00C0F27A /* Peleus.xcodeproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +265,19 @@
 		9BC907DB175AE3E60021E9BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Peleus-dmjtbuajtmvchtbhouverewwequv/Build/Products/Debug-iphonesimulator\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PeleusTest/PeleusTest-Prefix.pch";
 				INFOPLIST_FILE = "PeleusTest/PeleusTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Peleus-dmjtbuajtmvchtbhouverewwequv/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../Peleus.framework/header";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -272,10 +285,19 @@
 		9BC907DC175AE3E60021E9BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Peleus-dmjtbuajtmvchtbhouverewwequv/Build/Products/Debug-iphonesimulator\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PeleusTest/PeleusTest-Prefix.pch";
 				INFOPLIST_FILE = "PeleusTest/PeleusTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Peleus-dmjtbuajtmvchtbhouverewwequv/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -299,6 +321,7 @@
 				9BC907DC175AE3E60021E9BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

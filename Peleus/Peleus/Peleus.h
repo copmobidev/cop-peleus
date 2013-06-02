@@ -11,7 +11,7 @@
 #import "LCDataServiceDelegate.h"
 #import "LCDataService.h"
 #import "LCDriveData.h"
-#import "LCDrivingPiece.h"
+#import "LCDrivePiece.h"
 #import "LCDriveSummary.h"
 #import "LCTimestamp.h"
 

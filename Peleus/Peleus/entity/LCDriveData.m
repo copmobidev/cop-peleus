@@ -8,7 +8,7 @@
 
 #import "LCDriveData.h"
 #import "LCDrivePiece.h"
-#import "LCDrivingSummary.h"
+#import "LCDriveSummary.h"
 
 
 @implementation LCDriveData
