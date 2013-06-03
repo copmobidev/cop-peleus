@@ -14,10 +14,17 @@
 
 @implementation LCViewController
 
+//@synthesize sharedDataService;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+//    sharedDataService = [LCDataService sharedDataService];
+//    
+//    NSString* data = @"";
+//    LCDriveData* driveData = [sharedDataService parseOriginData:data];
 }
 
 - (void)didReceiveMemoryWarning

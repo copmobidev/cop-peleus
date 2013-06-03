@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'Peleus' target in the 'Peleus' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif
