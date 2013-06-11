@@ -14,18 +14,20 @@
 #include <net/if.h>
 #include <net/if_dl.h>
 
-static LCEnvironment* _env = nil;
+static LCEnvironment *_sharedEnvironment = nil;
 
 @implementation LCEnvironment
 
 + (LCEnvironment*)sharedEnvironment
 {
-    if (_env) {
-        return _env;
-    } else {
-        _env = [[LCEnvironment alloc] init];
-        return _env;
-    }
+    @synchronized(self)
+    {
+		if (_sharedEnvironment == nil)
+        {
+			_sharedEnvironment = [[LCEnvironment alloc] init];
+		}
+	}
+	return _sharedEnvironment;
 }
 
 - (BOOL)debug
@@ -47,22 +49,22 @@ static LCEnvironment* _env = nil;
 			[self platform]];
 }
 
-- (NSString*)token
+- (NSString *)token
 {
     return nil;
 }
 
-- (NSString* )version
+- (NSString *)version
 {
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 }
 
-- (NSString* )deviceModel
+- (NSString *)deviceModel
 {
     return nil;
 }
 
-- (NSString* )platform
+- (NSString *)platform
 {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
@@ -73,12 +75,12 @@ static LCEnvironment* _env = nil;
     return platform;
 }
 
-- (NSString* ) appId
+- (NSString *) appId
 {
     return nil;
 }
 
-- (NSString* )bundleId
+- (NSString *)bundleId
 {
     return @"com.cop.achilles";
 }
@@ -126,7 +128,8 @@ static LCEnvironment* _env = nil;
     sdl = (struct sockaddr_dl *)(ifm + 1);
     ptr = (unsigned char *)LLADDR(sdl);
     
-    NSString *outstring = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x", *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
+    NSString *outstring = [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x",
+                           *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
     free(buf);
     return [outstring uppercaseString];
 }

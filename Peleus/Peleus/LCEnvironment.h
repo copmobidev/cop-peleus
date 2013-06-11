@@ -11,41 +11,43 @@
 @interface LCEnvironment : NSObject
 
 
-+ (LCEnvironment* )sharedEnvironment;
++ (LCEnvironment *)sharedEnvironment;
 
 - (BOOL)debug;
 
-- (NSString* )deviceId;
+- (NSString *)deviceId;
 
-- (NSString* )userAgent;
+- (NSString *)userAgent;
 
-- (NSString* )token;
+- (NSString *)token;
+
+- (NSString *)setToken;
 
 /*
  App的版本
  */
-- (NSString* )version;
+- (NSString *)version;
 
 /*
  设备的型号
  iPhone, iPad, iPod, iOS (is unknown)
  */
-- (NSString* )deviceModel;
+- (NSString *)deviceModel;
 
 /*
  硬件版本
  */
-- (NSString* )platform;
+- (NSString *)platform;
 
 /*
  AppStore中的AppId
  */
-- (NSString* )appId;
+- (NSString *)appId;
 
 /*
  Info.plist中定义
  如"com.cop.achilles"
  */
-- (NSString* )bundleId;
+- (NSString *)bundleId;
 
 @end

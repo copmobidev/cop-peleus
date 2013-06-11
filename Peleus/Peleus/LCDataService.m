@@ -33,7 +33,7 @@ static LCDataService* _sharedDataService = nil;
 
 - (void)obdConfig
 {
-    
+    return nil;
 }
 
 - (void)dataSync

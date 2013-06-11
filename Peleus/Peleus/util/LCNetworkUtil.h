@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum _LCNetworkState
+typedef enum _LCNetworkStatus
 {
     NONE, // 无网络连接
     G3_BIZ, // 3G网络
     WIFI_BIZ, // wifi连接internet
     WIFI_OBD // wifi连接硬件设备
-} LCNetworkState;
+} LCNetworkStatus;
 
 @interface LCNetworkUtil : NSObject
 
 
-+ (LCNetworkState)networkState;
++ (LCNetworkStatus)networkStatus;
 
 @end
