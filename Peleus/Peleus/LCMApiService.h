@@ -12,27 +12,25 @@
 #import "LCMapiRequest.h"
 #import "LCMApiResponse.h"
 
-
 @interface LCMApiService : NSObject <ASIHTTPRequestDelegate>
 {
-    NSMutableArray *requests;
-    NSMutableArray *responses;
+    NSMutableArray  *requests;
+    NSMutableArray  *responses;
 }
 
-@property (nonatomic, strong) NSMutableArray *requests;
-@property (nonatomic, strong) NSMutableArray *responses;
-@property (nonatomic, strong) id<LCMApiServiceDelegate> delegate;
-
+@property (nonatomic, strong) NSMutableArray                *requests;
+@property (nonatomic, strong) NSMutableArray                *responses;
+@property (nonatomic, strong) id <LCMApiServiceDelegate>    delegate;
 
 + (LCMApiService *)sharedMApiService;
 
 /*
- 以GET方式发送请求
+ *   以GET方式发送请求
  */
 - (void)get:(LCMApiRequest *)request;
 
 /*
- 以POST方式发送请求
+ *   以POST方式发送请求
  */
 - (void)post:(LCMApiRequest *)request;
 

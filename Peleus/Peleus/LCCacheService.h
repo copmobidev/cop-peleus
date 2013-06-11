@@ -16,8 +16,7 @@
 
 + (void)setTimeInterval:(NSTimeInterval)timeInterval;
 
-+ (void)addCacheData:(NSData*)data forKey:(NSString*)key;
-+ (NSData*)getCacheDataByKey:(NSString*)key;
-
++ (void)addCacheData:(NSData *)data forKey:(NSString *)key;
++ (NSData *)getCacheDataByKey:(NSString *)key;
 
 @end

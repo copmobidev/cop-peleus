@@ -10,39 +10,34 @@
 
 @implementation LCCacheService
 
-
 + (void)setTimeInterval:(NSTimeInterval)timeInterval
-{
-    
-}
+{}
 
-+ (void)addCacheData:(NSData*)data forKey:(NSString*)key
-{
-    
-}
++ (void)addCacheData:(NSData *)data forKey:(NSString *)key
+{}
 
-+ (NSData*)getCacheDataByKey:(NSString*)key
++ (NSData *)getCacheDataByKey:(NSString *)key
 {
-    NSString *path = [self cacheFilePath:@"driveData"];
-    NSFileManager *fm=[NSFileManager defaultManager];
+    NSString        *path = [self cacheFilePath:@"driveData"];
+    NSFileManager   *fm = [NSFileManager defaultManager];
+
     if ([fm fileExistsAtPath:path]) {
         return [fm contentsAtPath:path];
     }
+
     return nil;
 }
 
-+ (void)deleteCacheDataByKey:(NSString*)key
-{
-    
-}
++ (void)deleteCacheDataByKey:(NSString *)key
+{}
 
-
-+ (NSString*)cacheFilePath:(NSString*)fileName
++ (NSString *)cacheFilePath:(NSString *)fileName
 {
-    NSString* path=[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    path=[path stringByAppendingString:@"/"];
-    path=[path stringByAppendingString:fileName];
-    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+
+    path = [path stringByAppendingString:@"/"];
+    path = [path stringByAppendingString:fileName];
+
     return path;
 }
 

@@ -12,26 +12,23 @@
 
 @synthesize dbPath;
 
+static LCSqliteManager *sharedSqliteManger = nil;
 
-static LCSqliteManager* sharedSqliteManger = nil;
-
-+ (LCSqliteManager*)sharedSqliteManger
++ (LCSqliteManager *)sharedSqliteManger
 {
     static dispatch_once_t onceToken;
+
     dispatch_once(&onceToken, ^{
-        sharedSqliteManger = [[LCSqliteManager alloc] init];
-    });
-    
+            sharedSqliteManger = [[LCSqliteManager alloc] init];
+        });
+
     return sharedSqliteManger;
 }
 
-
 - (void)checkAndCreateDatabaseWithOverwrite:(BOOL)overWriteDB
-{
-    
-}
+{}
 
-- (NSArray*)executeSql:(NSString*)sql
+- (NSArray *)executeSql:(NSString *)sql
 {
     return nil;
 }

@@ -11,21 +11,21 @@
 @protocol LCDataServiceDelegate <NSObject>
 
 /*
- 获取配置
+ *   获取配置
  */
-- (void)onGetConfigSuccess:(NSDictionary *) config;
+- (void)onGetConfigSuccess:(NSDictionary *)config;
 - (void)onGetConfigFail;
 
 /*
- 同步数据
+ *   同步数据
  */
-- (void)onSyncDataSuccess:(NSDictionary *) data;
+- (void)onSyncDataSuccess:(NSDictionary *)data;
 - (void)onSyncDataFail;
 
 /*
- 上传数据
+ *   上传数据
  */
-- (void)onUploadDataSucess:(NSDictionary *) callback;
+- (void)onUploadDataSucess:(NSDictionary *)callback;
 - (void)onUploadDataFail;
 
 @end

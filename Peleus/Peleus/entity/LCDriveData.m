@@ -10,10 +10,8 @@
 #import "LCDrivePiece.h"
 #import "LCDriveSummary.h"
 
-
 @implementation LCDriveData
 
 @synthesize summary, pieces;
-
 
 @end

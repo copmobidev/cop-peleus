@@ -16,25 +16,18 @@ static LCMApiService *_sharedMApiService = nil;
 
 + (LCMApiService *)sharedMApiService
 {
-    @synchronized(self)
-    {
-		if (_sharedMApiService == nil)
-        {
-			_sharedMApiService = [[LCMApiService alloc] init];
-		}
-	}
-	return _sharedMApiService;
+    @synchronized(self) {
+        if (_sharedMApiService == nil) {
+            _sharedMApiService = [[LCMApiService alloc] init];
+        }
+    }
+    return _sharedMApiService;
 }
-
 
 - (void)get:(LCMApiRequest *)request
-{
-    
-}
+{}
 
 - (void)post:(LCMApiRequest *)request
-{
-    
-}
+{}
 
 @end

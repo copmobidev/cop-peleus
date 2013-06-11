@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIDevice(IdentifierAddition)
+@interface UIDevice (IdentifierAddition)
 
-- (NSString* )uniqueMACUDIDIdentifier;
+- (NSString *)uniqueMACUDIDIdentifier;
 
 @end

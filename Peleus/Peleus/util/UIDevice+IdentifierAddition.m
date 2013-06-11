@@ -8,10 +8,9 @@
 
 #import "UIDevice+IdentifierAddition.h"
 
-@implementation UIDevice(IdentifierAddition)
+@implementation UIDevice (IdentifierAddition)
 
-
-- (NSString* )uniqueMACUDIDIdentifier
+- (NSString *)uniqueMACUDIDIdentifier
 {
     return nil;
 }

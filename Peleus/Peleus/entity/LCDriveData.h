@@ -12,7 +12,7 @@
 
 @interface LCDriveData : NSObject
 
-@property (nonatomic, strong) LCDriveSummary* summary;
-@property (nonatomic, strong) NSMutableArray* pieces;
+@property (nonatomic, strong) LCDriveSummary    *summary;
+@property (nonatomic, strong) NSMutableArray    *pieces;
 
 @end

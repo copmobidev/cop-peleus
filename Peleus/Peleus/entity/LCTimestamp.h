@@ -8,18 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum _LCSpan
-{
-    TRACK, 
-    WEEK, 
-    MONTH, 
-    YEAR 
+typedef enum _LCSpan {
+    TRACK,
+    WEEK,
+    MONTH,
+    YEAR
 } LCSpan;
 
 @interface LCTimestamp : NSObject
 
 @property (nonatomic, readwrite) LCSpan span;
-@property (nonatomic, readwrite) long beginTime;
-@property (nonatomic, readwrite) long endTime;
+@property (nonatomic, readwrite) long   beginTime;
+@property (nonatomic, readwrite) long   endTime;
 
 @end

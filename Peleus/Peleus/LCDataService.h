@@ -13,16 +13,14 @@
 #import "LCMApiService.h"
 #import "BRRequest.h"
 
-
-@class LCTimestamp;
-@class LCDriveData;
+@class  LCTimestamp;
+@class  LCDriveData;
 
 @interface LCDataService : NSObject <BRRequestDelegate, LCMApiServiceDelegate>
 
-@property (nonatomic, strong) id<LCDataServiceDelegate> delegate;
+@property (nonatomic, strong) id <LCDataServiceDelegate> delegate;
 
-
-+ (LCDataService*)sharedDataService;
++ (LCDataService *)sharedDataService;
 
 // 获取配置文件
 - (void)obdConfig;
@@ -33,8 +31,8 @@
 // 上传数据
 - (void)dataUpload;
 
-- (LCDriveData*)getDriveDataWithSpan:(LCTimestamp*) timestamp;
+- (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp;
 
-- (LCDriveData*)parseOriginData:(NSString* )originData;
+- (LCDriveData *)parseOriginData:(NSString *)originData;
 
 @end

@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "LCMApiRequest.h"
 
-
 @protocol LCMApiServiceDelegate <NSObject>
 
-
-- (void)onRequestStart:(LCMApiRequest*)request;
-- (void)onRequestFinished:(LCMApiRequest*)request;
-- (void)onRequestFailed:(LCMApiRequest*)request;
+- (void)onRequestStart:(LCMApiRequest *)request;
+- (void)onRequestFinished:(LCMApiRequest *)request;
+- (void)onRequestFailed:(LCMApiRequest *)request;
 
 @end

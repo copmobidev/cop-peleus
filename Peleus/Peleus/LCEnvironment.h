@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface LCEnvironment : NSObject
-
+{
+    NSString *token;
+}
 
 + (LCEnvironment *)sharedEnvironment;
 
@@ -24,29 +26,29 @@
 - (NSString *)setToken;
 
 /*
- App的版本
+ *   App的版本
  */
 - (NSString *)version;
 
 /*
- 设备的型号
- iPhone, iPad, iPod, iOS (is unknown)
+ *   设备的型号
+ *   iPhone, iPad, iPod, iOS (is unknown)
  */
 - (NSString *)deviceModel;
 
 /*
- 硬件版本
+ *   硬件版本
  */
 - (NSString *)platform;
 
 /*
- AppStore中的AppId
+ *   AppStore中的AppId
  */
 - (NSString *)appId;
 
 /*
- Info.plist中定义
- 如"com.cop.achilles"
+ *   Info.plist中定义
+ *   如"com.cop.achilles"
  */
 - (NSString *)bundleId;
 

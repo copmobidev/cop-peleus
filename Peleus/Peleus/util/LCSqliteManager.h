@@ -9,21 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
-
-
 @interface LCSqliteManager : NSObject
 {
-    NSString* dbPath;
-    
+    NSString *dbPath;
 }
 
-@property (nonatomic, strong) NSString* dbPath;
+@property (nonatomic, strong) NSString *dbPath;
 
-+ (LCSqliteManager*)sharedSqliteManger;
++ (LCSqliteManager *)sharedSqliteManger;
 
 - (void)checkAndCreateDatabaseWithOverwrite:(BOOL)overWriteDB;
 
-- (NSArray*)executeSql:(NSString*)sql;
-
+- (NSArray *)executeSql:(NSString *)sql;
 
 @end
