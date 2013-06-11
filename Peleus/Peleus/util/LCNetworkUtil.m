@@ -16,7 +16,7 @@
  * 判断当前网络连接状况
  *
  */
-+ (LCNetworkState)networkStatus
++ (LCNetworkStatus)networkStatus
 {
     Reachability *bizReach = [Reachability reachabilityWithHostName:COP_BIZ_SERVER];
     Reachability *obdReach = [Reachability reachabilityWithHostName:COP_OBD_SERVER];
