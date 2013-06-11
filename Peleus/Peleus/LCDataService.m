@@ -33,7 +33,11 @@ static LCDataService* _sharedDataService = nil;
 
 - (void)obdConfig
 {
-    return nil;
+	NSDictionary * testDict = @{@"obd":@"3333-1111-952c-138e", @"sid":@"3333-2222-952c-138e"};
+	if (testDict)
+		[self.delegate onGetConfigSuccess:testDict];
+	else
+		[self.delegate onGetConfigFail];
 }
 
 - (void)dataSync
