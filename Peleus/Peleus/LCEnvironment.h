@@ -10,7 +10,7 @@
 
 @interface LCEnvironment : NSObject
 {
-    NSString *token;
+    NSString *_token;
 }
 
 + (LCEnvironment *)sharedEnvironment;
@@ -23,7 +23,7 @@
 
 - (NSString *)token;
 
-- (NSString *)setToken;
+- (void)setToken:(NSString *)token;
 
 /*
  *   App的版本

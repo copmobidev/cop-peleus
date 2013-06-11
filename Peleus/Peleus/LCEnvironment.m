@@ -52,9 +52,9 @@ static LCEnvironment *_sharedEnvironment = nil;
     return nil;
 }
 
-- (void)setToken:(NSString*)token
+- (void)setToken:(NSString *)token
 {
-    self.token = token;
+    _token = token;
 }
 
 - (NSString *)version
