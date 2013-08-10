@@ -17,8 +17,6 @@
 
 - (BOOL)debug;
 
-- (NSString *)deviceId;
-
 - (NSString *)userAgent;
 
 - (NSString *)token;
@@ -45,11 +43,5 @@
  *   AppStore中的AppId
  */
 - (NSString *)appId;
-
-/*
- *   Info.plist中定义
- *   如"com.cop.achilles"
- */
-- (NSString *)bundleId;
 
 @end

@@ -9,14 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "LCDataConfig.h"
 #import "LCDataServiceDelegate.h"
-#import "LCMapiServiceDelegate.h"
-#import "LCMApiService.h"
 #import "BRRequest.h"
 
 @class  LCTimestamp;
 @class  LCDriveData;
 
-@interface LCDataService : NSObject <BRRequestDelegate, LCMApiServiceDelegate>
+@interface LCDataService : NSObject <BRRequestDelegate>
 
 @property (nonatomic, strong) id <LCDataServiceDelegate> delegate;
 

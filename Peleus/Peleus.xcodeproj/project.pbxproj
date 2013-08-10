@@ -29,7 +29,7 @@
 		9B5357D51764471C00E8195E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5357D41764471C00E8195E /* MobileCoreServices.framework */; };
 		9BA14C4717B5D3A400FA24A9 /* Peleus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4617B5D3A400FA24A9 /* Peleus.h */; };
 		9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4E17B5E6FE00FA24A9 /* JSONKit.h */; };
-		9BA14C5117B5E6FE00FA24A9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA14C4F17B5E6FE00FA24A9 /* JSONKit.m */; };
+		9BA14C5117B5E6FE00FA24A9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA14C4F17B5E6FE00FA24A9 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9BCF450C17635DBD00AB895A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF450B17635DBD00AB895A /* Foundation.framework */; };
 		9BCF457E17635E3C00AB895A /* LCDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451B17635E3C00AB895A /* LCDataService.m */; };
 		9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451C17635E3C00AB895A /* LCEnvironment.m */; };
