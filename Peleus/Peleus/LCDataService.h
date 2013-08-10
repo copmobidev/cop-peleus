@@ -8,8 +8,32 @@
 
 #import <Foundation/Foundation.h>
 #import "LCDataConfig.h"
-#import "LCDataServiceDelegate.h"
 #import "BRRequest.h"
+
+#pragma mark - LCDataService Delegate
+@protocol LCDataServiceDelegate <NSObject>
+
+/*
+ *   获取配置
+ */
+- (void)onGetConfigSuccess:(NSDictionary *)config;
+- (void)onGetConfigFail;
+
+/*
+ *   同步数据
+ */
+- (void)onSyncDataSuccess:(NSData *)data;
+- (void)onSyncDataFail;
+
+/*
+ *   上传数据
+ */
+- (void)onUploadDataSucess:(NSDictionary *)callback;
+- (void)onUploadDataFail;
+
+@end
+
+#pragma mark - LCDataService
 
 @class  LCTimestamp;
 @class  LCDriveData;
@@ -17,8 +41,9 @@
 @interface LCDataService : NSObject <BRRequestDelegate>
 
 @property (nonatomic, strong) id <LCDataServiceDelegate> delegate;
+@property (nonatomic, strong) NSMutableData *downloadData;
 
-+ (LCDataService *)sharedDataService;
+LCSINGLETON_IN_H(LCDataService)
 
 #pragma mark - FTP Actions
 

@@ -13,18 +13,20 @@
 #import "BRRequestDownload.h"
 #import "BRRequestDelete.h"
 
+@interface LCDataService()
+
+- (NSUInteger)getFTPIndex;
+
+@end
+
 @implementation LCDataService
 
 static LCDataService *_sharedDataService = nil;
 
-+ (LCDataService *)sharedDataService
-{
-    @synchronized(self) {
-        if (_sharedDataService == nil) {
-            _sharedDataService = [[LCDataService alloc] init];
-        }
-    }
-    return _sharedDataService;
+LCSINGLETON_IN_M(LCDataService)
+
+- (NSUInteger)getFTPIndex {
+	
 }
 
 - (void)getConfig

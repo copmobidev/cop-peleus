@@ -102,7 +102,6 @@
 		9BCF45C917635F1000AB895A /* ASIS3Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF455817635E3C00AB895A /* ASIS3Request.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45CA17635F1000AB895A /* ASIS3ServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF455A17635E3C00AB895A /* ASIS3ServiceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45CC17635F1000AB895A /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456017635E3C00AB895A /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9BCF45CD17635F5200AB895A /* LCDataServiceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF457B17635E3C00AB895A /* LCDataServiceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45CE17635F8000AB895A /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456417635E3C00AB895A /* crypt.h */; };
 		9BCF45CF17635F8000AB895A /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456617635E3C00AB895A /* ioapi.h */; };
 		9BCF45D017635F8000AB895A /* mztools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456817635E3C00AB895A /* mztools.h */; };
@@ -234,7 +233,6 @@
 		9BCF457317635E3C00AB895A /* LCNetworkUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetworkUtil.m; sourceTree = "<group>"; };
 		9BCF457917635E3C00AB895A /* LCDataConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataConfig.h; sourceTree = "<group>"; };
 		9BCF457A17635E3C00AB895A /* LCDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataService.h; sourceTree = "<group>"; };
-		9BCF457B17635E3C00AB895A /* LCDataServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataServiceDelegate.h; sourceTree = "<group>"; };
 		9BCF457C17635E3C00AB895A /* LCEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCEnvironment.h; sourceTree = "<group>"; };
 		9BCF45D417635FDE00AB895A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9BCF45D617635FE700AB895A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -333,7 +331,6 @@
 				C9C5715217B6054500CA3CB4 /* LCStore.h */,
 				C9C5715317B6054500CA3CB4 /* LCStore.m */,
 				9BCF457917635E3C00AB895A /* LCDataConfig.h */,
-				9BCF457B17635E3C00AB895A /* LCDataServiceDelegate.h */,
 				9BCF457A17635E3C00AB895A /* LCDataService.h */,
 				9BCF451B17635E3C00AB895A /* LCDataService.m */,
 				9BCF457C17635E3C00AB895A /* LCEnvironment.h */,
@@ -515,7 +512,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BCF45A917635F1000AB895A /* LCDataConfig.h in Headers */,
-				9BCF45CD17635F5200AB895A /* LCDataServiceDelegate.h in Headers */,
 				9BCF45AA17635F1000AB895A /* LCDataService.h in Headers */,
 				9BCF45AB17635F1000AB895A /* LCEnvironment.h in Headers */,
 				9BCF45AC17635F1000AB895A /* LCDriveData.h in Headers */,
