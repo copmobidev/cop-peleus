@@ -20,6 +20,8 @@
 
 + (LCDataService *)sharedDataService;
 
+#pragma mark - FTP Actions
+
 // 获取配置文件
 - (void)getConfig;
 
@@ -28,6 +30,11 @@
 
 // 同步数据
 - (void)syncData;
+
+// 获取ftp index
+- (int)getIndex;
+
+#pragma mark - Server Actions
 
 // 上传数据
 - (void)uploadData;
