@@ -23,16 +23,22 @@
 + (LCDataService *)sharedDataService;
 
 // 获取配置文件
-- (void)obdConfig;
+- (void)getConfig;
+
+// 向obd写入配置文件
+- (void)pushConfig;
 
 // 同步数据
-- (void)dataSync;
+- (void)syncData;
 
 // 上传数据
-- (void)dataUpload;
+- (void)uploadData;
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp;
 
+/*
+ 暂时不支持
+ */
 - (LCDriveData *)parseOriginData:(NSString *)originData;
 
 @end

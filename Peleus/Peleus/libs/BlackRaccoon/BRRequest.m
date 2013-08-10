@@ -1,4 +1,4 @@
-//----------
+// ----------
 //
 //				BRRequest.m
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:	
+// description:
 //
 // notes:		none
 //
-// revisions:	
+// revisions:
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,6 @@
 
 #import "BRRequest.h"
 
-
 @implementation BRRequest
 
 @synthesize password;
@@ -48,23 +47,23 @@
 @synthesize maximumSize;
 @synthesize percentCompleted;
 
+@synthesize tag;
 @synthesize nextRequest;
 @synthesize prevRequest;
 @synthesize delegate;
 @synthesize streamInfo;
 @synthesize didOpenStream;
 
-
-- (id)init 
+- (id)init
 {
     self = [super init];
-    if (self) 
-    {
+
+    if (self) {
         self.password = nil;
         self.username = nil;
         self.hostname = nil;
         self.path = @"";
-        
+
         streamInfo = [[BRStreamInfo alloc] init];
         self.streamInfo.readStream = nil;
         self.streamInfo.writeStream = nil;
@@ -72,13 +71,11 @@
         self.streamInfo.bytesTotal = 0;
         self.streamInfo.timeout = 30;
     }
+
     return self;
 }
 
-
-
-
-//-----
+// -----
 //
 //				fullURL
 //
@@ -92,16 +89,14 @@
 // returns:		Variable of type NSURL*
 //
 
--(NSURL*) fullURL
+- (NSURL *)fullURL
 {
-    NSString * fullURLString = [NSString stringWithFormat: @"ftp://%@%@", self.hostname, self.path];
-    
-    return [NSURL URLWithString: fullURLString];
+    NSString *fullURLString = [NSString stringWithFormat:@"ftp://%@%@", self.hostname, self.path];
+
+    return [NSURL URLWithString:fullURLString];
 }
 
-
-
-//-----
+// -----
 //
 //				fullURLWithEscape
 //
@@ -115,37 +110,30 @@
 // returns:		Variable of type NSURL *
 //
 
-- (NSURL *) fullURLWithEscape
+- (NSURL *)fullURLWithEscape
 {
-    NSString *escapedUsername = [self encodeString: username];
-    NSString *escapedPassword = [self encodeString: password];
-    NSString *cred;
-    
-    if (escapedUsername != nil)
-    {
-        if (escapedPassword != nil)
-        {
+    NSString    *escapedUsername = [self encodeString:username];
+    NSString    *escapedPassword = [self encodeString:password];
+    NSString    *cred;
+
+    if (escapedUsername != nil) {
+        if (escapedPassword != nil) {
             cred = [NSString stringWithFormat:@"%@:%@@", escapedUsername, escapedPassword];
-        }else
-        {
+        } else {
             cred = [NSString stringWithFormat:@"%@@", escapedUsername];
         }
-    }
-    else
-    {
+    } else {
         cred = @"";
     }
+
     cred = [cred stringByStandardizingPath];
-    
-    NSString * fullURLString = [NSString stringWithFormat:@"ftp://%@%@%@", cred, self.hostname, self.path];
-    
-    return [NSURL URLWithString: fullURLString];
-    
+
+    NSString *fullURLString = [NSString stringWithFormat:@"ftp://%@%@%@", cred, self.hostname, self.path];
+
+    return [NSURL URLWithString:fullURLString];
 }
 
-
-
-//-----
+// -----
 //
 //				path
 //
@@ -159,28 +147,24 @@
 // returns:		Variable of type NSString *
 //
 
--(NSString *)path
+- (NSString *)path
 {
     //  we remove all the extra slashes from the directory path, including the last one (if there is one)
     //  we also escape it
-    NSString * escapedPath = [path stringByStandardizingPath];
-    
-    
+    NSString *escapedPath = [path stringByStandardizingPath];
+
     //  we need the path to be absolute, if it's not, we *make* it
-    if (![escapedPath isAbsolutePath])
-    {
-        escapedPath = [@"/" stringByAppendingString:escapedPath];
+    if (![escapedPath isAbsolutePath]) {
+        escapedPath = [@"/" stringByAppendingString : escapedPath];
     }
-    
-    //----- now make sure that we have escaped all special characters
-    escapedPath = [self encodeString: escapedPath];
-    
+
+    // ----- now make sure that we have escaped all special characters
+    escapedPath = [self encodeString:escapedPath];
+
     return escapedPath;
 }
 
-
-
-//-----
+// -----
 //
 //				setPath
 //
@@ -194,14 +178,12 @@
 // returns:		none
 //
 
--(void) setPath: (NSString *) directoryPathLocal
+- (void)setPath:(NSString *)directoryPathLocal
 {
     path = directoryPathLocal;
 }
 
-
-
-//-----
+// -----
 //
 //				hostname
 //
@@ -215,14 +197,12 @@
 // returns:		Variable of type NSString *
 //
 
--(NSString *) hostname
+- (NSString *)hostname
 {
     return [hostname stringByStandardizingPath];
 }
 
-
-
-//-----
+// -----
 //
 //				setHostname
 //
@@ -236,14 +216,12 @@
 // returns:		none
 //
 
--(void)setHostname:(NSString *)hostnamelocal
+- (void)setHostname:(NSString *)hostnamelocal
 {
     hostname = hostnamelocal;
 }
 
-
-
-//-----
+// -----
 //
 //				encodeString
 //
@@ -258,20 +236,18 @@
 // returns:		Variable of type NSString *
 //
 
-- (NSString *)encodeString: (NSString *) string;
+- (NSString *)encodeString:(NSString *)string;
 {
     NSString *urlEncoded = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
-                                                                                                 NULL,
-                                                                                                 (__bridge CFStringRef) string,
-                                                                                                 NULL,
-                                                                                                 (CFStringRef)@"!*'\"();:@&=+$,?%#[]% ",
-                                                                                                 kCFStringEncodingUTF8);
+        NULL,
+        (__bridge CFStringRef)string,
+        NULL,
+        (CFStringRef)@"!*'\"();:@&=+$,?%#[]% ",
+        kCFStringEncodingUTF8);
     return urlEncoded;
-}  
+}
 
-
-
-//-----
+// -----
 //
 //				start
 //
@@ -284,13 +260,10 @@
 // returns:		none
 //
 
--(void) start
-{
-}
+- (void)start
+{}
 
-
-
-//-----
+// -----
 //
 //				bytesSent
 //
@@ -304,14 +277,12 @@
 // returns:		Variable of type long
 //
 
-- (long) bytesSent
+- (long)bytesSent
 {
     return self.streamInfo.bytesThisIteration;
 }
 
-
-
-//-----
+// -----
 //
 //				totalBytesSent
 //
@@ -325,14 +296,12 @@
 // returns:		Variable of type long
 //
 
-- (long) totalBytesSent
+- (long)totalBytesSent
 {
     return self.streamInfo.bytesTotal;
 }
 
-
-
-//-----
+// -----
 //
 //				timeout
 //
@@ -346,14 +315,12 @@
 // returns:		Variable of type long
 //
 
-- (long) timeout
+- (long)timeout
 {
     return self.streamInfo.timeout;
 }
 
-
-
-//-----
+// -----
 //
 //				setTimeout
 //
@@ -367,24 +334,24 @@
 // returns:		none
 //
 
-- (void) setTimeout:(long)timeout
+- (void)setTimeout:(long)timeout
 {
     self.streamInfo.timeout = timeout;
 }
 
-- (void) cancelRequest
+- (void)cancelRequest
 {
     self.streamInfo.cancelRequestFlag = TRUE;
 }
 
-- (void) setCancelDoesNotCallDelegate:(BOOL)cancelDoesNotCallDelegate
+- (void)setCancelDoesNotCallDelegate:(BOOL)cancelDoesNotCallDelegate
 {
     self.streamInfo.cancelDoesNotCallDelegate = cancelDoesNotCallDelegate;
 }
-- (BOOL) cancelDoesNotCallDelegate
+
+- (BOOL)cancelDoesNotCallDelegate
 {
     return self.streamInfo.cancelDoesNotCallDelegate;
 }
-
 
 @end

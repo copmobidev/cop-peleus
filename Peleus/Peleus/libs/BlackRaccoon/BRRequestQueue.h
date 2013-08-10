@@ -1,4 +1,4 @@
-//----------
+// ----------
 //
 //				BRRequestQueue.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:	
+// description:
 //
 // notes:		none
 //
-// revisions:	
+// revisions:
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,45 +37,30 @@
 //              THE SOFTWARE.
 //
 
-
 #import "BRGlobal.h"
 #import "BRRequest.h"
 #import "BRRequestQueue.h"
 
-
 @class BRRequestQueue;
-@protocol BRQueueDelegate  <BRRequestDelegate>
+@protocol BRQueueDelegate <BRRequestDelegate>
 
 @required
--(void) queueCompleted: (BRRequestQueue *) queue;
-
+- (void)queueCompleted:(BRRequestQueue *)queue;
 
 @end
 
-
-
 @interface BRRequestQueue : BRRequest <BRRequestDelegate>
 {
-    
-@private
-    BRRequest *headRequest;
-    BRRequest *tailRequest;
-    
+    @private
+    BRRequest   *headRequest;
+    BRRequest   *tailRequest;
 }
 
 @property id <BRQueueDelegate> queueDelegate;
 
--(void) addRequest: (BRRequest *) request;
--(void) addRequestInFront:(BRRequest *) request;
--(void) addRequestsFromArray: (NSArray *) array;
--(void) removeRequestFromQueue:(BRRequest *) request;
+- (void)addRequest:(BRRequest *)request;
+- (void)addRequestInFront:(BRRequest *)request;
+- (void)addRequestsFromArray:(NSArray *)array;
+- (void)removeRequestFromQueue:(BRRequest *)request;
 
 @end
-
-
-
-
-
-
-
-

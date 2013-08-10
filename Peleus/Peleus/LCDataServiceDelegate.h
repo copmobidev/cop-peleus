@@ -19,7 +19,7 @@
 /*
  *   同步数据
  */
-- (void)onSyncDataSuccess:(NSDictionary *)data;
+- (void)onSyncDataSuccess:(NSData *)data;
 - (void)onSyncDataFail;
 
 /*

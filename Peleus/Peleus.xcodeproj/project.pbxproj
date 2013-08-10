@@ -26,15 +26,11 @@
 		9B5357C51764227700E8195E /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357B21764227700E8195E /* BRRequestUpload.m */; };
 		9B5357C61764227700E8195E /* BRStreamInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357B31764227700E8195E /* BRStreamInfo.h */; };
 		9B5357C71764227700E8195E /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357B41764227700E8195E /* BRStreamInfo.m */; };
-		9B5357D2176446EB00E8195E /* LCMApiService.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357D0176446EA00E8195E /* LCMApiService.h */; };
-		9B5357D3176446EB00E8195E /* LCMApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357D1176446EB00E8195E /* LCMApiService.m */; };
 		9B5357D51764471C00E8195E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5357D41764471C00E8195E /* MobileCoreServices.framework */; };
-		9B5357D91764484400E8195E /* LCMApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357D71764484400E8195E /* LCMApiRequest.h */; };
-		9B5357DA1764484400E8195E /* LCMApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357D81764484400E8195E /* LCMApiRequest.m */; };
-		9B5357DD1764485F00E8195E /* LCMApiResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357DB1764485F00E8195E /* LCMApiResponse.h */; };
-		9B5357DE1764485F00E8195E /* LCMApiResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357DC1764485F00E8195E /* LCMApiResponse.m */; };
+		9BA14C4717B5D3A400FA24A9 /* Peleus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4617B5D3A400FA24A9 /* Peleus.h */; };
+		9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4E17B5E6FE00FA24A9 /* JSONKit.h */; };
+		9BA14C5117B5E6FE00FA24A9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA14C4F17B5E6FE00FA24A9 /* JSONKit.m */; };
 		9BCF450C17635DBD00AB895A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF450B17635DBD00AB895A /* Foundation.framework */; };
-		9BCF457D17635E3C00AB895A /* LCCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451A17635E3C00AB895A /* LCCacheService.m */; };
 		9BCF457E17635E3C00AB895A /* LCDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451B17635E3C00AB895A /* LCDataService.m */; };
 		9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451C17635E3C00AB895A /* LCEnvironment.m */; };
 		9BCF458017635E3C00AB895A /* LCDriveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451F17635E3C00AB895A /* LCDriveData.m */; };
@@ -71,10 +67,6 @@
 		9BCF45A017635E3C00AB895A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF456E17635E3C00AB895A /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9BCF45A117635E3C00AB895A /* LCDataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF457117635E3C00AB895A /* LCDataParser.m */; };
 		9BCF45A217635E3C00AB895A /* LCNetworkUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF457317635E3C00AB895A /* LCNetworkUtil.m */; };
-		9BCF45A317635E3C00AB895A /* LCSqliteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF457517635E3C00AB895A /* LCSqliteManager.m */; };
-		9BCF45A417635E3C00AB895A /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF457717635E3C00AB895A /* UIDevice+IdentifierAddition.m */; };
-		9BCF45A717635F1000AB895A /* Peleus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF451917635DE800AB895A /* Peleus.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9BCF45A817635F1000AB895A /* LCCacheService.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF457817635E3C00AB895A /* LCCacheService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45A917635F1000AB895A /* LCDataConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF457917635E3C00AB895A /* LCDataConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45AA17635F1000AB895A /* LCDataService.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF457A17635E3C00AB895A /* LCDataService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45AB17635F1000AB895A /* LCEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF457C17635E3C00AB895A /* LCEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -155,19 +147,13 @@
 		9B5357B21764227700E8195E /* BRRequestUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRRequestUpload.m; sourceTree = "<group>"; };
 		9B5357B31764227700E8195E /* BRStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRStreamInfo.h; sourceTree = "<group>"; };
 		9B5357B41764227700E8195E /* BRStreamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRStreamInfo.m; sourceTree = "<group>"; };
-		9B5357D0176446EA00E8195E /* LCMApiService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMApiService.h; sourceTree = "<group>"; };
-		9B5357D1176446EB00E8195E /* LCMApiService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMApiService.m; sourceTree = "<group>"; };
 		9B5357D41764471C00E8195E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		9B5357D61764475F00E8195E /* LCMApiServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCMApiServiceDelegate.h; sourceTree = "<group>"; };
-		9B5357D71764484400E8195E /* LCMApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMApiRequest.h; sourceTree = "<group>"; };
-		9B5357D81764484400E8195E /* LCMApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMApiRequest.m; sourceTree = "<group>"; };
-		9B5357DB1764485F00E8195E /* LCMApiResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMApiResponse.h; sourceTree = "<group>"; };
-		9B5357DC1764485F00E8195E /* LCMApiResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMApiResponse.m; sourceTree = "<group>"; };
+		9BA14C4617B5D3A400FA24A9 /* Peleus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peleus.h; sourceTree = "<group>"; };
+		9BA14C4E17B5E6FE00FA24A9 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		9BA14C4F17B5E6FE00FA24A9 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		9BCF450817635DBD00AB895A /* libPeleus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPeleus.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BCF450B17635DBD00AB895A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9BCF450F17635DBD00AB895A /* Peleus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Peleus-Prefix.pch"; sourceTree = "<group>"; };
-		9BCF451917635DE800AB895A /* Peleus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Peleus.h; sourceTree = "<group>"; };
-		9BCF451A17635E3C00AB895A /* LCCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCacheService.m; sourceTree = "<group>"; };
 		9BCF451B17635E3C00AB895A /* LCDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDataService.m; sourceTree = "<group>"; };
 		9BCF451C17635E3C00AB895A /* LCEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCEnvironment.m; sourceTree = "<group>"; };
 		9BCF451E17635E3C00AB895A /* LCDriveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDriveData.h; sourceTree = "<group>"; };
@@ -244,11 +230,6 @@
 		9BCF457117635E3C00AB895A /* LCDataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDataParser.m; sourceTree = "<group>"; };
 		9BCF457217635E3C00AB895A /* LCNetworkUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNetworkUtil.h; sourceTree = "<group>"; };
 		9BCF457317635E3C00AB895A /* LCNetworkUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNetworkUtil.m; sourceTree = "<group>"; };
-		9BCF457417635E3C00AB895A /* LCSqliteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSqliteManager.h; sourceTree = "<group>"; };
-		9BCF457517635E3C00AB895A /* LCSqliteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSqliteManager.m; sourceTree = "<group>"; };
-		9BCF457617635E3C00AB895A /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
-		9BCF457717635E3C00AB895A /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
-		9BCF457817635E3C00AB895A /* LCCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCacheService.h; sourceTree = "<group>"; };
 		9BCF457917635E3C00AB895A /* LCDataConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataConfig.h; sourceTree = "<group>"; };
 		9BCF457A17635E3C00AB895A /* LCDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataService.h; sourceTree = "<group>"; };
 		9BCF457B17635E3C00AB895A /* LCDataServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDataServiceDelegate.h; sourceTree = "<group>"; };
@@ -302,6 +283,15 @@
 			path = BlackRaccoon;
 			sourceTree = "<group>";
 		};
+		9BA14C4D17B5E6FD00FA24A9 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				9BA14C4E17B5E6FE00FA24A9 /* JSONKit.h */,
+				9BA14C4F17B5E6FE00FA24A9 /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 		9BCF44FF17635DBC00AB895A = {
 			isa = PBXGroup;
 			children = (
@@ -335,16 +325,11 @@
 		9BCF450D17635DBD00AB895A /* Peleus */ = {
 			isa = PBXGroup;
 			children = (
-				9BCF451917635DE800AB895A /* Peleus.h */,
-				9BCF457817635E3C00AB895A /* LCCacheService.h */,
-				9BCF451A17635E3C00AB895A /* LCCacheService.m */,
+				9BA14C4617B5D3A400FA24A9 /* Peleus.h */,
 				9BCF457917635E3C00AB895A /* LCDataConfig.h */,
 				9BCF457B17635E3C00AB895A /* LCDataServiceDelegate.h */,
 				9BCF457A17635E3C00AB895A /* LCDataService.h */,
 				9BCF451B17635E3C00AB895A /* LCDataService.m */,
-				9B5357D61764475F00E8195E /* LCMApiServiceDelegate.h */,
-				9B5357D0176446EA00E8195E /* LCMApiService.h */,
-				9B5357D1176446EB00E8195E /* LCMApiService.m */,
 				9BCF457C17635E3C00AB895A /* LCEnvironment.h */,
 				9BCF451C17635E3C00AB895A /* LCEnvironment.m */,
 				9BCF451D17635E3C00AB895A /* entity */,
@@ -374,10 +359,6 @@
 				9BCF452317635E3C00AB895A /* LCDriveSummary.m */,
 				9BCF452417635E3C00AB895A /* LCTimestamp.h */,
 				9BCF452517635E3C00AB895A /* LCTimestamp.m */,
-				9B5357D71764484400E8195E /* LCMApiRequest.h */,
-				9B5357D81764484400E8195E /* LCMApiRequest.m */,
-				9B5357DB1764485F00E8195E /* LCMApiResponse.h */,
-				9B5357DC1764485F00E8195E /* LCMApiResponse.m */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -385,6 +366,7 @@
 		9BCF452617635E3C00AB895A /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				9BA14C4D17B5E6FD00FA24A9 /* JSONKit */,
 				9BCF452717635E3C00AB895A /* ASIHttpRequest */,
 				9B5357A11764227700E8195E /* BlackRaccoon */,
 				9BCF455F17635E3C00AB895A /* Reachability */,
@@ -515,10 +497,6 @@
 				9BCF457117635E3C00AB895A /* LCDataParser.m */,
 				9BCF457217635E3C00AB895A /* LCNetworkUtil.h */,
 				9BCF457317635E3C00AB895A /* LCNetworkUtil.m */,
-				9BCF457417635E3C00AB895A /* LCSqliteManager.h */,
-				9BCF457517635E3C00AB895A /* LCSqliteManager.m */,
-				9BCF457617635E3C00AB895A /* UIDevice+IdentifierAddition.h */,
-				9BCF457717635E3C00AB895A /* UIDevice+IdentifierAddition.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -530,8 +508,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BCF45A717635F1000AB895A /* Peleus.h in Headers */,
-				9BCF45A817635F1000AB895A /* LCCacheService.h in Headers */,
 				9BCF45A917635F1000AB895A /* LCDataConfig.h in Headers */,
 				9BCF45CD17635F5200AB895A /* LCDataServiceDelegate.h in Headers */,
 				9BCF45AA17635F1000AB895A /* LCDataService.h in Headers */,
@@ -584,9 +560,8 @@
 				9B5357C21764227700E8195E /* BRRequestQueue.h in Headers */,
 				9B5357C41764227700E8195E /* BRRequestUpload.h in Headers */,
 				9B5357C61764227700E8195E /* BRStreamInfo.h in Headers */,
-				9B5357D2176446EB00E8195E /* LCMApiService.h in Headers */,
-				9B5357D91764484400E8195E /* LCMApiRequest.h in Headers */,
-				9B5357DD1764485F00E8195E /* LCMApiResponse.h in Headers */,
+				9BA14C4717B5D3A400FA24A9 /* Peleus.h in Headers */,
+				9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +617,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BCF457D17635E3C00AB895A /* LCCacheService.m in Sources */,
 				9BCF457E17635E3C00AB895A /* LCDataService.m in Sources */,
 				9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */,
 				9BCF458017635E3C00AB895A /* LCDriveData.m in Sources */,
@@ -679,8 +653,6 @@
 				9BCF45A017635E3C00AB895A /* ZipArchive.mm in Sources */,
 				9BCF45A117635E3C00AB895A /* LCDataParser.m in Sources */,
 				9BCF45A217635E3C00AB895A /* LCNetworkUtil.m in Sources */,
-				9BCF45A317635E3C00AB895A /* LCSqliteManager.m in Sources */,
-				9BCF45A417635E3C00AB895A /* UIDevice+IdentifierAddition.m in Sources */,
 				9B5357B71764227700E8195E /* BRRequest.m in Sources */,
 				9B5357B91764227700E8195E /* BRRequestCreateDirectory.m in Sources */,
 				9B5357BB1764227700E8195E /* BRRequestDelete.m in Sources */,
@@ -690,9 +662,7 @@
 				9B5357C31764227700E8195E /* BRRequestQueue.m in Sources */,
 				9B5357C51764227700E8195E /* BRRequestUpload.m in Sources */,
 				9B5357C71764227700E8195E /* BRStreamInfo.m in Sources */,
-				9B5357D3176446EB00E8195E /* LCMApiService.m in Sources */,
-				9B5357DA1764484400E8195E /* LCMApiRequest.m in Sources */,
-				9B5357DE1764485F00E8195E /* LCMApiResponse.m in Sources */,
+				9BA14C5117B5E6FE00FA24A9 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

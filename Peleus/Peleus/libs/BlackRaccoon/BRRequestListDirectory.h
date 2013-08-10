@@ -1,4 +1,4 @@
-//----------
+// ----------
 //
 //				BRRequestListDirectory.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:	
+// description:
 //
 // notes:		none
 //
-// revisions:	
+// revisions:
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,20 +37,16 @@
 //              THE SOFTWARE.
 //
 
-
 #import "BRGlobal.h"
 #import "BRRequest.h"
 
-
 @interface BRRequestListDirectory : BRRequest
-{
-    
-}
+{}
 
-@property NSArray * filesInfo;
-@property (strong) NSMutableData * receivedData;
+@property NSArray                   *filesInfo;
+@property (strong) NSMutableData    *receivedData;
 
-+ (BRRequestListDirectory *) initWithDelegate: (id) inDelegate;
-- (BOOL) fileExists: (NSString *) fileNamePath;
++ (BRRequestListDirectory *)initWithDelegate:(id)inDelegate;
+- (BOOL)fileExists:(NSString *)fileNamePath;
 
 @end

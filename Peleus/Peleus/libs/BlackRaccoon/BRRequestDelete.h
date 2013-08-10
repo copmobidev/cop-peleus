@@ -1,4 +1,4 @@
-//----------
+// ----------
 //
 //				BRRequestDelete.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:	
+// description:
 //
 // notes:		none
 //
-// revisions:	
+// revisions:
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -45,6 +45,6 @@
     BOOL isDirectory;
 }
 
-+ (BRRequestDelete *) initWithDelegate: (id) inDelegate;
++ (BRRequestDelete *)initWithDelegate:(id)inDelegate;
 
 @end

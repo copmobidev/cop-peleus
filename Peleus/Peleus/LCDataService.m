@@ -29,63 +29,52 @@ static LCDataService *_sharedDataService = nil;
     return _sharedDataService;
 }
 
-- (void)obdConfig
+- (void)getConfig
 {
-    NSDictionary *testDict = @{@"obd":@"3333-1111-952c-138e", @"sid":@"3333-2222-952c-138e"};
+    NSDictionary *config = nil;
 
-    if (testDict) {
-        [self.delegate onGetConfigSuccess:testDict];
-    } else {
-        [self.delegate onGetConfigFail];
-    }
-}
-
-- (void)dataSync
-{
-    NSDictionary *data = nil;
-
-    BRRequestDownload *downloadFile = [[BRRequestDownload alloc] init];
-
-    downloadFile.delegate = self;
-
-    downloadFile.path = @"/data";
-    downloadFile.hostname = COP_OBD_SERVER;
-    downloadFile.username = @"anonymous";
-    downloadFile.password = @"";
-
-    [downloadFile start];
-
+    BRRequestDownload *fileDownloadReq = [[BRRequestDownload alloc] init];
+    
+    fileDowndloadReq.delegate = self;
+    fileDowndloadReq.path = @"/data";
+    fileDowndloadReq.hostname = COP_OBD_SERVER;
+    fileDowndloadReq.username = COP_OBD_USER;
+    fileDowndloadReq.password = COP_OBD_PWD;
+    [fileDowndloadReq start];
     [self.delegate onSyncDataSuccess:data];
 }
 
-- (void)dataUpload
-{}
-
-- (void)listDriveDataFiles
+- (void)pushConfig
 {
-    BRRequestListDirectory *listDir = [[BRRequestListDirectory alloc] init];
-
-    listDir.delegate = self;
-    listDir.path = @"/";
-
-    listDir.hostname = COP_OBD_SERVER;
-    listDir.username = @"anonymous";
-    listDir.password = @"";
-
-    [listDir start];
+    return nil;
 }
+
+- (void)syncData
+{
+    NSDictionary *data = nil;
+    BRRequestDownload *fileDowndloadReq = [[BRRequestDownload alloc] init];
+    fileDowndloadReq.delegate = self;
+    fileDowndloadReq.path = @"/data";
+    fileDowndloadReq.hostname = COP_OBD_SERVER;
+    fileDowndloadReq.username = COP_OBD_USER;
+    fileDowndloadReq.password = COP_OBD_PWD;
+    [fileDowndloadReq start];
+    [self.delegate onSyncDataSuccess:data];
+}
+
+- (void)uploadData
+{}
 
 - (void)deleteDriveDataFiles
 {
-    BRRequestDelete *deleteDir = [[BRRequestDelete alloc] init];
-
-    deleteDir.path = @"/data/";
-    deleteDir.hostname = COP_OBD_SERVER;
-    deleteDir.username = @"anonymous";
-    deleteDir.password = @"";
+    BRRequestDelete *fileDelReq = [[BRRequestDelete alloc] init];
+    fileDelReq.path = @"/data/";
+    fileDelReq.hostname = COP_OBD_SERVER;
+    fileDelReq.username = COP_OBD_USER;
+    fileDelReq.password = COP_OBD_PWD;
 
     // we start the request
-    [deleteDir start];
+    [fileDelReq start];
 }
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp
@@ -109,6 +98,9 @@ static LCDataService *_sharedDataService = nil;
     return nil;
 }
 
+/*
+ *   暂时不在本地做数据解析
+ */
 - (LCDriveData *)parseOriginData:(NSString *)originData
 {
     return nil;
@@ -120,7 +112,9 @@ static LCDataService *_sharedDataService = nil;
 // obd ftp server相关请求操作成功时，解析数据并通知上层回调函数完成相关动作
 - (void)requestCompleted:(BRRequest *)request
 {
-    if ([request isKindOfClass:[BRRequestDownload class]]) {} else if ([request isKindOfClass:[BRRequestListDirectory class]]) {
+    if ([request isKindOfClass:[BRRequestDownload class]]) {
+        [self.delegate onGetConfigSuccess:config];
+    } else if ([request isKindOfClass:[BRRequestListDirectory class]]) {
         // 成功获取行程数据列表
         BRRequestListDirectory *listDir = (BRRequestListDirectory *)request;
 
@@ -141,17 +135,5 @@ static LCDataService *_sharedDataService = nil;
 {
     return false;
 }
-
-#pragma mark -
-#pragma mark MApiServiceDelegate implement
-
-- (void)onRequestStart:(LCMApiRequest *)request
-{}
-
-- (void)onRequestFinished:(LCMApiRequest *)request
-{}
-
-- (void)onRequestFailed:(LCMApiRequest *)request
-{}
 
 @end

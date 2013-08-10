@@ -1,4 +1,4 @@
-//----------
+// ----------
 //
 //				BRRequest.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:	
+// description:
 //
 // notes:		none
 //
-// revisions:	
+// revisions:
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -41,62 +41,55 @@
 #import "BRRequestError.h"
 #import "BRStreamInfo.h"
 
-
-@class BRRequest;
-@class BRRequestDownload;
-@class BRRequestUpload;
-@protocol BRRequestDelegate  <NSObject>
+@class  BRRequest;
+@class  BRRequestDownload;
+@class  BRRequestUpload;
+@protocol BRRequestDelegate <NSObject>
 
 @required
-- (void) requestCompleted:(BRRequest *) request;
-- (void) requestFailed:(BRRequest *) request;
-- (BOOL) shouldOverwriteFileWithRequest: (BRRequest *) request;
+- (void)requestCompleted:(BRRequest *)request;
+- (void)requestFailed:(BRRequest *)request;
+- (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request;
 
 @optional
-- (void) percentCompleted: (BRRequest *) request;
-- (void) requestDataAvailable: (BRRequestDownload *) request;
-- (long) requestDataSendSize: (BRRequestUpload *) request;
-- (NSData *) requestDataToSend: (BRRequestUpload *) request;
-
-
+- (void)percentCompleted:(BRRequest *)request;
+- (void)requestDataAvailable:(BRRequestDownload *)request;
+- (long)requestDataSendSize:(BRRequestUpload *)request;
+- (NSData *)requestDataToSend:(BRRequestUpload *)request;
 @end
 
-
-
-//---------- classes
-
+// ---------- classes
 @interface BRRequest : NSObject <NSStreamDelegate>
 {
-@protected
-    NSString * path;
-    NSString * hostname;
-    
+    @protected
+    NSString    *path;
+    NSString    *hostname;
+
     BRRequestError *error;
 }
-@property NSString *username;
-@property NSString *password;
-@property NSString *hostname;
-@property (readonly) NSURL *fullURL;
-@property NSString *path;
-@property (strong) BRRequestError *error;
-@property float maximumSize;
-@property float percentCompleted;
-@property long timeout;
+@property NSString                  *username;
+@property NSString                  *password;
+@property NSString                  *hostname;
+@property (readonly) NSURL          *fullURL;
+@property NSString                  *path;
+@property (strong) BRRequestError   *error;
+@property float                     maximumSize;
+@property float                     percentCompleted;
+@property long                      timeout;
 
-@property BRRequest *nextRequest;
-@property BRRequest *prevRequest;
+@property NSString                      *tag;
+@property BRRequest                     *nextRequest;
+@property BRRequest                     *prevRequest;
 @property (weak) id <BRRequestDelegate> delegate;
-@property  BRStreamInfo *streamInfo;
-@property BOOL didOpenStream;                                                   // whether the stream opened or not
-@property (readonly) long bytesSent;                                            // will have bytes from the last FTP call
-@property (readonly) long totalBytesSent;                                       // will have bytes total sent
-@property BOOL cancelDoesNotCallDelegate;                                       // cancel closes stream without calling delegate
+@property  BRStreamInfo                 *streamInfo;
+@property BOOL                          didOpenStream;                          // whether the stream opened or not
+@property (readonly) long               bytesSent;                              // will have bytes from the last FTP call
+@property (readonly) long               totalBytesSent;                         // will have bytes total sent
+@property BOOL                          cancelDoesNotCallDelegate;              // cancel closes stream without calling delegate
 
-- (NSURL *) fullURLWithEscape;
+- (NSURL *)fullURLWithEscape;
 
--(void) start;
-- (void) cancelRequest;
-
-
+- (void)start;
+- (void)cancelRequest;
 
 @end

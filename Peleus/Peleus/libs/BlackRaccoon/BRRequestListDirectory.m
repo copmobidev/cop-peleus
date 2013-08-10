@@ -1,4 +1,4 @@
-//----------
+// ----------
 //
 //				BRRequestListDirectory.m
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:	
+// description:
 //
 // notes:		none
 //
-// revisions:	
+// revisions:
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,24 +37,20 @@
 //              THE SOFTWARE.
 //
 
-
 #import "BRRequestListDirectory.h"
-
 
 @implementation BRRequestListDirectory
 
 @synthesize filesInfo;
 @synthesize receivedData;
 
-
-
-//-----
+// -----
 //
 //				initWithDelegate
 //
 // synopsis:	retval = [self initWithDelegate:inDelegate];
 //					BRRequestListDirectory *retval	-
-//					id inDelegate                 	-
+//					id inDelegate                   -
 //
 // description:	initWithDelegate is designed to
 //
@@ -63,23 +59,23 @@
 // returns:		Variable of type BRRequestListDirectory *
 //
 
-+ (BRRequestListDirectory *) initWithDelegate: (id) inDelegate
++ (BRRequestListDirectory *)initWithDelegate:(id)inDelegate
 {
     BRRequestListDirectory *listDir = [[BRRequestListDirectory alloc] init];
-    if (listDir)
+
+    if (listDir) {
         listDir.delegate = inDelegate;
-    
+    }
+
     return listDir;
 }
 
-
-
-//-----
+// -----
 //
 //				fileExists
 //
 // synopsis:	retval = [self fileExists:fileNamePath];
-//					BOOL retval           	-
+//					BOOL retval             -
 //					NSString *fileNamePath	-
 //
 // description:	fileExists is designed to
@@ -89,25 +85,22 @@
 // returns:		Variable of type BOOL
 //
 
-- (BOOL) fileExists: (NSString *) fileNamePath
+- (BOOL)fileExists:(NSString *)fileNamePath
 {
     NSString *fileName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
 
-    for (NSDictionary *file in self.filesInfo)
-    {
-        NSString * name = [file objectForKey:(id)kCFFTPResourceName];
-        if ([fileName isEqualToString:name])
-        {
+    for (NSDictionary *file in self.filesInfo) {
+        NSString *name = [file objectForKey:(id)kCFFTPResourceName];
+
+        if ([fileName isEqualToString:name]) {
             return YES;
         }
     }
-    
+
     return NO;
 }
 
-
-
-//-----
+// -----
 //
 //				path
 //
@@ -121,20 +114,19 @@
 // returns:		Variable of type NSString *
 //
 
--(NSString *)path
+- (NSString *)path
 {
     //  the path will always point to a directory, so we add the final slash to it (if there was one before escaping/standardizing, it's *gone* now)
-    NSString * directoryPath = [super path];
-    if (![directoryPath hasSuffix: @"/"]) 
-    {
+    NSString *directoryPath = [super path];
+
+    if (![directoryPath hasSuffix:@"/"]) {
         directoryPath = [directoryPath stringByAppendingString:@"/"];
     }
+
     return directoryPath;
 }
 
-
-
-//-----
+// -----
 //
 //				start
 //
@@ -147,23 +139,21 @@
 // returns:		none
 //
 
--(void) start
+- (void)start
 {
     self.maximumSize = LONG_MAX;
-    
-    //----- open the read stream and check for errors calling delegate methods
-    //----- if things fail. This encapsulates the streamInfo object and cleans up our code.
-    [self.streamInfo openRead: self];
+
+    // ----- open the read stream and check for errors calling delegate methods
+    // ----- if things fail. This encapsulates the streamInfo object and cleans up our code.
+    [self.streamInfo openRead:self];
 }
 
-
-
-//-----
+// -----
 //
 //				stream
 //
 // synopsis:	[self stream:theStream handleEvent:streamEvent];
-//					NSStream *theStream      	-
+//					NSStream *theStream         -
 //					NSStreamEvent streamEvent	-
 //
 // description:	stream is designed to
@@ -173,86 +163,84 @@
 // returns:		none
 //
 
-- (void) stream: (NSStream *) theStream handleEvent: (NSStreamEvent) streamEvent
+- (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
     NSData *data;
-    
-    switch (streamEvent) 
-    {
-        case NSStreamEventOpenCompleted: 
-        {
-			self.filesInfo = [NSMutableArray array];
-            self.didOpenStream = YES;
-            self.receivedData = [NSMutableData data];
-            break;
-        } 
-        case NSStreamEventHasBytesAvailable:
-        {
-            data = [self.streamInfo read: self];
-            
-            if (data)
-            {
-                [self.receivedData appendData: data];
-            }
-            
-            else
-            {
-                InfoLog(@"Stream opened, but failed while trying to read from it.");
-                [self.streamInfo streamError: self errorCode: kBRFTPClientCantReadStream];
-            }
-            break;
-        }
-        case NSStreamEventHasSpaceAvailable: 
-        {
-            break;
-        }
-        case NSStreamEventErrorOccurred: 
-        {
-            [self.streamInfo streamError: self errorCode: [BRRequestError errorCodeWithError: [theStream streamError]]];
-            InfoLog(@"%@", self.error.message);
-            break;
-        }
-        case NSStreamEventEndEncountered: 
-        {
-            NSUInteger  offset = 0;
-            CFIndex     parsedBytes;
-            uint8_t *bytes = (uint8_t *)[self.receivedData bytes];
-            int totalbytes = [self.receivedData length];
-           
-            //----- we have all the data for the directory listing. Now parse it.
-            do
-            {
-                CFDictionaryRef listingEntity = NULL;
-                
-                 parsedBytes = CFFTPCreateParsedResourceListing(NULL, &bytes[offset], totalbytes - offset, &listingEntity);
-                
-                if (parsedBytes > 0)
-                {
-                    if (listingEntity != NULL)
-                    {
-                        //----- July 10, 2012: CFFTPCreateParsedResourceListing had a bug that had the date over retained
-                        //----- in order to fix this, we release it once. However, just as a precaution, we check to see what
-                        //----- the retain count might be (this isn't guaranteed to work).
-                        id date = [(__bridge NSDictionary *) listingEntity objectForKey: (id) kCFFTPResourceModDate];
-                        if (CFGetRetainCount((__bridge CFTypeRef) date) >= 2)
-                            CFRelease((__bridge CFTypeRef) date);
-                        
-                        //----- transfer the directory into an ARC maintained array
-                        self.filesInfo = [self.filesInfo arrayByAddingObject: (__bridge_transfer NSDictionary *) listingEntity];
-                    }
-                    offset += parsedBytes;
-                }
-                
-            } while (parsedBytes > 0);
 
-            [self.streamInfo streamComplete: self];                             // perform callbacks and close out streams
-            break;
-        }
-            
+    switch (streamEvent) {
+        case NSStreamEventOpenCompleted:
+            {
+                self.filesInfo = [NSMutableArray array];
+                self.didOpenStream = YES;
+                self.receivedData = [NSMutableData data];
+                break;
+            }
+
+        case NSStreamEventHasBytesAvailable:
+            {
+                data = [self.streamInfo read:self];
+
+                if (data) {
+                    [self.receivedData appendData:data];
+                } else {
+                    InfoLog(@"Stream opened, but failed while trying to read from it.");
+                    [self.streamInfo streamError:self errorCode:kBRFTPClientCantReadStream];
+                }
+
+                break;
+            }
+
+        case NSStreamEventHasSpaceAvailable:
+            {
+                break;
+            }
+
+        case NSStreamEventErrorOccurred:
+            {
+                [self.streamInfo streamError:self errorCode:[BRRequestError errorCodeWithError:[theStream streamError]]];
+                InfoLog(@"%@", self.error.message);
+                break;
+            }
+
+        case NSStreamEventEndEncountered:
+            {
+                NSUInteger  offset = 0;
+                CFIndex     parsedBytes;
+                uint8_t     *bytes = (uint8_t *)[self.receivedData bytes];
+                int         totalbytes = [self.receivedData length];
+
+                // ----- we have all the data for the directory listing. Now parse it.
+                do {
+                    CFDictionaryRef listingEntity = NULL;
+
+                    parsedBytes = CFFTPCreateParsedResourceListing(NULL, &bytes[offset], totalbytes - offset, &listingEntity);
+
+                    if (parsedBytes > 0) {
+                        if (listingEntity != NULL) {
+                            // ----- July 10, 2012: CFFTPCreateParsedResourceListing had a bug that had the date over retained
+                            // ----- in order to fix this, we release it once. However, just as a precaution, we check to see what
+                            // ----- the retain count might be (this isn't guaranteed to work).
+                            id date = [(__bridge NSDictionary *)listingEntity objectForKey : (id)kCFFTPResourceModDate];
+
+                            if (CFGetRetainCount((__bridge CFTypeRef)date) >= 2) {
+                                CFRelease((__bridge CFTypeRef)date);
+                            }
+
+                            // ----- transfer the directory into an ARC maintained array
+                            self.filesInfo = [self.filesInfo arrayByAddingObject:(__bridge_transfer NSDictionary *)listingEntity];
+                        }
+
+                        offset += parsedBytes;
+                    }
+                } while (parsedBytes > 0);
+
+                [self.streamInfo streamComplete:self];                          // perform callbacks and close out streams
+                break;
+            }
+
         case NSStreamEventNone:
             break;
     }
 }
-
 
 @end
