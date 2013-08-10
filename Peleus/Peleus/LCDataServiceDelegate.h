@@ -13,19 +13,22 @@
 /*
  *   获取配置
  */
-- (void)onGetConfigSuccess:(NSDictionary *)config;
+- (void)onGetConfigSuccess:(NSData *)config;
 - (void)onGetConfigFail;
 
 /*
  *   同步数据
  */
-- (void)onSyncDataSuccess:(NSData *)data;
+- (void)onSyncDataSuccess:(NSArray *)data;
 - (void)onSyncDataFail;
 
 /*
  *   上传数据
  */
-- (void)onUploadDataSucess:(NSDictionary *)callback;
+- (void)onUploadDataSucess:(NSDictionary *)data;
 - (void)onUploadDataFail;
+
+- (void)onPushParamSucess;
+- (void)onPushParamFail;
 
 @end

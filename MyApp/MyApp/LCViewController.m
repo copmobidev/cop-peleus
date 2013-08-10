@@ -7,6 +7,9 @@
 //
 
 #import "LCViewController.h"
+#import "LCDataService.h"
+#import "LCEnvironment.h"
+#import "LCTimestamp.h"
 
 @interface LCViewController ()
 
@@ -29,27 +32,55 @@
 #pragma mark -
 #pragma IBAction Implement
 
-- (IBAction)add:(id)sender
+- (IBAction)getConfig:(id)sender
 {
-    NSInteger num1 = [self.tf1.text integerValue];
-    NSInteger num2 = [self.tf2.text integerValue];
-    // 初始化一个新的 MyLib 实例
-    MyLib* myLib = [[MyLib alloc] init];
-    // 调用实例方法相加
-    NSInteger result = [myLib add:num1 and:num2];
-    // 显示结果
-    self.tfResult.text = [NSString stringWithFormat:@"%d", result];
+    [self.tf1 setText:[[LCEnvironment sharedEnvironment] userAgent]];
+    [[LCDataService sharedDataService] getConfig];
 }
 
-
-- (IBAction)append:(id)sender
+- (IBAction)pushConfig:(id)sender
 {
-    NSString* str1 = self.tf1.text;
-    NSString* str2 = self.tf2.text;
-    // 调用 MyLib 的静态方法连两个字符串
-    NSString* result = [MyLib connect:str1 and:str2];
-    // 显示结果
-    self.tfResult.text = result;
+    [[LCDataService sharedDataService] pushParam];
 }
+
+- (IBAction)syncData:(id)sender
+{
+    [[LCDataService sharedDataService] syncData];
+}
+
+- (IBAction)uploadData:(id)sender
+{
+    [[LCDataService sharedDataService] uploadData];
+}
+
+- (IBAction)getData:(id)sender
+{
+    LCTimestamp *timestamp = [[LCTimestamp alloc] init];
+    timestamp.span = TRACK;
+    timestamp.beginTime = 0;
+    timestamp.endTime = 1;
+    [[LCDataService sharedDataService] getDriveDataWithSpan:timestamp];
+}
+
+- (void)onGetConfigSuccess:(NSData *)config
+{
+    [self.tf1 setText:@"get config successful"];
+}
+
+- (void)onGetConfigFail
+{
+    [self.tf1 setText:@"get config fail"];
+}
+
+- (void)onSyncDataSuccess:(NSDictionary *)data
+{
+    [self.tf1 setText:@"sync data successful"];
+}
+
+- (void)onSyncDataFail
+{
+    [self.tf1 setText:@"sync data fail"];
+}
+
 
 @end

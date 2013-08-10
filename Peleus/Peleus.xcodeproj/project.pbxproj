@@ -7,29 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B5357B51764227700E8195E /* BRGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A21764227700E8195E /* BRGlobal.h */; };
-		9B5357B61764227700E8195E /* BRRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A31764227700E8195E /* BRRequest.h */; };
+		9B5357B51764227700E8195E /* BRGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A21764227700E8195E /* BRGlobal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B5357B61764227700E8195E /* BRRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A31764227700E8195E /* BRRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357B71764227700E8195E /* BRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357A41764227700E8195E /* BRRequest.m */; };
-		9B5357B81764227700E8195E /* BRRequestCreateDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A51764227700E8195E /* BRRequestCreateDirectory.h */; };
+		9B5357B81764227700E8195E /* BRRequestCreateDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A51764227700E8195E /* BRRequestCreateDirectory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357B91764227700E8195E /* BRRequestCreateDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357A61764227700E8195E /* BRRequestCreateDirectory.m */; };
-		9B5357BA1764227700E8195E /* BRRequestDelete.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A71764227700E8195E /* BRRequestDelete.h */; };
+		9B5357BA1764227700E8195E /* BRRequestDelete.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A71764227700E8195E /* BRRequestDelete.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357BB1764227700E8195E /* BRRequestDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357A81764227700E8195E /* BRRequestDelete.m */; };
-		9B5357BC1764227700E8195E /* BRRequestDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A91764227700E8195E /* BRRequestDownload.h */; };
+		9B5357BC1764227700E8195E /* BRRequestDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357A91764227700E8195E /* BRRequestDownload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357BD1764227700E8195E /* BRRequestDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357AA1764227700E8195E /* BRRequestDownload.m */; };
-		9B5357BE1764227700E8195E /* BRRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357AB1764227700E8195E /* BRRequestError.h */; };
+		9B5357BE1764227700E8195E /* BRRequestError.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357AB1764227700E8195E /* BRRequestError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357BF1764227700E8195E /* BRRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357AC1764227700E8195E /* BRRequestError.m */; };
-		9B5357C01764227700E8195E /* BRRequestListDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357AD1764227700E8195E /* BRRequestListDirectory.h */; };
+		9B5357C01764227700E8195E /* BRRequestListDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357AD1764227700E8195E /* BRRequestListDirectory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357C11764227700E8195E /* BRRequestListDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357AE1764227700E8195E /* BRRequestListDirectory.m */; };
-		9B5357C21764227700E8195E /* BRRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357AF1764227700E8195E /* BRRequestQueue.h */; };
+		9B5357C21764227700E8195E /* BRRequestQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357AF1764227700E8195E /* BRRequestQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357C31764227700E8195E /* BRRequestQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357B01764227700E8195E /* BRRequestQueue.m */; };
-		9B5357C41764227700E8195E /* BRRequestUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357B11764227700E8195E /* BRRequestUpload.h */; };
+		9B5357C41764227700E8195E /* BRRequestUpload.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357B11764227700E8195E /* BRRequestUpload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357C51764227700E8195E /* BRRequestUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357B21764227700E8195E /* BRRequestUpload.m */; };
-		9B5357C61764227700E8195E /* BRStreamInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357B31764227700E8195E /* BRStreamInfo.h */; };
+		9B5357C61764227700E8195E /* BRStreamInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5357B31764227700E8195E /* BRStreamInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B5357C71764227700E8195E /* BRStreamInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5357B41764227700E8195E /* BRStreamInfo.m */; };
 		9B5357D51764471C00E8195E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5357D41764471C00E8195E /* MobileCoreServices.framework */; };
-		9BA14C4717B5D3A400FA24A9 /* Peleus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4617B5D3A400FA24A9 /* Peleus.h */; };
-		9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4E17B5E6FE00FA24A9 /* JSONKit.h */; };
+		9BA14C4717B5D3A400FA24A9 /* Peleus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4617B5D3A400FA24A9 /* Peleus.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BA14C4E17B5E6FE00FA24A9 /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BA14C5117B5E6FE00FA24A9 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA14C4F17B5E6FE00FA24A9 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BA14C7317B6217F00FA24A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D617635FE700AB895A /* CFNetwork.framework */; };
 		9BCF450C17635DBD00AB895A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF450B17635DBD00AB895A /* Foundation.framework */; };
 		9BCF457E17635E3C00AB895A /* LCDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451B17635E3C00AB895A /* LCDataService.m */; };
 		9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451C17635E3C00AB895A /* LCEnvironment.m */; };
@@ -108,9 +109,8 @@
 		9BCF45D017635F8000AB895A /* mztools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456817635E3C00AB895A /* mztools.h */; };
 		9BCF45D117635F8000AB895A /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456A17635E3C00AB895A /* unzip.h */; };
 		9BCF45D217635F8000AB895A /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456C17635E3C00AB895A /* zip.h */; };
-		9BCF45D317635F8000AB895A /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456D17635E3C00AB895A /* ZipArchive.h */; };
+		9BCF45D317635F8000AB895A /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF456D17635E3C00AB895A /* ZipArchive.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45D517635FDE00AB895A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D417635FDE00AB895A /* SystemConfiguration.framework */; };
-		9BCF45D717635FE700AB895A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D617635FE700AB895A /* CFNetwork.framework */; };
 		9BCF45D917635FF300AB895A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D817635FF300AB895A /* libz.dylib */; };
 		9BCF45DB17635FF900AB895A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45DA17635FF900AB895A /* libxml2.dylib */; };
 /* End PBXBuildFile section */
@@ -245,9 +245,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BA14C7317B6217F00FA24A9 /* CFNetwork.framework in Frameworks */,
 				9BCF45DB17635FF900AB895A /* libxml2.dylib in Frameworks */,
 				9BCF45D917635FF300AB895A /* libz.dylib in Frameworks */,
-				9BCF45D717635FE700AB895A /* CFNetwork.framework in Frameworks */,
 				9BCF450C17635DBD00AB895A /* Foundation.framework in Frameworks */,
 				9B5357D51764471C00E8195E /* MobileCoreServices.framework in Frameworks */,
 				9BCF45D517635FDE00AB895A /* SystemConfiguration.framework in Frameworks */,
@@ -543,12 +543,8 @@
 				9BCF45C817635F1000AB895A /* ASIS3ObjectRequest.h in Headers */,
 				9BCF45C917635F1000AB895A /* ASIS3Request.h in Headers */,
 				9BCF45CA17635F1000AB895A /* ASIS3ServiceRequest.h in Headers */,
+				9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */,
 				9BCF45CC17635F1000AB895A /* Reachability.h in Headers */,
-				9BCF45CE17635F8000AB895A /* crypt.h in Headers */,
-				9BCF45CF17635F8000AB895A /* ioapi.h in Headers */,
-				9BCF45D017635F8000AB895A /* mztools.h in Headers */,
-				9BCF45D117635F8000AB895A /* unzip.h in Headers */,
-				9BCF45D217635F8000AB895A /* zip.h in Headers */,
 				9BCF45D317635F8000AB895A /* ZipArchive.h in Headers */,
 				9B5357B51764227700E8195E /* BRGlobal.h in Headers */,
 				9B5357B61764227700E8195E /* BRRequest.h in Headers */,
@@ -561,7 +557,11 @@
 				9B5357C41764227700E8195E /* BRRequestUpload.h in Headers */,
 				9B5357C61764227700E8195E /* BRStreamInfo.h in Headers */,
 				9BA14C4717B5D3A400FA24A9 /* Peleus.h in Headers */,
-				9BA14C5017B5E6FE00FA24A9 /* JSONKit.h in Headers */,
+				9BCF45CE17635F8000AB895A /* crypt.h in Headers */,
+				9BCF45CF17635F8000AB895A /* ioapi.h in Headers */,
+				9BCF45D017635F8000AB895A /* mztools.h in Headers */,
+				9BCF45D117635F8000AB895A /* unzip.h in Headers */,
+				9BCF45D217635F8000AB895A /* zip.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,6 +681,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: liu john (HZ8V4Q4RT7)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -695,6 +696,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6167BE45-B53C-4FE9-9FE6-E97E8EF2DEAD";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -711,12 +713,14 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: liu john (HZ8V4Q4RT7)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PROVISIONING_PROFILE = "6167BE45-B53C-4FE9-9FE6-E97E8EF2DEAD";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

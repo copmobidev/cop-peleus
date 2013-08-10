@@ -24,11 +24,6 @@
 - (void)setToken:(NSString *)token;
 
 /*
- *   App的版本
- */
-- (NSString *)version;
-
-/*
  *   设备的型号
  *   iPhone, iPad, iPod, iOS (is unknown)
  */

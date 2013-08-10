@@ -7,15 +7,21 @@
 //
 
 #import "LCDataService.h"
+#import "LCDataParser.h"
 #import "LCTimestamp.h"
 #import "BRRequestListDirectory.h"
 #import "BRRequestUpload.h"
 #import "BRRequestDownload.h"
 #import "BRRequestDelete.h"
+#import "BRRequestQueue.h"
+#import "JSONKit.h"
 
 @implementation LCDataService
 
 static LCDataService *_sharedDataService = nil;
+static int lstFile = 0;
+static int curFile = 0;
+
 
 + (LCDataService *)sharedDataService
 {
@@ -29,51 +35,117 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)getConfig
 {
-    NSData *config = nil;
-
     BRRequestDownload *fileDowndloadReq = [[BRRequestDownload alloc] init];
     fileDowndloadReq.delegate = self;
-    fileDowndloadReq.tag = @"config";
-    fileDowndloadReq.path = @"/config";
+    fileDowndloadReq.tag = OBD_CMD_CONFIG_GET;
+    fileDowndloadReq.path = OBD_PATH_CONFIG;
     fileDowndloadReq.hostname = COP_OBD_SERVER;
     fileDowndloadReq.username = COP_OBD_USER;
     fileDowndloadReq.password = COP_OBD_PWD;
+    configData = [[NSMutableData alloc] init];
+    
     [fileDowndloadReq start];
-    [self.delegate onSyncDataSuccess:config];
+    
 }
 
-- (void)pushConfig
+- (void)delParam
 {
-    ;
+    BRRequestDelete *fileDelReq = [[BRRequestDelete alloc] init];
+    fileDelReq.delegate = self;
+    fileDelReq.tag = OBD_CMD_PARAM_DEL;
+    fileDelReq.path = OBD_PATH_PARAM;
+    fileDelReq.hostname = COP_OBD_SERVER;
+    fileDelReq.username = COP_OBD_USER;
+    fileDelReq.password = COP_OBD_PWD;
+    [fileDelReq start];
+}
+
+- (void)addParam
+{
+    NSString *idxStr = @"3.2";
+    uploadData = [idxStr dataUsingEncoding: NSASCIIStringEncoding];
+    BRRequestUpload *fileUploadReq = [[BRRequestUpload alloc] init];
+    fileUploadReq.delegate = self;
+    fileUploadReq.tag = OBD_CMD_PARAM_PUSH;
+    fileUploadReq.path = OBD_PATH_PARAM;
+    fileUploadReq.hostname = COP_OBD_SERVER;
+    fileUploadReq.username = COP_OBD_USER;
+    fileUploadReq.password = COP_OBD_PWD;
+    [fileUploadReq start];
+}
+
+- (void)pushParam
+{
+    [self delParam];
+}
+
+- (void)delIndex
+{
+    BRRequestDelete *fileDelReq = [[BRRequestDelete alloc] init];
+    fileDelReq.delegate = self;
+    fileDelReq.tag = OBD_CMD_PARAM_DEL;
+    fileDelReq.hostname = OBD_PATH_IDX;
+    fileDelReq.username = COP_OBD_SERVER;
+    fileDelReq.username = COP_OBD_USER;
+    fileDelReq.password = COP_OBD_PWD;
+    [fileDelReq start];
+}
+
+- (void)pushIndex
+{
+    
+    NSString *idxStr = @"000000000000037000000000000043";
+    uploadData = [idxStr dataUsingEncoding: NSASCIIStringEncoding];;
+    BRRequestUpload *fileUploadReq = [[BRRequestUpload alloc] init];
+    fileUploadReq.delegate = self;
+    fileUploadReq.tag = OBD_CMD_IDX_PUSH;
+    fileUploadReq.path = OBD_PATH_IDX;
+    fileUploadReq.hostname = COP_OBD_SERVER;
+    fileUploadReq.username = COP_OBD_USER;
+    fileUploadReq.password = COP_OBD_PWD;
+    [fileUploadReq start];
+}
+
+- (void)getIndex
+{
+    BRRequestDownload *fileDowndloadReq = [[BRRequestDownload alloc] init];
+    fileDowndloadReq.delegate = self;
+    fileDowndloadReq.tag = OBD_CMD_IDX_GET;
+    fileDowndloadReq.path = OBD_PATH_IDX;
+    fileDowndloadReq.hostname = COP_OBD_SERVER;
+    fileDowndloadReq.username = COP_OBD_USER;
+    fileDowndloadReq.password = COP_OBD_PWD;
+    idxData = [[NSMutableData alloc] init];
+    [fileDowndloadReq start];
+    
 }
 
 - (void)syncData
 {
-    NSData *data = nil;
+    [self getIndex];
+    finalData = [[NSMutableArray alloc] init];
+}
+
+- (void)getDriveDataFromOBD
+{
+    driveData = [[NSMutableData alloc] init];
     BRRequestDownload *fileDowndloadReq = [[BRRequestDownload alloc] init];
     fileDowndloadReq.delegate = self;
-    fileDowndloadReq.tag = @"data";
-    fileDowndloadReq.path = @"/data/";
+    fileDowndloadReq.tag = OBD_CMD_DATA_GET;
+    NSString * tmp = [NSString stringWithFormat:@"%d", point];
+    fileDowndloadReq.path =[NSString stringWithFormat:@"/data/%@%@", [@"000000000000000" substringFromIndex:[tmp length]], tmp];
+    NSLog(@"%@", fileDowndloadReq.path);
     fileDowndloadReq.hostname = COP_OBD_SERVER;
     fileDowndloadReq.username = COP_OBD_USER;
     fileDowndloadReq.password = COP_OBD_PWD;
+    idxData = [[NSMutableData alloc] init];
     [fileDowndloadReq start];
-    [self.delegate onSyncDataSuccess:data];
 }
 
 - (void)uploadData
-{}
-
-- (void)deleteDriveDataFiles
 {
-    BRRequestDelete *fileDelReq = [[BRRequestDelete alloc] init];
-    fileDelReq.path = @"/data/";
-    fileDelReq.hostname = COP_OBD_SERVER;
-    fileDelReq.username = COP_OBD_USER;
-    fileDelReq.password = COP_OBD_PWD;
+    // API 
 
-    // we start the request
-    [fileDelReq start];
 }
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp
@@ -111,36 +183,105 @@ static LCDataService *_sharedDataService = nil;
 - (void)requestCompleted:(BRRequest *)request
 {
     if ([request isKindOfClass:[BRRequestDownload class]]) {
-        if ([request.tag isEqualToString:@"config"]) {
+        if ([request.tag isEqualToString:OBD_CMD_CONFIG_GET]) {
             // obd配置同步完成
-            NSData *config = nil;
-            [self.delegate onGetConfigSuccess:config];
-            
-        } else if ([request.tag isEqualToString:@"data"]) {
-            // 数据同步完成
-            
+            [self.delegate onGetConfigSuccess:configData];
+        } else if ([request.tag isEqualToString:OBD_CMD_IDX_GET]) {
+            // 成功获取Index
+            NSString *idxContent = [[NSString alloc] initWithData:idxData encoding:NSASCIIStringEncoding];
+            NSLog(@"%@", idxContent);
+            @try {
+                NSString *curFile = [idxContent substringFromIndex:16];
+                NSString *lstFile = [idxContent substringToIndex:15];
+                fileLength = [curFile intValue];
+                point = [lstFile intValue];
+                if (fileLength >= point) {
+                    [self getDriveDataFromOBD];
+                }
+            }
+            @catch (NSException *exception) {
+                NSLog(@"read file error");
+            }
+            // start drive data download
+        } else if ([request.tag isEqualToString:OBD_CMD_DATA_GET]) {
+            // 硬件端数据同步完成
+            if (fileLength <= point) {
+                [finalData addObject:driveData];
+                [self.delegate onSyncDataSuccess:finalData];
+            } else {
+                [finalData addObject:driveData];
+                point ++;
+                [self getDriveDataFromOBD];
+            }
         }
         
-    } else if ([request isKindOfClass:[BRRequestListDirectory class]]) {
-        // 成功获取行程数据列表
-        BRRequestListDirectory *listDir = (BRRequestListDirectory *)request;
-
-        // we print each of the files name
-        for (NSDictionary *file in listDir.filesInfo) {
-            NSLog(@"%@", [file objectForKey:(id)kCFFTPResourceName]);
-        }
     } else if ([request isKindOfClass:[BRRequestDelete class]]) {
         // 删除数据成功
+        if ([request.tag isEqualToString:OBD_CMD_PARAM_DEL]) {
+            [self addParam];
+        }
+        
+    } else if ([request isKindOfClass:[BRRequestUpload class]]) {
+        if ([request.tag isEqualToString:OBD_CMD_PARAM_PUSH]) {
+            [self.delegate onPushParamSucess];
+        } else {
+            
+        }
     }
+}
+
+- (void)requestDataAvailable:(BRRequestDownload *)request
+{
+    if ([request.tag isEqualToString:OBD_CMD_CONFIG_GET]) {
+        [configData appendData:request.receivedData];
+    } else if ([request.tag isEqualToString:OBD_CMD_IDX_GET]) {
+        [idxData appendData:request.receivedData];
+    } else if ([request.tag isEqualToString:OBD_CMD_DATA_GET]) {
+        [driveData appendData:request.receivedData];
+    }
+}
+
+- (long)requestDataSendSize:(BRRequestUpload *)request
+{
+    NSLog(@"lenth:%d", [uploadData length]);
+    return [uploadData length];
+}
+
+- (NSData *)requestDataToSend:(BRRequestUpload *)request
+{
+    NSLog(@"requestDataToSend");
+    NSData *tmp = uploadData;
+    uploadData = nil;
+    return tmp;
 }
 
 // obd ftp 获取数据失败时，通知上层回调函数做相应处理
 - (void)requestFailed:(BRRequest *)request
-{}
-
-- (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request
 {
-    return false;
+    NSLog(@"%@-%@", request.tag, [request description]);
+    if ([request isKindOfClass:[BRRequestDownload class]]) {
+        if ([request.tag isEqualToString:OBD_CMD_CONFIG_GET]) {
+            // obd配置同步完成
+            [self.delegate onGetConfigFail];
+        } else if ([request.tag isEqualToString:OBD_CMD_IDX_GET]) {
+            // 成功获取Index
+            [self.delegate onSyncDataFail];
+        } else if ([request.tag isEqualToString:OBD_CMD_DATA_GET]) {
+            // 硬件端数据同步完成
+            [self.delegate onSyncDataFail];
+        }
+    } else if ([request isKindOfClass:[BRRequestDelete class]]) {
+        if ([request.tag isEqualToString:OBD_CMD_PARAM_DEL]) {
+            [self addParam];
+        }
+        
+    } else if ([request isKindOfClass:[BRRequestUpload class]]) {
+        if ([request.tag isEqualToString:OBD_CMD_PARAM_PUSH]) {
+            [self.delegate onPushParamFail];
+        } else {
+            
+        }
+    }
 }
 
 @end

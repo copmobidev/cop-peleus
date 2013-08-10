@@ -10,4 +10,7 @@
 
 @interface LCDataParser : NSObject
 
+
++ (NSDictionary *)parseConfig:(NSString *) config;
+
 @end

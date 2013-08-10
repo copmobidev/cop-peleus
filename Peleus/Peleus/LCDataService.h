@@ -15,6 +15,15 @@
 @class  LCDriveData;
 
 @interface LCDataService : NSObject <BRRequestDelegate>
+{
+    NSData *uploadData; //
+    NSMutableData *configData;
+    NSMutableData *idxData;
+    NSMutableData *driveData;
+    NSMutableArray *finalData;
+    int point;
+    int fileLength;
+}
 
 @property (nonatomic, strong) id <LCDataServiceDelegate> delegate;
 
@@ -23,8 +32,8 @@
 // 获取配置文件
 - (void)getConfig;
 
-// 向obd写入配置文件
-- (void)pushConfig;
+// 向obd写入配置文件，从server端获取的硬件计算参数，区别于obd端config文件
+- (void)pushParam;
 
 // 同步数据
 - (void)syncData;

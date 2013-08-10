@@ -18,18 +18,10 @@
 		9B53581E176470E100E8195E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B53581D176470E100E8195E /* Default-568h@2x.png */; };
 		9B535821176470E100E8195E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B53581F176470E100E8195E /* MainStoryboard.storyboard */; };
 		9B535824176470E100E8195E /* LCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B535823176470E100E8195E /* LCViewController.m */; };
-		9BF401B51766B7F90023AD2B /* libMyLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF401B41766B7DB0023AD2B /* libMyLib.a */; };
+		9BA14C6A17B60E0200FA24A9 /* Peleus.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */; };
+		9BA14C7217B6148100FA24A9 /* libPeleus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA14C7117B6148100FA24A9 /* libPeleus.a */; };
+		9BA14C7517B6233F00FA24A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		9BF401B31766B7DB0023AD2B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9BF401AF1766B7DB0023AD2B /* MyLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9B5357E817646FDD00E8195E;
-			remoteInfo = MyLib;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9B535804176470E100E8195E /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,7 +40,9 @@
 		9B535820176470E100E8195E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9B535822176470E100E8195E /* LCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCViewController.h; sourceTree = "<group>"; };
 		9B535823176470E100E8195E /* LCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCViewController.m; sourceTree = "<group>"; };
-		9BF401AF1766B7DB0023AD2B /* MyLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MyLib.xcodeproj; path = ../MyLib/MyLib.xcodeproj; sourceTree = "<group>"; };
+		9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = file; name = Peleus.xcodeproj; path = ../Peleus/Peleus.xcodeproj; sourceTree = "<group>"; };
+		9BA14C7117B6148100FA24A9 /* libPeleus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPeleus.a; path = "../Debug-iphonesimulator/libPeleus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BF401B51766B7F90023AD2B /* libMyLib.a in Frameworks */,
+				9BA14C7517B6233F00FA24A9 /* CFNetwork.framework in Frameworks */,
+				9BA14C7217B6148100FA24A9 /* libPeleus.a in Frameworks */,
 				9B535808176470E100E8195E /* UIKit.framework in Frameworks */,
 				9B53580A176470E100E8195E /* Foundation.framework in Frameworks */,
 				9B53580C176470E100E8195E /* CoreGraphics.framework in Frameworks */,
@@ -69,6 +64,8 @@
 		9B5357FB176470E100E8195E = {
 			isa = PBXGroup;
 			children = (
+				9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */,
+				9BA14C7117B6148100FA24A9 /* libPeleus.a */,
 				9B53580D176470E100E8195E /* MyApp */,
 				9B535806176470E100E8195E /* Frameworks */,
 				9B535805176470E100E8195E /* Products */,
@@ -86,7 +83,7 @@
 		9B535806176470E100E8195E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9BF401AF1766B7DB0023AD2B /* MyLib.xcodeproj */,
+				9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */,
 				9B535807176470E100E8195E /* UIKit.framework */,
 				9B535809176470E100E8195E /* Foundation.framework */,
 				9B53580B176470E100E8195E /* CoreGraphics.framework */,
@@ -119,14 +116,6 @@
 				9B53581D176470E100E8195E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9BF401B01766B7DB0023AD2B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9BF401B41766B7DB0023AD2B /* libMyLib.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,28 +158,12 @@
 			mainGroup = 9B5357FB176470E100E8195E;
 			productRefGroup = 9B535805176470E100E8195E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9BF401B01766B7DB0023AD2B /* Products */;
-					ProjectRef = 9BF401AF1766B7DB0023AD2B /* MyLib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9B535803176470E100E8195E /* MyApp */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9BF401B41766B7DB0023AD2B /* libMyLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMyLib.a;
-			remoteRef = 9BF401B31766B7DB0023AD2B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9B535802176470E100E8195E /* Resources */ = {
@@ -202,6 +175,7 @@
 				9B53581C176470E100E8195E /* Default@2x.png in Resources */,
 				9B53581E176470E100E8195E /* Default-568h@2x.png in Resources */,
 				9B535821176470E100E8195E /* MainStoryboard.storyboard in Resources */,
+				9BA14C6A17B60E0200FA24A9 /* Peleus.xcodeproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +275,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyApp/MyApp-Prefix.pch";
-				HEADER_SEARCH_PATHS = "../MyLib/**";
+				HEADER_SEARCH_PATHS = "../Peleus/**";
 				INFOPLIST_FILE = "MyApp/MyApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -313,7 +287,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyApp/MyApp-Prefix.pch";
-				HEADER_SEARCH_PATHS = "../MyLib/**";
+				HEADER_SEARCH_PATHS = "../Peleus/**";
 				INFOPLIST_FILE = "MyApp/MyApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
