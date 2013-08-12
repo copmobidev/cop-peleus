@@ -21,8 +21,6 @@
 
 @implementation LCDataService
 
-static LCDataService *_sharedDataService = nil;
-
 LCSINGLETON_IN_M(LCDataService)
 
 - (NSUInteger)getFTPIndex {
