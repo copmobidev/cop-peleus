@@ -23,6 +23,16 @@
 		9BA14C7517B6233F00FA24A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C9C5716017BA76B600CA3CB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9BCF450817635DBD00AB895A;
+			remoteInfo = Peleus;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9B535804176470E100E8195E /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B535807176470E100E8195E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -40,7 +50,7 @@
 		9B535820176470E100E8195E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9B535822176470E100E8195E /* LCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCViewController.h; sourceTree = "<group>"; };
 		9B535823176470E100E8195E /* LCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCViewController.m; sourceTree = "<group>"; };
-		9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = file; name = Peleus.xcodeproj; path = ../Peleus/Peleus.xcodeproj; sourceTree = "<group>"; };
+		9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Peleus.xcodeproj; path = ../Peleus/Peleus.xcodeproj; sourceTree = "<group>"; };
 		9BA14C7117B6148100FA24A9 /* libPeleus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPeleus.a; path = "../Debug-iphonesimulator/libPeleus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -118,6 +128,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C9C5715D17BA76B600CA3CB4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9C5716117BA76B600CA3CB4 /* libPeleus.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,12 +176,28 @@
 			mainGroup = 9B5357FB176470E100E8195E;
 			productRefGroup = 9B535805176470E100E8195E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C9C5715D17BA76B600CA3CB4 /* Products */;
+					ProjectRef = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9B535803176470E100E8195E /* MyApp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C9C5716117BA76B600CA3CB4 /* libPeleus.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPeleus.a;
+			remoteRef = C9C5716017BA76B600CA3CB4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9B535802176470E100E8195E /* Resources */ = {
