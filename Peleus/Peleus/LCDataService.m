@@ -9,18 +9,18 @@
 #import "LCDataService.h"
 #import "LCDataParser.h"
 #import "LCTimestamp.h"
+#import "LCEnvironment.h"
 #import "BRRequestListDirectory.h"
 #import "BRRequestUpload.h"
 #import "BRRequestDownload.h"
 #import "BRRequestDelete.h"
 #import "BRRequestQueue.h"
 #import "JSONKit.h"
+#import "ASIFormDataRequest.h"
 
 @implementation LCDataService
 
 static LCDataService *_sharedDataService = nil;
-static int lstFile = 0;
-static int curFile = 0;
 
 
 + (LCDataService *)sharedDataService
@@ -62,8 +62,8 @@ static int curFile = 0;
 
 - (void)addParam
 {
-    NSString *idxStr = @"3.2";
-    uploadData = [idxStr dataUsingEncoding: NSASCIIStringEncoding];
+    NSString *paramStr = @"3.2";
+    uploadData = [paramStr dataUsingEncoding: NSASCIIStringEncoding];
     BRRequestUpload *fileUploadReq = [[BRRequestUpload alloc] init];
     fileUploadReq.delegate = self;
     fileUploadReq.tag = OBD_CMD_PARAM_PUSH;
@@ -94,7 +94,7 @@ static int curFile = 0;
 - (void)pushIndex
 {
     
-    NSString *idxStr = @"000000000000037000000000000043";
+    idxStr = @"000000000000037000000000000043";
     uploadData = [idxStr dataUsingEncoding: NSASCIIStringEncoding];;
     BRRequestUpload *fileUploadReq = [[BRRequestUpload alloc] init];
     fileUploadReq.delegate = self;
@@ -134,7 +134,6 @@ static int curFile = 0;
     fileDowndloadReq.tag = OBD_CMD_DATA_GET;
     NSString * tmp = [NSString stringWithFormat:@"%d", point];
     fileDowndloadReq.path =[NSString stringWithFormat:@"/data/%@%@", [@"000000000000000" substringFromIndex:[tmp length]], tmp];
-    NSLog(@"%@", fileDowndloadReq.path);
     fileDowndloadReq.hostname = COP_OBD_SERVER;
     fileDowndloadReq.username = COP_OBD_USER;
     fileDowndloadReq.password = COP_OBD_PWD;
@@ -142,7 +141,7 @@ static int curFile = 0;
     [fileDowndloadReq start];
 }
 
-- (void)uploadData
+- (void)uploadData:(NSString *)data
 {
     // API 
 
@@ -159,7 +158,18 @@ static int curFile = 0;
 //	// 当以文本形式读取返回内容时用这个方法
 //	NSString *json = [request responseString];
 //}
-
+    // API
+//     NSString *ua = [[LCEnvironment sharedEnvironment] userAgent];
+//     NSString *token = [[LCEnvironment sharedEnvironment] token];
+//     NSURL *url = [NSURL URLWithString:API_MYCAR_UPLOAD];
+//     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+//     [request addRequestHeader:@"ua" value:ua];
+//     [request setPostValue:token forKey:@"token"];
+//     [request setPostValue:data forKey:@"data"];
+//     [request setRequestMethod:@"POST"];
+//     [request setDelegate:self];
+//     [request start];
+// }
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp
 {
@@ -179,17 +189,17 @@ static int curFile = 0;
         case YEAR:
 			
             break;
-
+            
         case MONTH:
             break;
-
+            
         case WEEK:
 			
             break;
-
+            
         case TRACK:
             break;
-
+            
         default:
             break;
     }
@@ -207,7 +217,7 @@ static int curFile = 0;
 #pragma mark -
 #pragma mark BRRequestDelegate implement
 // obd ftp server相关请求操作成功时，解析数据并通知上层回调函数完成相关动作
-- (void)requestCompleted:(BRRequest *)request
+- (void)brRequestCompleted:(BRRequest *)request
 {
     if ([request isKindOfClass:[BRRequestDownload class]]) {
         if ([request.tag isEqualToString:OBD_CMD_CONFIG_GET]) {
@@ -234,6 +244,7 @@ static int curFile = 0;
             // 硬件端数据同步完成
             if (fileLength <= point) {
                 [finalData addObject:driveData];
+                idxStr = [NSString stringWithFormat:@"%@%d", [@"000000000000000" substringFromIndex:point], point];
                 [self.delegate onSyncDataSuccess:finalData];
             } else {
                 [finalData addObject:driveData];
@@ -241,17 +252,18 @@ static int curFile = 0;
                 [self getDriveDataFromOBD];
             }
         }
-        
     } else if ([request isKindOfClass:[BRRequestDelete class]]) {
-        // 删除数据成功
+        // 删除文件成功
         if ([request.tag isEqualToString:OBD_CMD_PARAM_DEL]) {
-            [self addParam];
+            [self addParam]; // 上传配置参数
+        } else if ([request.tag isEqualToString:OBD_CMD_IDX_DEL]) {
+            [self pushIndex]; // 上传新的索引文件
         }
         
     } else if ([request isKindOfClass:[BRRequestUpload class]]) {
         if ([request.tag isEqualToString:OBD_CMD_PARAM_PUSH]) {
             [self.delegate onPushParamSucess];
-        } else {
+        } else if ([request.tag isEqualToString:OBD_CMD_IDX_PUSH]) {
             
         }
     }
@@ -283,7 +295,7 @@ static int curFile = 0;
 }
 
 // obd ftp 获取数据失败时，通知上层回调函数做相应处理
-- (void)requestFailed:(BRRequest *)request
+- (void)brRequestFailed:(BRRequest *)request
 {
     NSLog(@"%@-%@", request.tag, [request description]);
     if ([request isKindOfClass:[BRRequestDownload class]]) {
@@ -312,6 +324,27 @@ static int curFile = 0;
 //	else if ([request isKindOfClass:[ASIHTTPRequest class]]) {
 //		// asi http request fail
 //	}
+}
+
+- (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request
+{
+    return false;
+}
+
+#pragma mark -
+#pragma mark ASIRequestDelegate implement
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString *respStr = [request responseString];
+    NSLog(@"upload data finish: %@", respStr);
+    NSDictionary *result = (NSDictionary *)[respStr objectFromJSONString];
+    [self.delegate onUploadDataSucess:result];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [self.delegate onUploadDataFail];
 }
 
 @end

@@ -55,7 +55,6 @@
 //
 // returns:		Variable of type BRRequestDelete *
 //
-
 + (BRRequestDelete *)initWithDelegate:(id)inDelegate
 {
     BRRequestDelete *deleteFileDir = [[BRRequestDelete alloc] init];
@@ -80,7 +79,6 @@
 //
 // returns:		Variable of type NSString *
 //
-
 - (NSString *)path
 {
     NSString *lastCharacter = [path substringFromIndex:[path length] - 1];
@@ -112,7 +110,6 @@
 //
 // returns:		none
 //
-
 - (void)start
 {
     SInt32 errorcode;

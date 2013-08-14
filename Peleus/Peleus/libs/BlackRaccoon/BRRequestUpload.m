@@ -40,7 +40,6 @@
 //
 // returns:		Variable of type BRRequestUpload *
 //
-
 + (BRRequestUpload *)initWithDelegate:(id)inDelegate
 {
     BRRequestUpload *uploadFile = [[BRRequestUpload alloc] init];
@@ -64,7 +63,6 @@
 //
 // returns:		none
 //
-
 - (void)start
 {
     self.maximumSize = LONG_MAX;
@@ -99,7 +97,6 @@
 //
 // returns:		none
 //
-
 - (void)requestCompleted:(BRRequest *)request
 {
     NSString *fileName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
@@ -133,10 +130,9 @@
 //
 // returns:		none
 //
-
 - (void)requestFailed:(BRRequest *)request
 {
-    [self.delegate requestFailed:request];
+    [self.delegate brRequestFailed:request];
 }
 
 // -----
@@ -153,7 +149,6 @@
 //
 // returns:		Variable of type BOOL
 //
-
 - (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request
 {
     return [self.delegate shouldOverwriteFileWithRequest:request];

@@ -15,6 +15,6 @@
 
 
 + (void)parseDriveData:(NSString *) data;
-+ (void)parseOBDConfig:(NSString*) data;
++ (NSDictionary *)parseOBDConfig:(NSString*) data;
 
 @end

@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class LCDriveData;
+
 @interface LCDataParser : NSObject
 
++ (NSDictionary *)parseOBDConfig:(NSString *) config;
++ (LCDriveData *)parseDriveData:(NSString *) data;
 
-+ (NSDictionary *)parseConfig:(NSString *) config;
 
 @end

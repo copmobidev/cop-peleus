@@ -1,8 +1,8 @@
 //
 //  LCDrivePiece.h
-//  core
+//  MyApp
 //
-//  Created by chris.liu on 5/21/13.
+//  Created by chris.liu on 8/1/13.
 //  Copyright (c) 2013 cop-studio. All rights reserved.
 //
 
@@ -36,5 +36,6 @@
 @property (nonatomic, readwrite) double idleSPD; // 怠速时间
 @property (nonatomic, readwrite) double sliding; // 滑行时间
 @property (nonatomic, readwrite) double score; // 行程切片得分
+
 
 @end

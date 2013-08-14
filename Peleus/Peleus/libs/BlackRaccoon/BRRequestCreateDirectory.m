@@ -57,7 +57,6 @@
 //
 // returns:		Variable of type BRRequestCreateDirectory *
 //
-
 + (BRRequestCreateDirectory *)initWithDelegate:(id)inDelegate
 {
     BRRequestCreateDirectory *createDir = [[BRRequestCreateDirectory alloc] init];
@@ -82,7 +81,6 @@
 //
 // returns:		Variable of type NSString *
 //
-
 - (NSString *)path
 {
     //  the path will always point to a directory, so we add the final slash to it (if there was one before escaping/standardizing, it's *gone* now)
@@ -107,14 +105,13 @@
 //
 // returns:		none
 //
-
 - (void)start
 {
     if (self.hostname == nil) {
         InfoLog(@"The host name is nil!");
         self.error = [[BRRequestError alloc] init];
         self.error.errorCode = kBRFTPClientHostnameIsNil;
-        [self.delegate requestFailed:self];
+        [self.delegate brRequestFailed:self];
         return;
     }
 
@@ -140,7 +137,6 @@
 //
 // returns:		none
 //
-
 - (void)requestCompleted:(BRRequest *)request
 {
     NSString *directoryName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
@@ -168,10 +164,9 @@
 //
 // returns:		none
 //
-
 - (void)requestFailed:(BRRequest *)request
 {
-    [self.delegate requestFailed:request];
+    [self.delegate brRequestFailed:request];
 }
 
 // -----
@@ -188,7 +183,6 @@
 //
 // returns:		Variable of type BOOL
 //
-
 - (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request
 {
     return NO;
@@ -208,7 +202,6 @@
 //
 // returns:		none
 //
-
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
     switch (streamEvent) {

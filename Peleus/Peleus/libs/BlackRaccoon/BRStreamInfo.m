@@ -117,7 +117,7 @@ dispatch_queue_t dispatch_get_local_queue()
         InfoLog(@"The host name is nil!");
         request.error = [[BRRequestError alloc] init];
         request.error.errorCode = kBRFTPClientHostnameIsNil;
-        [request.delegate requestFailed:request];
+        [request.delegate brRequestFailed:request];
         [request.streamInfo close:request];
         return;
     }
@@ -137,7 +137,7 @@ dispatch_queue_t dispatch_get_local_queue()
         InfoLog(@"Can't open the read stream! Possibly wrong URL");
         request.error = [[BRRequestError alloc] init];
         request.error.errorCode = kBRFTPClientCantOpenStream;
-        [request.delegate requestFailed:request];
+        [request.delegate brRequestFailed:request];
         [request.streamInfo close:request];
         return;
     }
@@ -152,7 +152,7 @@ dispatch_queue_t dispatch_get_local_queue()
                 InfoLog(@"No response from the server. Timeout.");
                 request.error = [[BRRequestError alloc] init];
                 request.error.errorCode = kBRFTPClientStreamTimedOut;
-                [request.delegate requestFailed:request];
+                [request.delegate brRequestFailed:request];
                 [request.streamInfo close:request];
             }
         });
@@ -178,7 +178,7 @@ dispatch_queue_t dispatch_get_local_queue()
         InfoLog(@"The host name is nil!");
         request.error = [[BRRequestError alloc] init];
         request.error.errorCode = kBRFTPClientHostnameIsNil;
-        [request.delegate requestFailed:request];
+        [request.delegate brRequestFailed:request];
         [request.streamInfo close:request];
         return;
     }
@@ -198,7 +198,7 @@ dispatch_queue_t dispatch_get_local_queue()
         InfoLog(@"Can't open the write stream! Possibly wrong URL!");
         request.error = [[BRRequestError alloc] init];
         request.error.errorCode = kBRFTPClientCantOpenStream;
-        [request.delegate requestFailed:request];
+        [request.delegate brRequestFailed:request];
         [request.streamInfo close:request];
         return;
     }
@@ -213,7 +213,7 @@ dispatch_queue_t dispatch_get_local_queue()
                 InfoLog(@"No response from the server. Timeout.");
                 request.error = [[BRRequestError alloc] init];
                 request.error.errorCode = kBRFTPClientStreamTimedOut;
-                [request.delegate requestFailed:request];
+                [request.delegate brRequestFailed:request];
                 [request.streamInfo close:request];
             }
         });
@@ -245,7 +245,7 @@ dispatch_queue_t dispatch_get_local_queue()
     }
     // ----- otherwise indicate that the request to cancel was completed
     else {
-        [request.delegate requestCompleted:request];
+        [request.delegate brRequestCompleted:request];
         [request.streamInfo close:request];
     }
 
@@ -359,7 +359,7 @@ dispatch_queue_t dispatch_get_local_queue()
 {
     request.error = [[BRRequestError alloc] init];
     request.error.errorCode = errorCode;
-    [request.delegate requestFailed:request];
+    [request.delegate brRequestFailed:request];
     [request.streamInfo close:request];
 }
 
@@ -379,7 +379,7 @@ dispatch_queue_t dispatch_get_local_queue()
 
 - (void)streamComplete:(BRRequest *)request
 {
-    [request.delegate requestCompleted:request];
+    [request.delegate brRequestCompleted:request];
     [request.streamInfo close:request];
 }
 

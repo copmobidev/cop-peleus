@@ -18,13 +18,17 @@
 		9B53581E176470E100E8195E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B53581D176470E100E8195E /* Default-568h@2x.png */; };
 		9B535821176470E100E8195E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B53581F176470E100E8195E /* MainStoryboard.storyboard */; };
 		9B535824176470E100E8195E /* LCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B535823176470E100E8195E /* LCViewController.m */; };
+		9B711D1A17B9250A002E3C75 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B711D1917B9250A002E3C75 /* SystemConfiguration.framework */; };
+		9B711D1D17B92513002E3C75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B711D1C17B92513002E3C75 /* MobileCoreServices.framework */; };
+		9B711D1F17B9251C002E3C75 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B711D1E17B9251C002E3C75 /* libxml2.dylib */; };
+		9B711D2117B92522002E3C75 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B711D2017B92522002E3C75 /* libz.dylib */; };
 		9BA14C6A17B60E0200FA24A9 /* Peleus.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */; };
 		9BA14C7217B6148100FA24A9 /* libPeleus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA14C7117B6148100FA24A9 /* libPeleus.a */; };
 		9BA14C7517B6233F00FA24A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C9C5716017BA76B600CA3CB4 /* PBXContainerItemProxy */ = {
+		9B711D1617B913B9002E3C75 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */;
 			proxyType = 2;
@@ -50,6 +54,10 @@
 		9B535820176470E100E8195E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		9B535822176470E100E8195E /* LCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LCViewController.h; sourceTree = "<group>"; };
 		9B535823176470E100E8195E /* LCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LCViewController.m; sourceTree = "<group>"; };
+		9B711D1917B9250A002E3C75 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9B711D1C17B92513002E3C75 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9B711D1E17B9251C002E3C75 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		9B711D2017B92522002E3C75 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Peleus.xcodeproj; path = ../Peleus/Peleus.xcodeproj; sourceTree = "<group>"; };
 		9BA14C7117B6148100FA24A9 /* libPeleus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPeleus.a; path = "../Debug-iphonesimulator/libPeleus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -60,6 +68,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B711D2117B92522002E3C75 /* libz.dylib in Frameworks */,
+				9B711D1F17B9251C002E3C75 /* libxml2.dylib in Frameworks */,
+				9B711D1D17B92513002E3C75 /* MobileCoreServices.framework in Frameworks */,
+				9B711D1A17B9250A002E3C75 /* SystemConfiguration.framework in Frameworks */,
 				9BA14C7517B6233F00FA24A9 /* CFNetwork.framework in Frameworks */,
 				9BA14C7217B6148100FA24A9 /* libPeleus.a in Frameworks */,
 				9B535808176470E100E8195E /* UIKit.framework in Frameworks */,
@@ -74,8 +86,6 @@
 		9B5357FB176470E100E8195E = {
 			isa = PBXGroup;
 			children = (
-				9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */,
-				9BA14C7117B6148100FA24A9 /* libPeleus.a */,
 				9B53580D176470E100E8195E /* MyApp */,
 				9B535806176470E100E8195E /* Frameworks */,
 				9B535805176470E100E8195E /* Products */,
@@ -94,6 +104,12 @@
 			isa = PBXGroup;
 			children = (
 				9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */,
+				9BA14C7117B6148100FA24A9 /* libPeleus.a */,
+				9B711D2017B92522002E3C75 /* libz.dylib */,
+				9B711D1E17B9251C002E3C75 /* libxml2.dylib */,
+				9B711D1C17B92513002E3C75 /* MobileCoreServices.framework */,
+				9B711D1917B9250A002E3C75 /* SystemConfiguration.framework */,
+				9BA14C7417B6233E00FA24A9 /* CFNetwork.framework */,
 				9B535807176470E100E8195E /* UIKit.framework */,
 				9B535809176470E100E8195E /* Foundation.framework */,
 				9B53580B176470E100E8195E /* CoreGraphics.framework */,
@@ -128,10 +144,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C9C5715D17BA76B600CA3CB4 /* Products */ = {
+		9B711D1317B913B9002E3C75 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9C5716117BA76B600CA3CB4 /* libPeleus.a */,
+				9B711D1717B913B9002E3C75 /* libPeleus.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,7 +194,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C9C5715D17BA76B600CA3CB4 /* Products */;
+					ProductGroup = 9B711D1317B913B9002E3C75 /* Products */;
 					ProjectRef = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */;
 				},
 			);
@@ -190,11 +206,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C9C5716117BA76B600CA3CB4 /* libPeleus.a */ = {
+		9B711D1717B913B9002E3C75 /* libPeleus.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libPeleus.a;
-			remoteRef = C9C5716017BA76B600CA3CB4 /* PBXContainerItemProxy */;
+			remoteRef = 9B711D1617B913B9002E3C75 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

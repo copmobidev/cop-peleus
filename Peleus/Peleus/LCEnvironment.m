@@ -34,11 +34,6 @@ static LCEnvironment *_sharedEnvironment = nil;
 
 - (NSString *)userAgent
 {
-    NSLog([NSString stringWithFormat:@"MApi 1.0 %@ %@ %@ IOS %@",
-           [self bundleId],
-           [self appVersion],
-           [self platformString],
-           [self deviceVersion]]);
     return [NSString stringWithFormat:@"MApi 1.0 %@ %@ %@ IOS %@",
             [self bundleId],
             [self appVersion],
@@ -48,7 +43,7 @@ static LCEnvironment *_sharedEnvironment = nil;
 
 - (NSString *)token
 {
-    return nil;
+    return @"6c25e31d8fda33258dcfcc2046ba5121e0c78784e32032bd06a8bd2b3d96cb72";
 }
 
 - (void)setToken:(NSString *)token

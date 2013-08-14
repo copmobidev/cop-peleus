@@ -15,9 +15,6 @@
     
 }
 
-
-@property (nonatomic, weak) IBOutlet UITextField* tf1;
-@property (nonatomic, weak) IBOutlet UITextField* tf2;
 @property (nonatomic, weak) IBOutlet UITextField* tfResult;
 
 - (IBAction)getConfig:(id)sender;
@@ -25,5 +22,6 @@
 - (IBAction)syncData:(id)sender;
 - (IBAction)uploadData:(id)sender;
 - (IBAction)getData:(id)sender;
+- (IBAction)parseDriveData:(id)sender;
 
 @end
