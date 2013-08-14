@@ -88,7 +88,6 @@
 //
 // returns:		Variable of type NSURL*
 //
-
 - (NSURL *)fullURL
 {
     NSString *fullURLString = [NSString stringWithFormat:@"ftp://%@%@", self.hostname, self.path];
@@ -109,7 +108,6 @@
 //
 // returns:		Variable of type NSURL *
 //
-
 - (NSURL *)fullURLWithEscape
 {
     NSString    *escapedUsername = [self encodeString:username];
@@ -146,7 +144,6 @@
 //
 // returns:		Variable of type NSString *
 //
-
 - (NSString *)path
 {
     //  we remove all the extra slashes from the directory path, including the last one (if there is one)
@@ -177,7 +174,6 @@
 //
 // returns:		none
 //
-
 - (void)setPath:(NSString *)directoryPathLocal
 {
     path = directoryPathLocal;
@@ -196,7 +192,6 @@
 //
 // returns:		Variable of type NSString *
 //
-
 - (NSString *)hostname
 {
     return [hostname stringByStandardizingPath];
@@ -215,7 +210,6 @@
 //
 // returns:		none
 //
-
 - (void)setHostname:(NSString *)hostnamelocal
 {
     hostname = hostnamelocal;
@@ -235,7 +229,6 @@
 //
 // returns:		Variable of type NSString *
 //
-
 - (NSString *)encodeString:(NSString *)string;
 {
     NSString *urlEncoded = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
@@ -259,7 +252,6 @@
 //
 // returns:		none
 //
-
 - (void)start
 {}
 
@@ -276,7 +268,6 @@
 //
 // returns:		Variable of type long
 //
-
 - (long)bytesSent
 {
     return self.streamInfo.bytesThisIteration;
@@ -295,7 +286,6 @@
 //
 // returns:		Variable of type long
 //
-
 - (long)totalBytesSent
 {
     return self.streamInfo.bytesTotal;
@@ -314,7 +304,6 @@
 //
 // returns:		Variable of type long
 //
-
 - (long)timeout
 {
     return self.streamInfo.timeout;
@@ -333,7 +322,6 @@
 //
 // returns:		none
 //
-
 - (void)setTimeout:(long)timeout
 {
     self.streamInfo.timeout = timeout;

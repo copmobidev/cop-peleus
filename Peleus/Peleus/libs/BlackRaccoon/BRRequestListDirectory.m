@@ -58,7 +58,6 @@
 //
 // returns:		Variable of type BRRequestListDirectory *
 //
-
 + (BRRequestListDirectory *)initWithDelegate:(id)inDelegate
 {
     BRRequestListDirectory *listDir = [[BRRequestListDirectory alloc] init];
@@ -84,7 +83,6 @@
 //
 // returns:		Variable of type BOOL
 //
-
 - (BOOL)fileExists:(NSString *)fileNamePath
 {
     NSString *fileName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
@@ -138,7 +136,6 @@
 //
 // returns:		none
 //
-
 - (void)start
 {
     self.maximumSize = LONG_MAX;
@@ -162,7 +159,6 @@
 //
 // returns:		none
 //
-
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
     NSData *data;

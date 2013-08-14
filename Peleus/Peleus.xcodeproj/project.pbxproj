@@ -36,7 +36,6 @@
 		9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451C17635E3C00AB895A /* LCEnvironment.m */; };
 		9BCF458017635E3C00AB895A /* LCDriveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF451F17635E3C00AB895A /* LCDriveData.m */; };
 		9BCF458117635E3C00AB895A /* LCDrivePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF452117635E3C00AB895A /* LCDrivePiece.m */; };
-		9BCF458217635E3C00AB895A /* LCDriveSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF452317635E3C00AB895A /* LCDriveSummary.m */; };
 		9BCF458317635E3C00AB895A /* LCTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF452517635E3C00AB895A /* LCTimestamp.m */; };
 		9BCF458417635E3C00AB895A /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF452917635E3C00AB895A /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9BCF458517635E3C00AB895A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF452C17635E3C00AB895A /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -73,7 +72,6 @@
 		9BCF45AB17635F1000AB895A /* LCEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF457C17635E3C00AB895A /* LCEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45AC17635F1000AB895A /* LCDriveData.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF451E17635E3C00AB895A /* LCDriveData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45AD17635F1000AB895A /* LCDrivePiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF452017635E3C00AB895A /* LCDrivePiece.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9BCF45AE17635F1000AB895A /* LCDriveSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF452217635E3C00AB895A /* LCDriveSummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45AF17635F1000AB895A /* LCTimestamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF452417635E3C00AB895A /* LCTimestamp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45B017635F1000AB895A /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF452817635E3C00AB895A /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9BCF45B117635F1000AB895A /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF452A17635E3C00AB895A /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -160,8 +158,6 @@
 		9BCF451F17635E3C00AB895A /* LCDriveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDriveData.m; sourceTree = "<group>"; };
 		9BCF452017635E3C00AB895A /* LCDrivePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDrivePiece.h; sourceTree = "<group>"; };
 		9BCF452117635E3C00AB895A /* LCDrivePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDrivePiece.m; sourceTree = "<group>"; };
-		9BCF452217635E3C00AB895A /* LCDriveSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCDriveSummary.h; sourceTree = "<group>"; };
-		9BCF452317635E3C00AB895A /* LCDriveSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCDriveSummary.m; sourceTree = "<group>"; };
 		9BCF452417635E3C00AB895A /* LCTimestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTimestamp.h; sourceTree = "<group>"; };
 		9BCF452517635E3C00AB895A /* LCTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTimestamp.m; sourceTree = "<group>"; };
 		9BCF452817635E3C00AB895A /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -355,8 +351,6 @@
 				9BCF451F17635E3C00AB895A /* LCDriveData.m */,
 				9BCF452017635E3C00AB895A /* LCDrivePiece.h */,
 				9BCF452117635E3C00AB895A /* LCDrivePiece.m */,
-				9BCF452217635E3C00AB895A /* LCDriveSummary.h */,
-				9BCF452317635E3C00AB895A /* LCDriveSummary.m */,
 				9BCF452417635E3C00AB895A /* LCTimestamp.h */,
 				9BCF452517635E3C00AB895A /* LCTimestamp.m */,
 			);
@@ -514,7 +508,6 @@
 				9BCF45AB17635F1000AB895A /* LCEnvironment.h in Headers */,
 				9BCF45AC17635F1000AB895A /* LCDriveData.h in Headers */,
 				9BCF45AD17635F1000AB895A /* LCDrivePiece.h in Headers */,
-				9BCF45AE17635F1000AB895A /* LCDriveSummary.h in Headers */,
 				9BCF45AF17635F1000AB895A /* LCTimestamp.h in Headers */,
 				9BCF45B017635F1000AB895A /* ASIAuthenticationDialog.h in Headers */,
 				9BCF45B117635F1000AB895A /* ASICacheDelegate.h in Headers */,
@@ -621,7 +614,6 @@
 				9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */,
 				9BCF458017635E3C00AB895A /* LCDriveData.m in Sources */,
 				9BCF458117635E3C00AB895A /* LCDrivePiece.m in Sources */,
-				9BCF458217635E3C00AB895A /* LCDriveSummary.m in Sources */,
 				9BCF458317635E3C00AB895A /* LCTimestamp.m in Sources */,
 				9BCF458417635E3C00AB895A /* ASIAuthenticationDialog.m in Sources */,
 				9BCF458517635E3C00AB895A /* ASIDataCompressor.m in Sources */,

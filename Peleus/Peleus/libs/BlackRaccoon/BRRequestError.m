@@ -57,7 +57,6 @@
 //
 // returns:		Variable of type BRErrorCodes
 //
-
 + (BRErrorCodes)errorCodeWithError:(NSError *)error
 {
     // ----- As suggested by RMaddy
@@ -84,7 +83,6 @@
 //
 // returns:		Variable of type NSString *
 //
-
 - (NSString *)message
 {
     NSString *errorMessage;

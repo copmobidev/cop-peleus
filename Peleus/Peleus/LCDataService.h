@@ -10,19 +10,23 @@
 #import "LCDataConfig.h"
 #import "LCDataServiceDelegate.h"
 #import "BRRequest.h"
+#import "ASIHTTPRequestDelegate.h"
+
 
 @class  LCTimestamp;
 @class  LCDriveData;
 
-@interface LCDataService : NSObject <BRRequestDelegate>
+@interface LCDataService : NSObject <BRRequestDelegate, ASIHTTPRequestDelegate>
 {
     NSData *uploadData; //
     NSMutableData *configData;
     NSMutableData *idxData;
     NSMutableData *driveData;
     NSMutableArray *finalData;
+    
     int point;
     int fileLength;
+    NSString *idxStr;
 }
 
 @property (nonatomic, strong) id <LCDataServiceDelegate> delegate;
@@ -39,7 +43,7 @@
 - (void)syncData;
 
 // 上传数据
-- (void)uploadData;
+- (void)uploadData:(NSString *)data;
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp;
 
