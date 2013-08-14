@@ -13,6 +13,8 @@
 #define COP_OBD_SERVER          @"192.168.1.151"
 #define COP_OBD_USER            @"nobody"
 #define COP_OBD_PWD             @"xampp"
+#define UA						@"mapi 1.0 peseus 1.0.0 motorola MB525 Android 2.3.5"
+#define TOKEN					@"6c25e31d8fda33258dcfcc2046ba5121e0c78784e32032bd06a8bd2b3d96cb72"
 
 
 #define OBD_CMD_CONFIG_GET      @"config-get"

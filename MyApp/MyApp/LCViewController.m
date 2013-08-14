@@ -32,8 +32,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark -
-#pragma IBAction Implement
+#pragma mark - IBAction Implement
 
 - (IBAction)getConfig:(id)sender
 {
@@ -70,11 +69,24 @@
 - (IBAction)getData:(id)sender
 {
     LCTimestamp *timestamp = [[LCTimestamp alloc] init];
-    timestamp.span = TRACK;
-    timestamp.beginTime = 0;
-    timestamp.endTime = 1;
+    timestamp.span = WEEK;
+    timestamp.beginTime = [self time2longWithYear:45134 withMonth:10 withDay:26 withHour:8 withMinute:0 withSecond:0];
+    timestamp.endTime = [self time2longWithYear:45325 withMonth:7 withDay:4 withHour:11 withMinute:38 withSecond:43];
     [[LCDataService sharedDataService] getDriveDataWithSpan:timestamp];
 }
+
+
+#pragma mark - Util
+
+- (long)time2longWithYear:(int)year withMonth:(int)month withDay:(int)day withHour:(int)hour withMinute:(int)minute withSecond:(int)second {
+	NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"yy-MM-dd HH:mm:ss"];//设定时间格式
+	NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d %d:%d:%d", 2013, 8, 23, 23, 38, 28];
+	NSDate *date = [dateFormat dateFromString:dateStr];
+	return (long)[date timeIntervalSince1970];
+}
+
+#pragma mark - Delegate Methods
 
 - (void)onGetConfigSuccess:(NSData *)config
 {

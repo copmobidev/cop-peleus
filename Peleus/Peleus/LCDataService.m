@@ -158,19 +158,33 @@ static LCDataService *_sharedDataService = nil;
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp
 {
+	
+	NSURL *url = [NSURL URLWithString:[COP_BIZ_SERVER stringByAppendingString:@"/argus/mycar/get"]];
+	ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+	//ua必填，否则没有responseString，为nil
+	[request addRequestHeader:@"ua" value:UA];
+	[request setPostValue:TOKEN    forKey:@"token"];
+	[request setPostValue:@"1362150000000" forKey:@"beginTime"];
+	[request setPostValue:@"1362150000000" forKey:@"engTime"];
+	
+	[request setDelegate:self];
+	[request startAsynchronous];
+	
     switch ([timestamp span]) {
         case YEAR:
+			
             break;
-
+            
         case MONTH:
             break;
-
+            
         case WEEK:
+			
             break;
-
+            
         case TRACK:
             break;
-
+            
         default:
             break;
     }
@@ -248,7 +262,9 @@ static LCDataService *_sharedDataService = nil;
         [idxData appendData:request.receivedData];
     } else if ([request.tag isEqualToString:OBD_CMD_DATA_GET]) {
         [driveData appendData:request.receivedData];
-    }
+    } else if ([request isKindOfClass:[ASIHTTPRequest class]]) {
+		// asi http request fail
+	}
 }
 
 - (long)requestDataSendSize:(BRRequestUpload *)request
@@ -301,6 +317,7 @@ static LCDataService *_sharedDataService = nil;
 
 #pragma mark -
 #pragma mark ASIRequestDelegate implement
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *respStr = [request responseString];

@@ -11,14 +11,14 @@
 #import "LCDataServiceDelegate.h"
 #import "BRRequest.h"
 #import "ASIHTTPRequestDelegate.h"
-
+#import "ASIFormDataRequest.h"
 
 @class  LCTimestamp;
 @class  LCDriveData;
 
 @interface LCDataService : NSObject <BRRequestDelegate, ASIHTTPRequestDelegate>
 {
-    NSData *uploadData; //
+    NSData *uploadData;
     NSMutableData *configData;
     NSMutableData *idxData;
     NSMutableData *driveData;
