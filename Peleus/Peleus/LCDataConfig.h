@@ -9,6 +9,9 @@
 
 //#define COP_BIZ_SERVER      @"58.210.101.202:59102"
 
+#ifndef LCDATACONFIG
+#define LCDATACONFIG
+
 #define COP_BIZ_SERVER          @"58.210.101.202"
 #define COP_OBD_SERVER          @"192.168.1.151"
 #define COP_OBD_USER            @"nobody"
@@ -29,3 +32,34 @@
 #define OBD_PATH_DATA           @"/data"
 #define OBD_PATH_CONFIG         @"/config.in"
 #define OBD_PATH_PARAM          @"/param.in"
+
+
+#define LCSINGLETON_IN_H(classname) \
++ (id)sharedInstance;
+
+#define LCSINGLETON_IN_M(classname) \
+\
+__strong static id _shared##classname = nil; \
+\
++ (id)sharedInstance { \
+@synchronized(self) \
+{ \
+if (_shared##classname == nil) \
+{ \
+_shared##classname = [[super allocWithZone:NULL] init]; \
+} \
+} \
+return _shared##classname; \
+} \
+\
++ (id)allocWithZone:(NSZone *)zone \
+{ \
+return [self sharedInstance]; \
+} \
+\
+- (id)copyWithZone:(NSZone *)zone \
+{ \
+return self; \
+}
+
+#endif	// End of File
