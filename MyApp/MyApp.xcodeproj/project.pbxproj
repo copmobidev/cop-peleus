@@ -194,7 +194,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C9C5715D17BA76B600CA3CB4 /* Products */;
+					ProductGroup = 9B711D1317B913B9002E3C75 /* Products */;
 					ProjectRef = 9BA14C6917B60E0100FA24A9 /* Peleus.xcodeproj */;
 				},
 			);
@@ -206,12 +206,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-
-		C9C5716117BA76B600CA3CB4 /* libPeleus.a */ = {
+		9B711D1717B913B9002E3C75 /* libPeleus.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libPeleus.a;
-			remoteRef = C9C5716017BA76B600CA3CB4 /* PBXContainerItemProxy */;
+			remoteRef = 9B711D1617B913B9002E3C75 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
