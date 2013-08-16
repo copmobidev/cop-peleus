@@ -146,32 +146,47 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)uploadData:(NSString *)data
 {
-    // API
-    NSString *ua = [[LCEnvironment sharedEnvironment] userAgent];
-    NSString *token = [[LCEnvironment sharedEnvironment] token];
-    NSURL *url = [NSURL URLWithString:API_MYCAR_UPLOAD];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request addRequestHeader:@"ua" value:ua];
-    [request setPostValue:token forKey:@"token"];
-    [request setPostValue:data forKey:@"data"];
-    [request setRequestMethod:@"POST"];
-    [request setDelegate:self];
-    [request start];
+    // API 
+
 }
+
+
+#pragma mark - ASIHTTP Delegate
+
+//- (void)requestFinished:(ASIHTTPRequest *)request {
+//	
+//	
+//	[request setResponseEncoding:NSUTF8StringEncoding];
+//	
+//	// 当以文本形式读取返回内容时用这个方法
+//	NSString *json = [request responseString];
+//}
+    // API
+//     NSString *ua = [[LCEnvironment sharedEnvironment] userAgent];
+//     NSString *token = [[LCEnvironment sharedEnvironment] token];
+//     NSURL *url = [NSURL URLWithString:API_MYCAR_UPLOAD];
+//     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+//     [request addRequestHeader:@"ua" value:ua];
+//     [request setPostValue:token forKey:@"token"];
+//     [request setPostValue:data forKey:@"data"];
+//     [request setRequestMethod:@"POST"];
+//     [request setDelegate:self];
+//     [request start];
+// }
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp
 {
 	
-	NSURL *url = [NSURL URLWithString:[COP_BIZ_SERVER stringByAppendingString:@"/argus/mycar/get"]];
-	ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
-	//ua必填，否则没有responseString，为nil
-	[request addRequestHeader:@"ua" value:UA];
-	[request setPostValue:TOKEN    forKey:@"token"];
-	[request setPostValue:@"1362150000000" forKey:@"beginTime"];
-	[request setPostValue:@"1362150000000" forKey:@"engTime"];
-	
-	[request setDelegate:self];
-	[request startAsynchronous];
+//	NSURL *url = [NSURL URLWithString:[COP_BIZ_SERVER stringByAppendingString:@"/argus/mycar/get"]];
+//	ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+//	//ua必填，否则没有responseString，为nil
+//	[request addRequestHeader:@"ua" value:UA];
+//	[request setPostValue:TOKEN    forKey:@"token"];
+//	[request setPostValue:@"1362150000000" forKey:@"beginTime"];
+//	[request setPostValue:@"1362150000000" forKey:@"engTime"];
+//	
+//	[request setDelegate:self];
+//	[request startAsynchronous];
 	
     switch ([timestamp span]) {
         case YEAR:
@@ -265,9 +280,7 @@ static LCDataService *_sharedDataService = nil;
         [idxData appendData:request.receivedData];
     } else if ([request.tag isEqualToString:OBD_CMD_DATA_GET]) {
         [driveData appendData:request.receivedData];
-    } else if ([request isKindOfClass:[ASIHTTPRequest class]]) {
-		// asi http request fail
-	}
+    }
 }
 
 - (long)requestDataSendSize:(BRRequestUpload *)request
@@ -311,6 +324,9 @@ static LCDataService *_sharedDataService = nil;
             
         }
     }
+//	else if ([request isKindOfClass:[ASIHTTPRequest class]]) {
+//		// asi http request fail
+//	}
 }
 
 - (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request

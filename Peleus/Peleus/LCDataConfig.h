@@ -9,6 +9,9 @@
 
 //#define COP_BIZ_SERVER      @"58.210.101.202:59102"
 
+#ifndef LCDATACONFIG
+#define LCDATACONFIG
+
 #define COP_BIZ_SERVER          @"58.210.101.202:59102"
 #define COP_OBD_SERVER          @"192.168.1.151"
 #define COP_OBD_USER            @"nobody"
@@ -31,6 +34,35 @@
 #define OBD_PATH_PARAM          @"/param.in"
 
 
+#define LCSINGLETON_IN_H(classname) \
++ (id)sharedInstance;
+
+#define LCSINGLETON_IN_M(classname) \
+\
+__strong static id _shared##classname = nil; \
+\
++ (id)sharedInstance { \
+@synchronized(self) \
+{ \
+if (_shared##classname == nil) \
+{ \
+_shared##classname = [[super allocWithZone:NULL] init]; \
+} \
+} \
+return _shared##classname; \
+} \
+\
++ (id)allocWithZone:(NSZone *)zone \
+{ \
+return [self sharedInstance]; \
+} \
+\
+- (id)copyWithZone:(NSZone *)zone \
+{ \
+return self; \
+}
+
+
 // 账户
 #define API_ACCOUNT_BOUND       @"http://58.210.101.202:59102/argus/account/bound"
 #define API_ACCOUNT_REBOUND     @"http://58.210.101.202:59102/argus/account/rebound"
@@ -47,3 +79,5 @@
 // 其他
 #define API_OTHER_CONFIG        @"http://58.210.101.202:59102/argus/other/config"
 #define API_OTHER_FEEDBACK      @"http://58.210.101.202:59102/argus/other/feedback"
+
+#endif	// End of File

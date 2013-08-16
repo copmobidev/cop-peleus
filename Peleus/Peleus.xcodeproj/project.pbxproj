@@ -111,6 +111,8 @@
 		9BCF45D517635FDE00AB895A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D417635FDE00AB895A /* SystemConfiguration.framework */; };
 		9BCF45D917635FF300AB895A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D817635FF300AB895A /* libz.dylib */; };
 		9BCF45DB17635FF900AB895A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45DA17635FF900AB895A /* libxml2.dylib */; };
+		C9C5716617BB212000CA3CB4 /* LCStore.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C5716417BB211F00CA3CB4 /* LCStore.h */; };
+		C9C5716717BB212000CA3CB4 /* LCStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C5716517BB212000CA3CB4 /* LCStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -234,6 +236,8 @@
 		9BCF45D617635FE700AB895A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9BCF45D817635FF300AB895A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BCF45DA17635FF900AB895A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		C9C5716417BB211F00CA3CB4 /* LCStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCStore.h; sourceTree = "<group>"; };
+		C9C5716517BB212000CA3CB4 /* LCStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +325,8 @@
 		9BCF450D17635DBD00AB895A /* Peleus */ = {
 			isa = PBXGroup;
 			children = (
+				C9C5716417BB211F00CA3CB4 /* LCStore.h */,
+				C9C5716517BB212000CA3CB4 /* LCStore.m */,
 				9BA14C4617B5D3A400FA24A9 /* Peleus.h */,
 				9BCF457917635E3C00AB895A /* LCDataConfig.h */,
 				9BCF457B17635E3C00AB895A /* LCDataServiceDelegate.h */,
@@ -555,6 +561,7 @@
 				9BCF45D017635F8000AB895A /* mztools.h in Headers */,
 				9BCF45D117635F8000AB895A /* unzip.h in Headers */,
 				9BCF45D217635F8000AB895A /* zip.h in Headers */,
+				C9C5716617BB212000CA3CB4 /* LCStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +662,7 @@
 				9B5357C51764227700E8195E /* BRRequestUpload.m in Sources */,
 				9B5357C71764227700E8195E /* BRStreamInfo.m in Sources */,
 				9BA14C5117B5E6FE00FA24A9 /* JSONKit.m in Sources */,
+				C9C5716717BB212000CA3CB4 /* LCStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
