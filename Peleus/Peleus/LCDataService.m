@@ -93,8 +93,11 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)pushIndex
 {
-    
-    idxStr = @"000000000000037000000000000043";
+    NSString *tmpCur = [NSString stringWithFormat:@"%d", point];
+    NSString *curIdx = [NSString stringWithFormat:@"%@%@", [@"000000000000000" substringFromIndex:[tmpCur length]], tmpCur];
+    NSString *tmpLst = [NSString stringWithFormat:@"%d", fileLength];
+    NSString *lstIdx = [NSString stringWithFormat:@"%@%@", [@"000000000000000" substringFromIndex:[tmpLst length]], tmpLst];
+    idxStr = [NSString stringWithFormat:@"%@%@", curIdx, lstIdx];
     uploadData = [idxStr dataUsingEncoding: NSASCIIStringEncoding];;
     BRRequestUpload *fileUploadReq = [[BRRequestUpload alloc] init];
     fileUploadReq.delegate = self;
@@ -321,8 +324,8 @@ static LCDataService *_sharedDataService = nil;
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *respStr = [request responseString];
-    NSLog(@"upload data finish: %@", respStr);
     NSDictionary *result = (NSDictionary *)[respStr objectFromJSONString];
+//    NSLog(@"%@", result);
     [self.delegate onUploadDataSucess:result];
 }
 

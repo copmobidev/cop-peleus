@@ -23,19 +23,20 @@
     NSString *cid = [config substringWithRange:range];
     range.length = 2;
     NSLog(@"%@", config);
-    int     length = [config lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
-    NSLog(@"length:%d", length);
+    int     length = [config length];
     char    tmp[length / 2];
+    for (int i = 0; i < length / 2; ++i) {
+        tmp[i] = 0;
+    }
     for (int i = 0; i < length; i += 2) {
         range.location = i;
         NSString *hex = [config substringWithRange:range];
         tmp[i / 2] = [self hex2char:hex];
     }
-
-    char    vinArray[17];
-    char    obdArray[8];
-    char    calidArray[8];
-
+    
+    char    vinArray[17] = {0};
+    char    obdArray[8] = {0};
+    char    calidArray[8] = {0};
     for (int i = 0; i < length / 2; ++i) {
         if ((i > 16) && (i < 33)) {
             vinArray[i - 16] = tmp[i];
@@ -45,13 +46,12 @@
             calidArray[i - 112] = tmp[i];
         }
     }
-
     NSString *vin = [NSString stringWithCString:vinArray encoding:NSASCIIStringEncoding];
-    NSLog(@"%s", vinArray);
+    NSLog(@"vin:%s", vinArray);
     NSString *obd = [NSString stringWithCString:obdArray encoding:NSASCIIStringEncoding];
-    NSLog(@"%s", obdArray);
+    NSLog(@"obd:%s", obdArray);
     NSString *calid = [NSString stringWithCString:calidArray encoding:NSASCIIStringEncoding];
-    NSLog(@"%s", calidArray);
+    NSLog(@"calid:%s", calidArray);
     NSDictionary *dict = @{@"vin":vin, @"obd":obd, @"calid":calid, @"cid":cid};
     return dict;
 }
