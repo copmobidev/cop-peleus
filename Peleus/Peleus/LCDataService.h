@@ -42,7 +42,7 @@
 // 同步数据
 - (void)syncData;
 
-// 上传数据
+// 上传数据,多组数据之间以分号隔开
 - (void)uploadData:(NSString *)data;
 
 - (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp;
