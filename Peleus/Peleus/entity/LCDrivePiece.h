@@ -37,5 +37,4 @@
 @property (nonatomic, readwrite) double sliding; // 滑行时间
 @property (nonatomic, readwrite) double score; // 行程切片得分
 
-
 @end

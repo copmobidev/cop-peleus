@@ -15,8 +15,9 @@
 #import "BRRequestDownload.h"
 #import "BRRequestDelete.h"
 #import "BRRequestQueue.h"
-#import "JSONKit.h"
 #import "ASIFormDataRequest.h"
+#import "LCTypeParser.h"
+#import "JSONKit.h"
 
 @implementation LCDataService
 
@@ -174,48 +175,36 @@ static LCDataService *_sharedDataService = nil;
 //     [request start];
 // }
 
-- (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp
+
+
+- (void)getDriveDataWithSpan:(LCTimestamp *)timestamp
 {
 	
-//	NSURL *url = [NSURL URLWithString:[COP_BIZ_SERVER stringByAppendingString:@"/argus/mycar/get"]];
-//	ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
-//	//ua必填，否则没有responseString，为nil
-//	[request addRequestHeader:@"ua" value:UA];
-//	[request setPostValue:TOKEN    forKey:@"token"];
-//	[request setPostValue:@"1362150000000" forKey:@"beginTime"];
-//	[request setPostValue:@"1362150000000" forKey:@"engTime"];
-//	
-//	[request setDelegate:self];
-//	[request startAsynchronous];
+	NSURL *url = [NSURL URLWithString:API_MYCAR_GET];
 	
-    switch ([timestamp span]) {
-        case YEAR:
-			
-            break;
-            
-        case MONTH:
-            break;
-            
-        case WEEK:
-			
-            break;
-            
-        case TRACK:
-            break;
-            
-        default:
-            break;
-    }
-    return nil;
+	ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
+	
+	[request setRequestMethod:@"POST"];
+	[request addRequestHeader:@"ua" value:UA];
+	[request setPostValue:TOKEN    forKey:@"token"];
+	[request setPostValue:[LCTypeParser long2String:timestamp.beginTime] forKey:@"beginTime" ];
+	[request setPostValue:[LCTypeParser long2String:timestamp.endTime] forKey:@"endTime"];
+	[request setPostValue:@"0" forKey:@"span"];
+	
+	[request setDelegate:self];
+	[request startAsynchronous];
+	
 }
 
 /*
  *   暂时不在本地做数据解析
  */
+/*
 - (LCDriveData *)parseOriginData:(NSString *)originData
 {
     return nil;
 }
+*/
 
 #pragma mark -
 #pragma mark BRRequestDelegate implement
@@ -324,9 +313,6 @@ static LCDataService *_sharedDataService = nil;
             
         }
     }
-//	else if ([request isKindOfClass:[ASIHTTPRequest class]]) {
-//		// asi http request fail
-//	}
 }
 
 - (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request
@@ -340,9 +326,8 @@ static LCDataService *_sharedDataService = nil;
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *respStr = [request responseString];
-    NSDictionary *result = (NSDictionary *)[respStr objectFromJSONString];
-//    NSLog(@"%@", result);
-    [self.delegate onUploadDataSucess:result];
+//    NSDictionary *result = (NSDictionary *)[respStr objectFromJSONString];
+//    [self.delegate onUploadDataSucess:result];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

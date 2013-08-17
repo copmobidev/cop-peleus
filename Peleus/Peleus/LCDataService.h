@@ -45,7 +45,7 @@
 // 上传数据,多组数据之间以分号隔开
 - (void)uploadData:(NSString *)data;
 
-- (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp;
+- (void)getDriveDataWithSpan:(LCTimestamp *)timestamp;
 
 /*
  暂时不支持
