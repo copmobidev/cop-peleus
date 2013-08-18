@@ -31,4 +31,10 @@
 - (void)onPushParamSucess;
 - (void)onPushParamFail;
 
+/*
+ *	SERVER_GET_DRIVE_DATA
+ */
+- (void)onGetDriveDataSuccess:(NSDictionary *)data;
+- (void)onGetDriveDataFail;
+
 @end

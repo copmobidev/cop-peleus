@@ -115,8 +115,6 @@
 		C97875F317BF818000C16C45 /* NSString+PropertyKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97875EF17BF818000C16C45 /* NSString+PropertyKVC.m */; };
 		C97875F717BF86BD00C16C45 /* LCTypeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C97875F517BF86BD00C16C45 /* LCTypeParser.h */; };
 		C97875F817BF86BD00C16C45 /* LCTypeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C97875F617BF86BD00C16C45 /* LCTypeParser.m */; };
-		C985CA8C17BFA2640062443A /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C985CA8A17BFA2640062443A /* JSONKit.h */; };
-		C985CA8D17BFA2640062443A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C985CA8B17BFA2640062443A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C9C5716617BB212000CA3CB4 /* LCStore.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C5716417BB211F00CA3CB4 /* LCStore.h */; };
 		C9C5716717BB212000CA3CB4 /* LCStore.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C5716517BB212000CA3CB4 /* LCStore.m */; };
 /* End PBXBuildFile section */
@@ -246,8 +244,6 @@
 		C97875EF17BF818000C16C45 /* NSString+PropertyKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PropertyKVC.m"; sourceTree = "<group>"; };
 		C97875F517BF86BD00C16C45 /* LCTypeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTypeParser.h; sourceTree = "<group>"; };
 		C97875F617BF86BD00C16C45 /* LCTypeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTypeParser.m; sourceTree = "<group>"; };
-		C985CA8A17BFA2640062443A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		C985CA8B17BFA2640062443A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		C9C5716417BB211F00CA3CB4 /* LCStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCStore.h; sourceTree = "<group>"; };
 		C9C5716517BB212000CA3CB4 /* LCStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -369,7 +365,6 @@
 		9BCF452617635E3C00AB895A /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				C985CA8917BFA2640062443A /* JSONKit */,
 				C97875EB17BF818000C16C45 /* Category */,
 				9BCF452717635E3C00AB895A /* ASIHttpRequest */,
 				9B5357A11764227700E8195E /* BlackRaccoon */,
@@ -518,15 +513,6 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
-		C985CA8917BFA2640062443A /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				C985CA8A17BFA2640062443A /* JSONKit.h */,
-				C985CA8B17BFA2640062443A /* JSONKit.m */,
-			);
-			path = JSONKit;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -590,7 +576,6 @@
 				C97875F017BF818000C16C45 /* NSObject+Properties.h in Headers */,
 				C97875F217BF818000C16C45 /* NSString+PropertyKVC.h in Headers */,
 				C97875F717BF86BD00C16C45 /* LCTypeParser.h in Headers */,
-				C985CA8C17BFA2640062443A /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +679,6 @@
 				C97875F117BF818000C16C45 /* NSObject+Properties.m in Sources */,
 				C97875F317BF818000C16C45 /* NSString+PropertyKVC.m in Sources */,
 				C97875F817BF86BD00C16C45 /* LCTypeParser.m in Sources */,
-				C985CA8D17BFA2640062443A /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

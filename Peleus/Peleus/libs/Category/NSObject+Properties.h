@@ -71,7 +71,6 @@
 - (SEL) setterForPropertyNamed: (NSString *) name;
 - (NSString *) retentionMethodOfPropertyNamed: (NSString *) name;
 - (NSArray *) propertyNames;
-- (Class)classForPropertyNamed:(NSString*)name;
 
 
 @end

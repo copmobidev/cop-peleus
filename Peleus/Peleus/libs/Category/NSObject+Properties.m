@@ -210,29 +210,6 @@
 	return ( [[self class] propertyNames] );
 }
 
-- (Class)classForPropertyNamed:(NSString*)name
-{
-	objc_property_t property = class_getProperty([self class], [name cStringUsingEncoding:NSUTF8StringEncoding]);
-    const char* attrs = property_getAttributes(property);
-    const char* p = strstr(attrs, "T@\"");
-    if (p == attrs) {
-        p += 3;
-        const char* q = strstr(p, "\"");
-        if (q > p) {
-            int len = q-p;
-            if (len <= 100) {
-                char buf[128];
-                strncpy(buf, p, len);
-                buf[len] = '\0';
-                NSString *className = [NSString stringWithFormat:@"%s", buf];
-                Class c = NSClassFromString(className);
-                return c;
-            }
-        }
-    }
-    return nil;
-}
-
 @end
 
 #pragma mark -

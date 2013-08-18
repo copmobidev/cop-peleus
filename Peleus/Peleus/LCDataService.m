@@ -17,7 +17,8 @@
 #import "BRRequestQueue.h"
 #import "ASIFormDataRequest.h"
 #import "LCTypeParser.h"
-#import "JSONKit.h"
+#import "LCDriveData.h"
+#import "NSObject+Properties.h"
 
 @implementation LCDataService
 
@@ -46,7 +47,6 @@ static LCDataService *_sharedDataService = nil;
     configData = [[NSMutableData alloc] init];
     
     [fileDowndloadReq start];
-    
 }
 
 - (void)delParam
@@ -84,7 +84,7 @@ static LCDataService *_sharedDataService = nil;
 {
     BRRequestDelete *fileDelReq = [[BRRequestDelete alloc] init];
     fileDelReq.delegate = self;
-    fileDelReq.tag = OBD_CMD_PARAM_DEL;
+    fileDelReq.tag = OBD_CMD_IDX_DEL;
     fileDelReq.hostname = OBD_PATH_IDX;
     fileDelReq.username = COP_OBD_SERVER;
     fileDelReq.username = COP_OBD_USER;
@@ -154,29 +154,6 @@ static LCDataService *_sharedDataService = nil;
 
 #pragma mark - ASIHTTP Delegate
 
-//- (void)requestFinished:(ASIHTTPRequest *)request {
-//	
-//	
-//	[request setResponseEncoding:NSUTF8StringEncoding];
-//	
-//	// 当以文本形式读取返回内容时用这个方法
-//	NSString *json = [request responseString];
-//}
-    // API
-//     NSString *ua = [[LCEnvironment sharedEnvironment] userAgent];
-//     NSString *token = [[LCEnvironment sharedEnvironment] token];
-//     NSURL *url = [NSURL URLWithString:API_MYCAR_UPLOAD];
-//     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-//     [request addRequestHeader:@"ua" value:ua];
-//     [request setPostValue:token forKey:@"token"];
-//     [request setPostValue:data forKey:@"data"];
-//     [request setRequestMethod:@"POST"];
-//     [request setDelegate:self];
-//     [request start];
-// }
-
-
-
 - (void)getDriveDataWithSpan:(LCTimestamp *)timestamp
 {
 	
@@ -190,7 +167,7 @@ static LCDataService *_sharedDataService = nil;
 	[request setPostValue:[LCTypeParser long2String:timestamp.beginTime] forKey:@"beginTime" ];
 	[request setPostValue:[LCTypeParser long2String:timestamp.endTime] forKey:@"endTime"];
 	[request setPostValue:@"0" forKey:@"span"];
-	
+	request.tag = SERVER_GET_DRIVE_DATA;
 	[request setDelegate:self];
 	[request startAsynchronous];
 	
@@ -211,6 +188,7 @@ static LCDataService *_sharedDataService = nil;
 // obd ftp server相关请求操作成功时，解析数据并通知上层回调函数完成相关动作
 - (void)brRequestCompleted:(BRRequest *)request
 {
+	NSLog(@"brRequestCompleted:%@-%@", request.tag, [request description]);
     if ([request isKindOfClass:[BRRequestDownload class]]) {
         if ([request.tag isEqualToString:OBD_CMD_CONFIG_GET]) {
             // obd配置同步完成
@@ -289,7 +267,7 @@ static LCDataService *_sharedDataService = nil;
 // obd ftp 获取数据失败时，通知上层回调函数做相应处理
 - (void)brRequestFailed:(BRRequest *)request
 {
-    NSLog(@"%@-%@", request.tag, [request description]);
+    NSLog(@"brRequestFailed:%@-%@", request.tag, [request description]);
     if ([request isKindOfClass:[BRRequestDownload class]]) {
         if ([request.tag isEqualToString:OBD_CMD_CONFIG_GET]) {
             // obd配置同步完成
@@ -325,14 +303,38 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSString *respStr = [request responseString];
-//    NSDictionary *result = (NSDictionary *)[respStr objectFromJSONString];
-//    [self.delegate onUploadDataSucess:result];
+	NSError *error; 
+    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableLeaves error:&error];
+	NSLog(@"%@", responseDict);
+	NSDictionary *dataPieceDict;
+	NSDictionary *dataSummaryDict;
+	
+	switch (request.tag) {
+		case SERVER_GET_DRIVE_DATA:
+			dataPieceDict = (NSDictionary *)[[responseDict valueForKey:@"data"] valueForKey:@"dataSummary"];
+			LCDriveData *driveData = [[LCDriveData alloc] initWithDriveData:dataPieceDict];
+			//[self.delegate onGetDriveDataSuccess:responseDict];
+			break;
+//		case SERVER_UPLOAD:
+//			[self.delegate onUploadDataSucess:responseDict];
+//			break;
+//		default:
+//			break;
+	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    [self.delegate onUploadDataFail];
+	switch (request.tag) {
+		case SERVER_GET_DRIVE_DATA:
+			[self.delegate onGetDriveDataFail];
+			break;
+		case SERVER_UPLOAD:
+			[self.delegate onUploadDataFail];
+			break;
+		default:
+			break;
+	}
 }
 
 @end

@@ -5,16 +5,13 @@
 //  Created by chris.liu on 5/21/13.
 //  Copyright (c) 2013 cop-studio. All rights reserved.
 //
-//host is only host part, do not include protocol , port and detail path
-
-//#define COP_BIZ_SERVER      @"58.210.101.202:59102"
 
 #ifndef LCDATACONFIG
 #define LCDATACONFIG
 
 #pragma mark - OBD Config
 
-#define COP_OBD_SERVER          @"192.168.1.151"
+#define COP_OBD_SERVER          @"localhost"
 #define COP_OBD_USER            @"nobody"
 #define COP_OBD_PWD             @"xampp"
 
@@ -56,6 +53,10 @@
 #define API_OTHER_CONFIG        @"http://58.210.101.202:59102/argus/other/config"
 #define API_OTHER_FEEDBACK      @"http://58.210.101.202:59102/argus/other/feedback"
 
+
+#define SERVER_GET_DRIVE_DATA 1000
+
+#define SERVER_UPLOAD		  2000
 
 #pragma mark - Singleton
 

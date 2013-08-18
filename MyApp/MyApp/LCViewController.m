@@ -26,6 +26,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	[[LCDataService sharedDataService] setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,10 +39,6 @@
 
 - (IBAction)getConfig:(id)sender
 {
-    NSString *config = @"A54B57502D666173742D696E697420204C4757464633413532414230303535343220313031393232363020123014AC0FA00FA012ED10450FC00FB22020202020BE3EB811800000000000000001F800002020202021202020202020202020202020202020202020202020202020202020000000000000000020202020202020C3";
-    NSDictionary *dict = [LCDataParser parseOBDConfig:config];
-    NSLog(@"%@", dict);
-    [self.tfResult setText:[[LCEnvironment sharedEnvironment] userAgent]];
     [[LCDataService sharedDataService] getConfig];
 }
 
@@ -93,6 +90,8 @@
 - (void)onGetConfigSuccess:(NSData *)config
 {
     [self.tfResult setText:@"get config successful"];
+	NSDictionary *dict = [LCDataParser parseOBDConfig:[[NSString alloc] initWithData:config encoding:NSASCIIStringEncoding]];
+	NSLog(@"%@", dict);
 }
 
 - (void)onGetConfigFail
@@ -149,6 +148,7 @@
 	driveData.avgCoolTemp = [[dataDict valueForKey:@"avgCoolTemp"] doubleValue];
 	driveData.maxCoolTemp = [[dataDict valueForKey:@"maxCoolTemp"] doubleValue];
 	driveData.avgPadPos = [[dataDict valueForKey:@"avgPadPos"] doubleValue];
+	[driveData setValue:[dataDict valueForKey:@"avgPadPos"] forKey:@"avgPadPos"];
 	driveData.maxPadPos = [[dataDict valueForKey:@"maxPadPos"] doubleValue];
 	driveData.minPadPos = [[dataDict valueForKey:@"minPadPos"] doubleValue];
 	driveData.avgRPM = [[dataDict valueForKey:@"avgRPM"] doubleValue];

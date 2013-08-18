@@ -50,4 +50,6 @@
 @property (nonatomic, readwrite) NSString* minuteData; // 每分钟行程数据
 @property (nonatomic, readwrite) double score; // 行程得分
 
+- (LCDriveData *)initWithDriveData:(NSDictionary *)dict;
+
 @end

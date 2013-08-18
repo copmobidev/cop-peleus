@@ -7,7 +7,20 @@
 //
 
 #import "LCDriveData.h"
+#import "NSObject+Properties.h"
 
 @implementation LCDriveData
+
+- (LCDriveData *)initWithDriveData:(NSDictionary *)dict {
+	self = [super init];
+	if (self) {
+//		NSLog(@"%@", [self propertyNames]);
+		
+//		for (NSString *propertyName in [LCDriveData propertyNames]) {
+//			[self setValue:[dict valueForKey:propertyName] forKey:propertyName];
+//		}
+	}
+	return self;
+}
 
 @end
