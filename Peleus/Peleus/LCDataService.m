@@ -65,6 +65,7 @@ static LCDataService *_sharedDataService = nil;
 {
     NSString *paramStr = @"3.2";
     uploadData = [paramStr dataUsingEncoding: NSASCIIStringEncoding];
+	
     BRRequestUpload *fileUploadReq = [[BRRequestUpload alloc] init];
     fileUploadReq.delegate = self;
     fileUploadReq.tag = OBD_CMD_PARAM_PUSH;
@@ -77,7 +78,7 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)pushParam
 {
-    [self delParam];
+	[self addParam];
 }
 
 - (void)delIndex
@@ -250,6 +251,15 @@ static LCDataService *_sharedDataService = nil;
     }
 }
 
+- (void) percentCompleted: (BRRequest *) request
+{
+    NSLog(@"%f completed...", request.percentCompleted);
+	
+	
+    NSLog(@"%ld bytes this iteration", request.bytesSent);
+    NSLog(@"%ld total bytes", request.totalBytesSent);
+}
+
 - (long)requestDataSendSize:(BRRequestUpload *)request
 {
     NSLog(@"lenth:%d", [uploadData length]);
@@ -293,9 +303,17 @@ static LCDataService *_sharedDataService = nil;
     }
 }
 
-- (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request
+-(BOOL) shouldOverwriteFileWithRequest: (BRRequest *) request
 {
-    return false;
+    //----- set this as appropriate if you want the file to be overwritten
+    if ([request.tag isEqualToString:OBD_CMD_PARAM_PUSH])
+    {
+        //----- if uploading param.in, we set it to YES
+        return YES;
+    }
+    
+    //----- anything else (directories, etc) we set to NO
+    return NO;
 }
 
 #pragma mark -

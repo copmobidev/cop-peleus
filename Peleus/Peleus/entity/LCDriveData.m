@@ -14,7 +14,7 @@
 - (LCDriveData *)initWithDriveData:(NSDictionary *)dict {
 	self = [super init];
 	if (self) {
-//		NSLog(@"%@", [self propertyNames]);
+		NSLog(@"%@", [self propertyNames]);
 		
 //		for (NSString *propertyName in [LCDriveData propertyNames]) {
 //			[self setValue:[dict valueForKey:propertyName] forKey:propertyName];

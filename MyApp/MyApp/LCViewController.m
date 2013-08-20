@@ -121,7 +121,7 @@
 
 - (void)onUploadDataSucess:(NSDictionary *)data
 {
-    NSLog(@"%@", data);
+    NSLog(@"upload data success:%@", data);
 	LCDriveData *driveData = [[LCDriveData alloc] init];
 	NSDictionary *dataDict = [[data valueForKey:@"data"] valueForKey:@"dataSummary"];
 	driveData.beginTime = [[dataDict valueForKey:@"beginTime"] longValue];
@@ -197,7 +197,7 @@
 }
 
 - (void)onUploadDataFail {
-    
+    NSLog(@"upload data fail");
 }
 
 @end
