@@ -148,7 +148,7 @@
         InfoLog(@"The host name is nil!");
         self.error = [[BRRequestError alloc] init];
         self.error.errorCode = kBRFTPClientHostnameIsNil;
-        [self.delegate requestFailed:self];
+        [self.delegate brRequestFailed:self];
         return;
     }
     
@@ -177,7 +177,7 @@
 // returns:		none
 //
 
-- (void)requestCompleted:(BRRequest *)request
+- (void)brRequestCompleted:(BRRequest *)request
 {
     NSString *directoryName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
 
@@ -211,9 +211,9 @@
 // returns:		none
 //
 
-- (void)requestFailed:(BRRequest *)request
+- (void)brRequestFailed:(BRRequest *)request
 {
-    [self.delegate requestFailed:request];
+    [self.delegate brRequestFailed:request];
 }
 
 

@@ -154,7 +154,7 @@
 // returns:		none
 //
 
-- (void)requestCompleted:(BRRequest *)request
+- (void)brRequestCompleted:(BRRequest *)request
 {
     NSString * fileName = [[self.path lastPathComponent] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
     
@@ -193,9 +193,9 @@
 // returns:		none
 //
 
-- (void)requestFailed:(BRRequest *)request
+- (void)brRequestFailed:(BRRequest *)request
 {
-    [self.delegate requestFailed:request];
+    [self.delegate brRequestFailed:request];
 }
 
 

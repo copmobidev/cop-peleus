@@ -187,7 +187,7 @@ static LCDataService *_sharedDataService = nil;
 #pragma mark -
 #pragma mark BRRequestDelegate implement
 // obd ftp server相关请求操作成功时，解析数据并通知上层回调函数完成相关动作
-- (void)requestCompleted:(BRRequest *)request
+- (void)brRequestCompleted:(BRRequest *)request
 {
 	NSLog(@"brRequestCompleted:%@-%@", request.tag, [request description]);
     if ([request isKindOfClass:[BRRequestDownload class]]) {
@@ -246,7 +246,7 @@ static LCDataService *_sharedDataService = nil;
 }
 
 // obd ftp 获取数据失败时，通知上层回调函数做相应处理
-- (void)requestFailed:(BRRequest *)request
+- (void)brRequestFailed:(BRRequest *)request
 {
     NSLog(@"brRequestFailed:%@-%@", request.tag, [request description]);
     if ([request isKindOfClass:[BRRequestDownload class]]) {

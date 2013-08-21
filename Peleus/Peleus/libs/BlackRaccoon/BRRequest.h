@@ -128,11 +128,11 @@
 /// requestCompleted
 /// Indicates when a request has completed without errors.
 /// \param request The request object
-- (void)requestCompleted:(BRRequest *)request;
+- (void)brRequestCompleted:(BRRequest *)request;
 
 /// requestFailed
 /// \param request The request object
-- (void)requestFailed:(BRRequest *)request;
+- (void)brRequestFailed:(BRRequest *)request;
 
 /// shouldOverwriteFileWithRequest
 /// \param request The request object;
