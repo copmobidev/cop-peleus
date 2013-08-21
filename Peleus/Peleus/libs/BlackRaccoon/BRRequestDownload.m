@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRRequestDownload.m
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,34 +37,67 @@
 //              THE SOFTWARE.
 //
 
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRRequestDownload.h"
+
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+
+
+
+//---------- classes
 
 @implementation BRRequestDownload
 
-@synthesize tag, receivedData;
+@synthesize receivedData;
 
-//-----
-//
-//				initWithDelegate
-//
-// synopsis:	retval = [BRRequestDownload initWithDelegate:inDelegate];
-//					BRRequestDownload *retval	-
-//					id inDelegate            	-
-//
-// description:	initWithDelegate is designed to
-//
-// errors:		none
-//
-// returns:		Variable of type BRRequestDownload *
-//
-+ (BRRequestDownload *) initWithDelegate: (id) inDelegate
-{
-    BRRequestDownload *downloadFile = [[BRRequestDownload alloc] init];
-    if (downloadFile)
-        downloadFile.delegate = inDelegate;
-    
-    return downloadFile;
-}
 
 //-----
 //
@@ -78,7 +111,8 @@
 //
 // returns:		none
 //
--(void) start
+
+- (void)start
 {
     if (![self.delegate respondsToSelector:@selector(requestDataAvailable:)])
     {
@@ -108,6 +142,7 @@
 //
 // returns:		none
 //
+
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
     //----- see if we have cancelled the runloop
@@ -123,8 +158,9 @@
             self.didOpenStream = YES;
             self.streamInfo.bytesTotal = 0;
             self.receivedData = [NSMutableData data];
-            break;
-        }            
+        } 
+        break;
+            
         case NSStreamEventHasBytesAvailable: 
         {
             self.receivedData = [self.streamInfo read: self];
@@ -139,27 +175,52 @@
                 InfoLog(@"Stream opened, but failed while trying to read from it.");
                 [self.streamInfo streamError: self errorCode: kBRFTPClientCantReadStream];
             }
-            break;
         } 
+        break;
+            
         case NSStreamEventHasSpaceAvailable: 
         {
-            break;
-        }            
+            
+        } 
+        break;
+            
         case NSStreamEventErrorOccurred: 
         {
             [self.streamInfo streamError: self errorCode: [BRRequestError errorCodeWithError: [theStream streamError]]];
             InfoLog(@"%@", self.error.message);
-            break;
-        }            
+        }
+        break;
+            
         case NSStreamEventEndEncountered: 
         {
             [self.streamInfo streamComplete: self];
-            break;
         }
-        case NSStreamEventNone:
+        break;
+
+        default:
             break;
     }
 }
 
+
+
+//-----
+//
+//				fullRemotePath
+//
+// synopsis:	retval = [self fullRemotePath];
+//					NSString *retval	-
+//
+// description:	fullRemotePath is designed to
+//
+// errors:		none
+//
+// returns:		Variable of type NSString *
+//
+
+- (NSString *)fullRemotePath
+{
+    return [self.hostname stringByAppendingPathComponent:self.path];
+}
 
 @end

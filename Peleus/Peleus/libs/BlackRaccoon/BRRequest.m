@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRRequest.m
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,45 +37,120 @@
 //              THE SOFTWARE.
 //
 
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRRequest.h"
+
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+
+
+
+//---------- classes
 
 @implementation BRRequest
 
+@synthesize passiveMode;
 @synthesize password;
 @synthesize username;
 @synthesize error;
 @synthesize maximumSize;
 @synthesize percentCompleted;
 
-@synthesize tag;
 @synthesize nextRequest;
 @synthesize prevRequest;
 @synthesize delegate;
 @synthesize streamInfo;
 @synthesize didOpenStream;
 
-- (id)init
+
+//-----
+//
+//				initWithDelegate
+//
+// synopsis:	retval = [BRRequest delegate];
+//					BRRequestCreateDirectory *retval	-
+//					id<BRRequestDelegate> delegate      -
+//
+// description:	initWithDelegate is designed to
+//
+// errors:		none
+//
+// returns:		Instance of type BRRequest or subclass
+//
+
+- (id)initWithDelegate:(id<BRRequestDelegate>)aDelegate
 {
     self = [super init];
-
-    if (self) {
+    if (self)
+    {
+		self.passiveMode = YES;
+        self.userDictionary = [NSMutableDictionary dictionaryWithCapacity: 1];
         self.password = nil;
         self.username = nil;
         self.hostname = nil;
         self.path = @"";
-
+        
         streamInfo = [[BRStreamInfo alloc] init];
         self.streamInfo.readStream = nil;
         self.streamInfo.writeStream = nil;
         self.streamInfo.bytesThisIteration = 0;
         self.streamInfo.bytesTotal = 0;
         self.streamInfo.timeout = 30;
+        
+        self.delegate = aDelegate;
     }
-
     return self;
 }
 
-// -----
+
+//-----
 //
 //				fullURL
 //
@@ -88,14 +163,15 @@
 //
 // returns:		Variable of type NSURL*
 //
+
 - (NSURL *)fullURL
 {
-    NSString *fullURLString = [NSString stringWithFormat:@"ftp://%@%@", self.hostname, self.path];
-
-    return [NSURL URLWithString:fullURLString];
+    NSString * fullURLString = [NSString stringWithFormat: @"ftp://%@%@", self.hostname, self.path];
+    
+    return [NSURL URLWithString: fullURLString];
 }
 
-// -----
+//-----
 //
 //				fullURLWithEscape
 //
@@ -108,30 +184,35 @@
 //
 // returns:		Variable of type NSURL *
 //
+
 - (NSURL *)fullURLWithEscape
 {
-    NSString    *escapedUsername = [self encodeString:username];
-    NSString    *escapedPassword = [self encodeString:password];
-    NSString    *cred;
-
-    if (escapedUsername != nil) {
-        if (escapedPassword != nil) {
+    NSString *escapedUsername = [self encodeString: username];
+    NSString *escapedPassword = [self encodeString: password];
+    NSString *cred;
+    
+    if (escapedUsername != nil)
+    {
+        if (escapedPassword != nil)
+        {
             cred = [NSString stringWithFormat:@"%@:%@@", escapedUsername, escapedPassword];
-        } else {
+        }else
+        {
             cred = [NSString stringWithFormat:@"%@@", escapedUsername];
         }
-    } else {
+    }
+    else
+    {
         cred = @"";
     }
-
     cred = [cred stringByStandardizingPath];
-
-    NSString *fullURLString = [NSString stringWithFormat:@"ftp://%@%@%@", cred, self.hostname, self.path];
-
-    return [NSURL URLWithString:fullURLString];
+    
+    NSString * fullURLString = [NSString stringWithFormat:@"ftp://%@%@%@", cred, self.hostname, self.path];
+    
+    return [NSURL URLWithString: fullURLString];
 }
 
-// -----
+//-----
 //
 //				path
 //
@@ -144,24 +225,29 @@
 //
 // returns:		Variable of type NSString *
 //
+
 - (NSString *)path
 {
     //  we remove all the extra slashes from the directory path, including the last one (if there is one)
     //  we also escape it
-    NSString *escapedPath = [path stringByStandardizingPath];
-
+    NSString * escapedPath = [path stringByStandardizingPath];
+    
+    
     //  we need the path to be absolute, if it's not, we *make* it
-    if (![escapedPath isAbsolutePath]) {
-        escapedPath = [@"/" stringByAppendingString : escapedPath];
+    if (![escapedPath isAbsolutePath])
+    {
+        escapedPath = [@"/" stringByAppendingString:escapedPath];
     }
-
-    // ----- now make sure that we have escaped all special characters
-    escapedPath = [self encodeString:escapedPath];
-
+    
+    //----- now make sure that we have escaped all special characters
+    escapedPath = [self encodeString: escapedPath];
+    
     return escapedPath;
 }
 
-// -----
+
+
+//-----
 //
 //				setPath
 //
@@ -174,12 +260,15 @@
 //
 // returns:		none
 //
+
 - (void)setPath:(NSString *)directoryPathLocal
 {
     path = directoryPathLocal;
 }
 
-// -----
+
+
+//-----
 //
 //				hostname
 //
@@ -192,12 +281,15 @@
 //
 // returns:		Variable of type NSString *
 //
+
 - (NSString *)hostname
 {
     return [hostname stringByStandardizingPath];
 }
 
-// -----
+
+
+//-----
 //
 //				setHostname
 //
@@ -210,12 +302,15 @@
 //
 // returns:		none
 //
+
 - (void)setHostname:(NSString *)hostnamelocal
 {
     hostname = hostnamelocal;
 }
 
-// -----
+
+
+//-----
 //
 //				encodeString
 //
@@ -229,18 +324,21 @@
 //
 // returns:		Variable of type NSString *
 //
+
 - (NSString *)encodeString:(NSString *)string;
 {
     NSString *urlEncoded = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(
-        NULL,
-        (__bridge CFStringRef)string,
-        NULL,
-        (CFStringRef)@"!*'\"();:@&=+$,?%#[]% ",
-        kCFStringEncodingUTF8);
+                                                                                                 NULL,
+                                                                                                 (__bridge CFStringRef) string,
+                                                                                                 NULL,
+                                                                                                 (CFStringRef)@"!*'\"();:@&=+$,?%#[]% ",
+                                                                                                 kCFStringEncodingUTF8);
     return urlEncoded;
-}
+}  
 
-// -----
+
+
+//-----
 //
 //				start
 //
@@ -252,10 +350,15 @@
 //
 // returns:		none
 //
-- (void)start
-{}
 
-// -----
+- (void)start
+{
+    
+}
+
+
+
+//-----
 //
 //				bytesSent
 //
@@ -268,12 +371,15 @@
 //
 // returns:		Variable of type long
 //
+
 - (long)bytesSent
 {
     return self.streamInfo.bytesThisIteration;
 }
 
-// -----
+
+
+//-----
 //
 //				totalBytesSent
 //
@@ -286,12 +392,15 @@
 //
 // returns:		Variable of type long
 //
+
 - (long)totalBytesSent
 {
     return self.streamInfo.bytesTotal;
 }
 
-// -----
+
+
+//-----
 //
 //				timeout
 //
@@ -304,12 +413,15 @@
 //
 // returns:		Variable of type long
 //
+
 - (long)timeout
 {
     return self.streamInfo.timeout;
 }
 
-// -----
+
+
+//-----
 //
 //				setTimeout
 //
@@ -322,24 +434,73 @@
 //
 // returns:		none
 //
+
 - (void)setTimeout:(long)timeout
 {
     self.streamInfo.timeout = timeout;
 }
+
+
+
+//-----
+//
+//				cancelRequest
+//
+// synopsis:	[self cancelRequest];
+//
+// description:	cancelRequest is designed to
+//
+// errors:		none
+//
+// returns:		none
+//
 
 - (void)cancelRequest
 {
     self.streamInfo.cancelRequestFlag = TRUE;
 }
 
+
+
+//-----
+//
+//				setCancelDoesNotCallDelegate
+//
+// synopsis:	[self setCancelDoesNotCallDelegate:cancelDoesNotCallDelegate];
+//					BOOL cancelDoesNotCallDelegate	-
+//
+// description:	setCancelDoesNotCallDelegate is designed to
+//
+// errors:		none
+//
+// returns:		none
+//
+
 - (void)setCancelDoesNotCallDelegate:(BOOL)cancelDoesNotCallDelegate
 {
     self.streamInfo.cancelDoesNotCallDelegate = cancelDoesNotCallDelegate;
 }
 
+
+
+//-----
+//
+//				cancelDoesNotCallDelegate
+//
+// synopsis:	retval = [self cancelDoesNotCallDelegate];
+//					BOOL retval	-
+//
+// description:	cancelDoesNotCallDelegate is designed to
+//
+// errors:		none
+//
+// returns:		Variable of type BOOL
+//
+
 - (BOOL)cancelDoesNotCallDelegate
 {
     return self.streamInfo.cancelDoesNotCallDelegate;
 }
+
 
 @end

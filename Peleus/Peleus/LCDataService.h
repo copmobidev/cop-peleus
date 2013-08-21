@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "LCDataConfig.h"
 #import "LCDataServiceDelegate.h"
-#import "BRRequest.h"
+#import "BRRequestListDirectory.h"
+#import "BRRequestCreateDirectory.h"
+#import "BRRequestUpload.h"
+#import "BRRequestDownload.h"
+#import "BRRequestDelete.h"
+#import "BRRequest+_UserData.h"
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIFormDataRequest.h"
 
@@ -23,6 +28,7 @@
     NSMutableData *idxData;
     NSMutableData *driveData;
     NSMutableArray *finalData;
+	BRRequestUpload *uploadFile;
     
     int point;
     int fileLength;

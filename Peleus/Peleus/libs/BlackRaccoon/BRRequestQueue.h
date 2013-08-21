@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRRequestQueue.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,23 +37,80 @@
 //              THE SOFTWARE.
 //
 
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRGlobal.h"
 #import "BRRequest.h"
 #import "BRRequestQueue.h"
 
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
 @class BRRequestQueue;
-@protocol BRQueueDelegate <BRRequestDelegate>
+@protocol BRQueueDelegate  <BRRequestDelegate>
 
 @required
 - (void)queueCompleted:(BRRequestQueue *)queue;
 
+
 @end
+
+
+
+//---------- classes
+
 
 @interface BRRequestQueue : BRRequest <BRRequestDelegate>
 {
-    @private
-    BRRequest   *headRequest;
-    BRRequest   *tailRequest;
+    
+@private
+    BRRequest *headRequest;
+    BRRequest *tailRequest;
 }
 
 @property id <BRQueueDelegate> queueDelegate;

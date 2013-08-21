@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRRequestDelete.m
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,36 +37,67 @@
 //              THE SOFTWARE.
 //
 
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRRequestDelete.h"
+
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+
+
+
+//---------- classes
 
 @implementation BRRequestDelete
 
-// -----
-//
-//				initWithDelegate
-//
-// synopsis:	retval = [BRRequestDelete initWithDelegate:inDelegate];
-//					BRRequestDelete *retval	-
-//					id inDelegate           -
-//
-// description:	initWithDelegate is designed to
-//
-// errors:		none
-//
-// returns:		Variable of type BRRequestDelete *
-//
-+ (BRRequestDelete *)initWithDelegate:(id)inDelegate
-{
-    BRRequestDelete *deleteFileDir = [[BRRequestDelete alloc] init];
 
-    if (deleteFileDir) {
-        deleteFileDir.delegate = inDelegate;
-    }
-
-    return deleteFileDir;
-}
-
-// -----
+//-----
 //
 //				path
 //
@@ -79,26 +110,27 @@
 //
 // returns:		Variable of type NSString *
 //
+
 - (NSString *)path
 {
-    NSString *lastCharacter = [path substringFromIndex:[path length] - 1];
-
+    NSString * lastCharacter = [path substringFromIndex:[path length] - 1];
     isDirectory = ([lastCharacter isEqualToString:@"/"]);
-
-    if (!isDirectory) {
+    
+    if (!isDirectory) 
         return [super path];
-    }
-
-    NSString *directoryPath = [super path];
-
-    if (![directoryPath isEqualToString:@""]) {
+    
+    NSString * directoryPath = [super path];
+    if (![directoryPath isEqualToString:@""]) 
+    {
         directoryPath = [directoryPath stringByAppendingString:@"/"];
     }
-
+    
     return directoryPath;
 }
 
-// -----
+
+
+//-----
 //
 //				start
 //
@@ -110,22 +142,28 @@
 //
 // returns:		none
 //
+
 - (void)start
 {
     SInt32 errorcode;
-
-    if (self.hostname == nil) {
+    
+    if (self.hostname==nil) 
+    {
         InfoLog(@"The host name is nil!");
-        [self.streamInfo streamError:self errorCode:kBRFTPClientHostnameIsNil];
+        [self.streamInfo streamError: self errorCode: kBRFTPClientHostnameIsNil];
         return;
     }
-
-    if (CFURLDestroyResource((__bridge CFURLRef)self.fullURLWithEscape, &errorcode)) {
-        // ----- successful
-        [self.streamInfo streamComplete:self];
-    } else {
-        // ----- unsuccessful
-        [self.streamInfo streamError:self errorCode:kBRFTPClientCantDeleteFileOrDirectory];
+    
+    if (CFURLDestroyResource(( __bridge CFURLRef) self.fullURLWithEscape, &errorcode))
+    {
+        //----- successful
+        [self.streamInfo streamComplete: self];
+    }
+    
+    else 
+    {
+        //----- unsuccessful        
+        [self.streamInfo streamError: self errorCode: kBRFTPClientCantDeleteFileOrDirectory];
     }
 }
 

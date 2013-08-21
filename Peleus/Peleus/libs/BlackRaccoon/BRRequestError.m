@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRRequestError.m
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,19 +37,77 @@
 //              THE SOFTWARE.
 //
 
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRRequestError.h"
+
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+
+
+
+//---------- classes
 
 @implementation BRRequestError
 
 @synthesize errorCode;
 
-// -----
+
+
+
+//-----
 //
 //				errorCodeWithError
 //
 // synopsis:	retval = [BRRequestError errorCodeWithError:error];
 //					BRErrorCodes retval	-
-//					NSError *error      -
+//					NSError *error     	-
 //
 // description:	errorCodeWithError is designed to
 //
@@ -57,20 +115,24 @@
 //
 // returns:		Variable of type BRErrorCodes
 //
-+ (BRErrorCodes)errorCodeWithError:(NSError *)error
-{
-    // ----- As suggested by RMaddy
-    NSDictionary    *userInfo = error.userInfo;
-    NSNumber        *code = [userInfo objectForKey:(id)kCFFTPStatusCodeKey];
 
-    if (code) {
++(BRErrorCodes) errorCodeWithError: (NSError *) error
+{
+    //----- As suggested by RMaddy
+    NSDictionary *userInfo = error.userInfo;
+    NSNumber *code = [userInfo objectForKey:(id)kCFFTPStatusCodeKey];
+    
+    if (code)
+    {
         return [code intValue];
     }
-
+    
     return 0;
 }
 
-// -----
+
+
+//-----
 //
 //				message
 //
@@ -83,90 +145,91 @@
 //
 // returns:		Variable of type NSString *
 //
+
 - (NSString *)message
 {
-    NSString *errorMessage;
-
-    switch (self.errorCode) {
-        // ----- Client errors
+    NSString * errorMessage;
+    switch (self.errorCode) 
+    {
+        //----- Client errors
         case kBRFTPClientSentDataIsNil:
             errorMessage = @"Data is nil.";
             break;
-
+            
         case kBRFTPClientCantOpenStream:
             errorMessage = @"Unable to open stream.";
             break;
-
+            
         case kBRFTPClientCantWriteStream:
             errorMessage = @"Unable to write to open stream.";
             break;
-
+            
         case kBRFTPClientCantReadStream:
             errorMessage = @"Unable to read from open stream.";
             break;
-
+            
         case kBRFTPClientHostnameIsNil:
             errorMessage = @"Hostname is nil.";
             break;
-
+            
         case kBRFTPClientFileAlreadyExists:
             errorMessage = @"File already exists!";
             break;
-
+            
         case kBRFTPClientCantOverwriteDirectory:
             errorMessage = @"Can't overwrite directory!";
             break;
-
+            
         case kBRFTPClientStreamTimedOut:
             errorMessage = @"Stream timed out with no response from server.";
             break;
-
+            
         case kBRFTPClientCantDeleteFileOrDirectory:
             errorMessage = @"Can't delete file or directory.";
             break;
-
+            
         case kBRFTPClientMissingRequestDataAvailable:
             errorMessage = @"Delegate missing requestDataAvailable:";
             break;
-
-        // ----- Server errors
+            
+        //----- Server errors    
         case kBRFTPServerAbortedTransfer:
             errorMessage = @"Server aborted transfer.";
             break;
-
+            
         case kBRFTPServerResourceBusy:
             errorMessage = @"Resource is busy.";
             break;
-
+            
         case kBRFTPServerCantOpenDataConnection:
             errorMessage = @"Server can't open data connection.";
             break;
-
+            
         case kBRFTPServerUserNotLoggedIn:
             errorMessage = @"Not logged in.";
             break;
-
+            
         case kBRFTPServerStorageAllocationExceeded:
             errorMessage = @"Server allocation exceeded!";
             break;
-
+            
         case kBRFTPServerIllegalFileName:
             errorMessage = @"Illegal file name.";
             break;
-
+            
         case kBRFTPServerFileNotAvailable:
             errorMessage = @"File or directory not available or directory already exists.";
             break;
-
+            
         case kBRFTPServerUnknownError:
             errorMessage = @"Unknown FTP error!";
             break;
-
+            
         default:
             errorMessage = @"Unknown error!";
             break;
     }
-
+    
     return errorMessage;
 }
 

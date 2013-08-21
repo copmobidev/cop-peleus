@@ -99,9 +99,11 @@
     [self.tfResult setText:@"get config fail"];
 }
 
-- (void)onSyncDataSuccess:(NSDictionary *)data
+- (void)onSyncDataSuccess:(NSArray *)data
 {
     [self.tfResult setText:@"sync data successful"];
+	if (data.count > 0)
+		NSLog(@"%@", [[NSString alloc] initWithData:[data objectAtIndex:0] encoding:NSASCIIStringEncoding]);
 }
 
 - (void)onSyncDataFail
