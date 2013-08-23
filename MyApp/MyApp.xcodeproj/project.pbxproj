@@ -327,6 +327,7 @@
 				GCC_PREFIX_HEADER = "MyApp/MyApp-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../Peleus/**";
 				INFOPLIST_FILE = "MyApp/MyApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -339,6 +340,7 @@
 				GCC_PREFIX_HEADER = "MyApp/MyApp-Prefix.pch";
 				HEADER_SEARCH_PATHS = "../Peleus/**";
 				INFOPLIST_FILE = "MyApp/MyApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

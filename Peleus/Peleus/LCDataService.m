@@ -13,8 +13,7 @@
 #import "ASIFormDataRequest.h"
 #import "LCTypeParser.h"
 #import "LCDriveData.h"
-#import "NSObject+Properties.h"
-
+#import "LCDrivePiece.h"
 
 @implementation LCDataService
 
@@ -147,7 +146,7 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)uploadData:(NSString *)data
 {
-    // API 
+    // API
 
 }
 
@@ -156,7 +155,6 @@ static LCDataService *_sharedDataService = nil;
 
 - (void)getDriveDataWithSpan:(LCTimestamp *)timestamp
 {
-	
 	NSURL *url = [NSURL URLWithString:API_MYCAR_GET];
 	
 	ASIFormDataRequest *request=[ASIFormDataRequest requestWithURL:url];
@@ -170,7 +168,7 @@ static LCDataService *_sharedDataService = nil;
 	request.tag = SERVER_GET_DRIVE_DATA;
 	[request setDelegate:self];
 	
-	[request startAsynchronous];
+	[request start];
 	
 }
 
@@ -327,40 +325,48 @@ static LCDataService *_sharedDataService = nil;
 #pragma mark -
 #pragma mark ASIRequestDelegate implement
 
-//- (void)requestFinished:(ASIHTTPRequest *)request
-//{
-//	NSError *error; 
-//    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableLeaves error:&error];
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	NSError *error; 
+    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingMutableLeaves error:&error];
 //	NSLog(@"%@", responseDict);
-//	NSDictionary *dataPieceDict;
-//	NSDictionary *dataSummaryDict;
-//
-//	switch (request.tag) {
-//		{case SERVER_GET_DRIVE_DATA:
-//			dataPieceDict = (NSDictionary *)[[responseDict valueForKey:@"data"] valueForKey:@"dataSummary"];
-//			LCDriveData *driveData = [[LCDriveData alloc] initWithDriveData:dataPieceDict];
-//			//[self.delegate onGetDriveDataSuccess:responseDict];
-//			break;}
-//		{case SERVER_UPLOAD:
-//			[self.delegate onUploadDataSucess:responseDict];
-//			break;}
-//		{default:
-//			break;}
-//	}
-//}
-//
-//- (void)requestFailed:(ASIHTTPRequest *)request
-//{
-//	switch (request.tag) {
-//		case SERVER_GET_DRIVE_DATA:
-//			[self.delegate onGetDriveDataFail];
-//			break;
-//		case SERVER_UPLOAD:
-//			[self.delegate onUploadDataFail];
-//			break;
-//		default:
-//			break;
-//	}
-//}
+	
+	NSDictionary *dataSummaryDict;
+
+	switch (request.tag) {
+		{case SERVER_GET_DRIVE_DATA:
+			dataSummaryDict = [[responseDict valueForKey:@"data"] valueForKey:@"dataSummary"][0];			
+			LCDriveData *driveData = [[LCDriveData alloc] initWithDictionary:dataSummaryDict];
+			
+			NSMutableArray *drivePieces = [NSMutableArray array];
+			NSArray *dataPieceDictArray = [[responseDict valueForKey:@"data"] valueForKey:@"dataPieces"][0];
+			for (id dataPieceDict in dataPieceDictArray) {
+				LCDrivePiece *drivePiece = [[LCDrivePiece alloc] initWithDictionary:dataPieceDict];
+				[drivePieces addObject:drivePiece];
+			}
+			
+			[self.delegate onGetDriveDataSuccess:@{@"dataSummary": driveData, @"dataPieces": drivePieces}];
+			break;}
+		{case SERVER_UPLOAD:
+			[self.delegate onUploadDataSucess:responseDict];
+			break;}
+		{default:
+			break;}
+	}
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	switch (request.tag) {
+		case SERVER_GET_DRIVE_DATA:
+			[self.delegate onGetDriveDataFail];
+			break;
+		case SERVER_UPLOAD:
+			[self.delegate onUploadDataFail];
+			break;
+		default:
+			break;
+	}
+}
 
 @end

@@ -123,83 +123,18 @@
 
 - (void)onUploadDataSucess:(NSDictionary *)data
 {
-    NSLog(@"upload data success:%@", data);
-	LCDriveData *driveData = [[LCDriveData alloc] init];
-	NSDictionary *dataDict = [[data valueForKey:@"data"] valueForKey:@"dataSummary"];
-	driveData.beginTime = [[dataDict valueForKey:@"beginTime"] longValue];
-	driveData.beginLat = [[dataDict valueForKey:@"beginLat"] doubleValue];
-	driveData.beginLng = [[dataDict valueForKey:@"beginLng"] doubleValue];
-	driveData.beginEle = [[dataDict valueForKey:@"beginEle"] doubleValue];
-	driveData.endTime = [[dataDict valueForKey:@"endTime"] longValue];
-	driveData.endLat = [[dataDict valueForKey:@"endLat"] doubleValue];
-	driveData.endLng = [[dataDict valueForKey:@"endLng"] doubleValue];
-	driveData.endEle = [[dataDict valueForKey:@"endEle"] doubleValue];
-	driveData.dist = [[dataDict valueForKey:@"dist"] doubleValue];
-	driveData.fuel = [[dataDict valueForKey:@"fuel"] doubleValue];
-	driveData.errDist = [[dataDict valueForKey:@"errDist"] intValue];
-	driveData.clrDist = [[dataDict valueForKey:@"clrDist"] intValue];
-	driveData.maxSPD = [[dataDict valueForKey:@"maxSPD"] doubleValue];
-	driveData.bstSPD = [[dataDict valueForKey:@"bstSPD"] doubleValue];
-	driveData.avgFuel = [[dataDict valueForKey:@"avgFuel"] doubleValue];
-	driveData.bstFeul = [[dataDict valueForKey:@"bstFeul"] doubleValue];
-	driveData.FuelLV = [[dataDict valueForKey:@"FuelLV"] intValue];
-	driveData.lstFuelLV = [[dataDict valueForKey:@"lstFuelLV"] doubleValue];
-	driveData.bat = [[dataDict valueForKey:@"bat"] doubleValue];
-	driveData.airPressure = [[dataDict valueForKey:@"airPressure"] intValue];
-	driveData.temp = [[dataDict valueForKey:@"temp"] doubleValue];
-	driveData.avgCoolTemp = [[dataDict valueForKey:@"avgCoolTemp"] doubleValue];
-	driveData.maxCoolTemp = [[dataDict valueForKey:@"maxCoolTemp"] doubleValue];
-	driveData.avgPadPos = [[dataDict valueForKey:@"avgPadPos"] doubleValue];
-	[driveData setValue:[dataDict valueForKey:@"avgPadPos"] forKey:@"avgPadPos"];
-	driveData.maxPadPos = [[dataDict valueForKey:@"maxPadPos"] doubleValue];
-	driveData.minPadPos = [[dataDict valueForKey:@"minPadPos"] doubleValue];
-	driveData.avgRPM = [[dataDict valueForKey:@"avgRPM"] doubleValue];
-	driveData.maxRPM = [[dataDict valueForKey:@"maxRPM"] doubleValue];
-	driveData.acc = [[dataDict valueForKey:@"acc"] intValue];
-	driveData.brk = [[dataDict valueForKey:@"brk"] intValue];
-	driveData.overSPD = [[dataDict valueForKey:@"overSPD"] doubleValue];
-	driveData.idleSPD = [[dataDict valueForKey:@"idleSPD"] doubleValue];
-	driveData.sliding = [[dataDict valueForKey:@"sliding"] doubleValue];
-	driveData.fast = [[dataDict valueForKey:@"fast"] doubleValue];
-	driveData.slow = [[dataDict valueForKey:@"slow"] doubleValue];
-	driveData.jam = [[dataDict valueForKey:@"jam"] doubleValue];
-	driveData.errCodes = [dataDict valueForKey:@"errCodes"];
-	driveData.minuteData = [dataDict valueForKey:@"minuteData"];
-	driveData.score = [[dataDict valueForKey:@"score"] doubleValue];
-	
-	LCDrivePiece *drivePiece = [[LCDrivePiece alloc] init];
-	NSDictionary *pieceDict = [[data valueForKey:@"data"] valueForKey:@"dataPieces"];
-	drivePiece.timestamp = [[pieceDict valueForKey:@"timestamp"] longValue];
-	drivePiece.lat = [[pieceDict valueForKey:@"lat"] doubleValue];
-	drivePiece.lng = [[pieceDict valueForKey:@"lng"] doubleValue];
-	drivePiece.dir1 = [[pieceDict valueForKey:@"dir1"] charValue];
-	drivePiece.dir2 = [[pieceDict valueForKey:@"dir2"] charValue];
-	drivePiece.ele = [[pieceDict valueForKey:@"ele"] intValue];
-	drivePiece.dist = [[pieceDict valueForKey:@"dist"] intValue];
-	drivePiece.fuel = [[pieceDict valueForKey:@"fuel"] doubleValue];
-	drivePiece.bstFuel = [[pieceDict valueForKey:@"bstFuel"] doubleValue];
-	drivePiece.avgFeul = [[pieceDict valueForKey:@"avgFeu"] doubleValue];
-	drivePiece.maxSPD = [[pieceDict valueForKey:@"maxSPD"] doubleValue];
-	drivePiece.bstSPD = [[pieceDict valueForKey:@"bstSPD"] doubleValue];
-	drivePiece.avgSPD = [[pieceDict valueForKey:@"avgSPD"] doubleValue];
-	drivePiece.avgRPM = [[pieceDict valueForKey:@"avgRPM"] doubleValue];
-	drivePiece.maxRPM = [[pieceDict valueForKey:@"maxRPM"] doubleValue];
-	drivePiece.avgCalLoad = [[pieceDict valueForKey:@"avgCalLoad"] doubleValue];
-	drivePiece.avgCoolTemp = [[pieceDict valueForKey:@"avgCoolTemp"] doubleValue];
-	drivePiece.avgPadPos = [[pieceDict valueForKey:@"avgPadPos"] doubleValue];
-	drivePiece.maxPadPos = [[pieceDict valueForKey:@"maxPadPos"] doubleValue];
-	drivePiece.minPadPos = [[pieceDict valueForKey:@"minPadPos"] doubleValue];
-	drivePiece.fuelLV = [[pieceDict valueForKey:@"fuelLV"] doubleValue];
-	drivePiece.acc = [[pieceDict valueForKey:@"acc"] intValue];
-	drivePiece.brk = [[pieceDict valueForKey:@"brk"] intValue];
-	drivePiece.overSPD = [[pieceDict valueForKey:@"overSPD"] doubleValue];
-	drivePiece.idleSPD = [[pieceDict valueForKey:@"idleSPD"] doubleValue];
-	drivePiece.sliding = [[pieceDict valueForKey:@"sliding"] doubleValue];
-	drivePiece.score = [[pieceDict valueForKey:@"score"] doubleValue];
+
 }
 
 - (void)onUploadDataFail {
     NSLog(@"upload data fail");
 }
 
+- (void)onGetDriveDataSuccess:(NSDictionary *)data {
+	NSLog(@"%@", data);
+}
+
+- (void)onGetDriveDataFail {
+	
+}
 @end

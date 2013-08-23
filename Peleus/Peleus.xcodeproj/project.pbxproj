@@ -90,10 +90,11 @@
 		9BCF45D517635FDE00AB895A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D417635FDE00AB895A /* SystemConfiguration.framework */; };
 		9BCF45D917635FF300AB895A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45D817635FF300AB895A /* libz.dylib */; };
 		9BCF45DB17635FF900AB895A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCF45DA17635FF900AB895A /* libxml2.dylib */; };
-		C95AC3BE17C0BEF10026A667 /* NSObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = C97875ED17BF818000C16C45 /* NSObject+Properties.m */; };
-		C95AC3BF17C0BEF10026A667 /* NSString+PropertyKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97875EF17BF818000C16C45 /* NSString+PropertyKVC.m */; };
-		C97875F017BF818000C16C45 /* NSObject+Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = C97875EC17BF818000C16C45 /* NSObject+Properties.h */; };
-		C97875F217BF818000C16C45 /* NSString+PropertyKVC.h in Headers */ = {isa = PBXBuildFile; fileRef = C97875EE17BF818000C16C45 /* NSString+PropertyKVC.h */; };
+		C924C32E17C7B6B200D51A55 /* Jastor-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = C924C32917C7B6B200D51A55 /* Jastor-Prefix.pch */; };
+		C924C32F17C7B6B200D51A55 /* Jastor.h in Headers */ = {isa = PBXBuildFile; fileRef = C924C32A17C7B6B200D51A55 /* Jastor.h */; };
+		C924C33017C7B6B200D51A55 /* Jastor.m in Sources */ = {isa = PBXBuildFile; fileRef = C924C32B17C7B6B200D51A55 /* Jastor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C924C33117C7B6B200D51A55 /* JastorRuntimeHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C924C32C17C7B6B200D51A55 /* JastorRuntimeHelper.h */; };
+		C924C33217C7B6B200D51A55 /* JastorRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C924C32D17C7B6B200D51A55 /* JastorRuntimeHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C97875F717BF86BD00C16C45 /* LCTypeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C97875F517BF86BD00C16C45 /* LCTypeParser.h */; };
 		C97875F817BF86BD00C16C45 /* LCTypeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C97875F617BF86BD00C16C45 /* LCTypeParser.m */; };
 		C9C5716617BB212000CA3CB4 /* LCStore.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C5716417BB211F00CA3CB4 /* LCStore.h */; };
@@ -221,10 +222,11 @@
 		9BCF45D617635FE700AB895A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9BCF45D817635FF300AB895A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		9BCF45DA17635FF900AB895A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		C97875EC17BF818000C16C45 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Properties.h"; sourceTree = "<group>"; };
-		C97875ED17BF818000C16C45 /* NSObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Properties.m"; sourceTree = "<group>"; };
-		C97875EE17BF818000C16C45 /* NSString+PropertyKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PropertyKVC.h"; sourceTree = "<group>"; };
-		C97875EF17BF818000C16C45 /* NSString+PropertyKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PropertyKVC.m"; sourceTree = "<group>"; };
+		C924C32917C7B6B200D51A55 /* Jastor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Jastor-Prefix.pch"; sourceTree = "<group>"; };
+		C924C32A17C7B6B200D51A55 /* Jastor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jastor.h; sourceTree = "<group>"; };
+		C924C32B17C7B6B200D51A55 /* Jastor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jastor.m; sourceTree = "<group>"; };
+		C924C32C17C7B6B200D51A55 /* JastorRuntimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JastorRuntimeHelper.h; sourceTree = "<group>"; };
+		C924C32D17C7B6B200D51A55 /* JastorRuntimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JastorRuntimeHelper.m; sourceTree = "<group>"; };
 		C97875F517BF86BD00C16C45 /* LCTypeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTypeParser.h; sourceTree = "<group>"; };
 		C97875F617BF86BD00C16C45 /* LCTypeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTypeParser.m; sourceTree = "<group>"; };
 		C9C5716417BB211F00CA3CB4 /* LCStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCStore.h; sourceTree = "<group>"; };
@@ -343,8 +345,8 @@
 		9BCF452617635E3C00AB895A /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				C924C32817C7B6B200D51A55 /* Jastor */,
 				C9DE81EC17C3A24500030F4B /* BlackRaccoon */,
-				C97875EB17BF818000C16C45 /* Category */,
 				9BCF452717635E3C00AB895A /* ASIHttpRequest */,
 				9BCF455F17635E3C00AB895A /* Reachability */,
 				9BCF456217635E3C00AB895A /* ZipArchive */,
@@ -480,15 +482,16 @@
 			path = util;
 			sourceTree = "<group>";
 		};
-		C97875EB17BF818000C16C45 /* Category */ = {
+		C924C32817C7B6B200D51A55 /* Jastor */ = {
 			isa = PBXGroup;
 			children = (
-				C97875EC17BF818000C16C45 /* NSObject+Properties.h */,
-				C97875ED17BF818000C16C45 /* NSObject+Properties.m */,
-				C97875EE17BF818000C16C45 /* NSString+PropertyKVC.h */,
-				C97875EF17BF818000C16C45 /* NSString+PropertyKVC.m */,
+				C924C32917C7B6B200D51A55 /* Jastor-Prefix.pch */,
+				C924C32A17C7B6B200D51A55 /* Jastor.h */,
+				C924C32B17C7B6B200D51A55 /* Jastor.m */,
+				C924C32C17C7B6B200D51A55 /* JastorRuntimeHelper.h */,
+				C924C32D17C7B6B200D51A55 /* JastorRuntimeHelper.m */,
 			);
-			path = Category;
+			path = Jastor;
 			sourceTree = "<group>";
 		};
 		C9DE81EC17C3A24500030F4B /* BlackRaccoon */ = {
@@ -569,8 +572,6 @@
 				9BCF45D117635F8000AB895A /* unzip.h in Headers */,
 				9BCF45D217635F8000AB895A /* zip.h in Headers */,
 				C9C5716617BB212000CA3CB4 /* LCStore.h in Headers */,
-				C97875F017BF818000C16C45 /* NSObject+Properties.h in Headers */,
-				C97875F217BF818000C16C45 /* NSString+PropertyKVC.h in Headers */,
 				C97875F717BF86BD00C16C45 /* LCTypeParser.h in Headers */,
 				C9DE820217C3A24500030F4B /* BRGlobal.h in Headers */,
 				C9DE820317C3A24500030F4B /* BRRequest+_UserData.h in Headers */,
@@ -583,6 +584,9 @@
 				C9DE821117C3A24500030F4B /* BRRequestQueue.h in Headers */,
 				C9DE821317C3A24500030F4B /* BRRequestUpload.h in Headers */,
 				C9DE821517C3A24500030F4B /* BRStreamInfo.h in Headers */,
+				C924C32E17C7B6B200D51A55 /* Jastor-Prefix.pch in Headers */,
+				C924C32F17C7B6B200D51A55 /* Jastor.h in Headers */,
+				C924C33117C7B6B200D51A55 /* JastorRuntimeHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,8 +642,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C95AC3BE17C0BEF10026A667 /* NSObject+Properties.m in Sources */,
-				C95AC3BF17C0BEF10026A667 /* NSString+PropertyKVC.m in Sources */,
 				9BCF457E17635E3C00AB895A /* LCDataService.m in Sources */,
 				9BCF457F17635E3C00AB895A /* LCEnvironment.m in Sources */,
 				9BCF458017635E3C00AB895A /* LCDriveData.m in Sources */,
@@ -687,6 +689,8 @@
 				C9DE821217C3A24500030F4B /* BRRequestQueue.m in Sources */,
 				C9DE821417C3A24500030F4B /* BRRequestUpload.m in Sources */,
 				C9DE821617C3A24500030F4B /* BRStreamInfo.m in Sources */,
+				C924C33017C7B6B200D51A55 /* Jastor.m in Sources */,
+				C924C33217C7B6B200D51A55 /* JastorRuntimeHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -59,6 +59,7 @@
 /*
  *   解析行程数据
  */
+/*
 + (LCDriveData *)parseDriveData:(NSString *)data
 {
     int     piece_num = data.length / 90 - 1;
@@ -80,10 +81,11 @@
     NSLog(@"%f", driveData.maxSPD);
     return driveData;
 }
-
+*/
 /*
  *   解析行程摘要数据
  */
+/*
 + (LCDriveData *)parseDriveSummary:(NSString *)data
 {
     LCDriveData     *driveData = [[LCDriveData alloc] init];
@@ -424,9 +426,12 @@
     return driveData;
 }
 
+*/
+
 /*
  *   解析行程切片数据
  */
+/*
 + (LCDrivePiece *)parseDrivePiece:(NSString *)data
 {
     LCDrivePiece    *drivePiece = [[LCDrivePiece alloc] init];
@@ -634,6 +639,7 @@
 
     return drivePiece;
 }
+*/
 
 + (char)hex2char:(NSString *)hex
 {
@@ -680,6 +686,8 @@
     }
 }
 
+
+/*
 + (double)score:(LCDrivePiece *)drivePiece withLevel:(int)level
 {
     double score = 0.0;
@@ -695,5 +703,6 @@
     score = score > 0.0 ? score : 0.0;
     return score;
 }
+ */
 
 @end
