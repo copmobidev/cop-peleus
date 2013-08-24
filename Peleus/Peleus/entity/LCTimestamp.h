@@ -10,6 +10,7 @@
 
 typedef enum _LCSpan {
     TRACK,
+	DAY,
     WEEK,
     MONTH,
     YEAR

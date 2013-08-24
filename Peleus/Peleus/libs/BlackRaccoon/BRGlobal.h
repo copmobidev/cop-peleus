@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRGlobal.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,50 +37,112 @@
 //              THE SOFTWARE.
 //
 
-typedef enum {
+
+
+//---------- pragmas
+
+
+
+//---------- include files
+
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+typedef enum 
+{
     kBRUploadRequest,
-    kBRDownloadRequest,
+	kBRDownloadRequest,
     kBRDeleteRequest,
     kBRCreateDirectoryRequest,
-    kBRListDirectoryRequest
+	kBRListDirectoryRequest
 } BRRequestTypes;
 
-typedef enum {
+
+typedef enum 
+{
     kBRDefaultBufferSize = 32768
 } BRBufferSizes;
 
-typedef enum BRTimeouts {
+
+typedef enum BRTimeouts
+{
     kBRDefaultTimeout = 30
 } BRTimeouts;
 
-typedef enum BRErrorCodes {
-    // client errors
+typedef enum BRErrorCodes
+{
+    //client errors
     kBRFTPClientHostnameIsNil = 901,
     kBRFTPClientCantOpenStream = 902,
     kBRFTPClientCantWriteStream = 903,
     kBRFTPClientCantReadStream = 904,
-    kBRFTPClientSentDataIsNil = 905,
+    kBRFTPClientSentDataIsNil = 905,    
     kBRFTPClientFileAlreadyExists = 907,
     kBRFTPClientCantOverwriteDirectory = 908,
     kBRFTPClientStreamTimedOut = 909,
     kBRFTPClientCantDeleteFileOrDirectory = 910,
     kBRFTPClientMissingRequestDataAvailable = 911,
-
+    
     // 400 FTP errors
     kBRFTPServerAbortedTransfer = 426,
     kBRFTPServerResourceBusy = 450,
     kBRFTPServerCantOpenDataConnection = 425,
-
+    
     // 500 FTP errors
     kBRFTPServerUserNotLoggedIn = 530,
     kBRFTPServerFileNotAvailable = 550,
     kBRFTPServerStorageAllocationExceeded = 552,
     kBRFTPServerIllegalFileName = 553,
     kBRFTPServerUnknownError
+    
 } BRErrorCodes;
 
+
+
+//---------- definitions
 #ifdef DEBUG
-  #define InfoLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#	define InfoLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
-  #define InfoLog(...)
+#	define InfoLog(...)
 #endif
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+
+
+
+//---------- classes
+

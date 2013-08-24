@@ -7,17 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MyLib.h"
+#import "LCDataServiceDelegate.h"
 
 
-@interface LCViewController : UIViewController
+@interface LCViewController : UIViewController <LCDataServiceDelegate>
+{
+    
+}
 
-
-@property (nonatomic, weak) IBOutlet UITextField* tf1;
-@property (nonatomic, weak) IBOutlet UITextField* tf2;
 @property (nonatomic, weak) IBOutlet UITextField* tfResult;
 
-- (IBAction)add:(id)sender;
-- (IBAction)append:(id)sender;
+- (IBAction)getConfig:(id)sender;
+- (IBAction)pushConfig:(id)sender;
+- (IBAction)syncData:(id)sender;
+- (IBAction)uploadData:(id)sender;
+- (IBAction)getData:(id)sender;
+- (IBAction)parseDriveData:(id)sender;
 
 @end

@@ -5,12 +5,6 @@
       location = "group:MyApp/MyApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:MyLib/MyLib.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:MyPeleus/MyPeleus.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Peleus/Peleus.xcodeproj">
    </FileRef>
 </Workspace>

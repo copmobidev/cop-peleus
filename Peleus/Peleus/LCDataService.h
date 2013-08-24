@@ -8,63 +8,50 @@
 
 #import <Foundation/Foundation.h>
 #import "LCDataConfig.h"
-#import "BRRequest.h"
-
-#pragma mark - LCDataService Delegate
-@protocol LCDataServiceDelegate <NSObject>
-
-/*
- *   获取配置
- */
-- (void)onGetConfigSuccess:(NSDictionary *)config;
-- (void)onGetConfigFail;
-
-/*
- *   同步数据
- */
-- (void)onSyncDataSuccess:(NSData *)data;
-- (void)onSyncDataFail;
-
-/*
- *   上传数据
- */
-- (void)onUploadDataSucess:(NSDictionary *)callback;
-- (void)onUploadDataFail;
-
-@end
-
-#pragma mark - LCDataService
+#import "LCDataServiceDelegate.h"
+#import "BRRequestListDirectory.h"
+#import "BRRequestCreateDirectory.h"
+#import "BRRequestUpload.h"
+#import "BRRequestDownload.h"
+#import "BRRequestDelete.h"
+#import "BRRequest+_UserData.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIFormDataRequest.h"
 
 @class  LCTimestamp;
 @class  LCDriveData;
 
-@interface LCDataService : NSObject <BRRequestDelegate>
+@interface LCDataService : NSObject <BRRequestDelegate, ASIHTTPRequestDelegate>
+{
+    NSData *uploadData;
+    NSMutableData *configData;
+    NSMutableData *idxData;
+    NSMutableData *driveData;
+    NSMutableArray *finalData;
+	BRRequestUpload *uploadFile;
+    
+    int point;
+    int fileLength;
+    NSString *idxStr;
+}
 
 @property (nonatomic, strong) id <LCDataServiceDelegate> delegate;
-@property (nonatomic, strong) NSMutableData *downloadData;
 
-LCSINGLETON_IN_H(LCDataService)
-
-#pragma mark - FTP Actions
++ (LCDataService *)sharedDataService;
 
 // 获取配置文件
 - (void)getConfig;
 
-// 向obd写入配置文件
-- (void)pushConfig;
+// 向obd写入配置文件，从server端获取的硬件计算参数，区别于obd端config文件
+- (void)pushParam;
 
 // 同步数据
 - (void)syncData;
 
-// 获取ftp index
-- (int)getIndex;
+// 上传数据,多组数据之间以分号隔开
+- (void)uploadData:(NSString *)data;
 
-#pragma mark - Server Actions
-
-// 上传数据
-- (void)uploadData;
-
-- (LCDriveData *)getDriveDataWithSpan:(LCTimestamp *)timestamp;
+- (void)getDriveDataWithSpan:(LCTimestamp *)timestamp;
 
 /*
  暂时不支持

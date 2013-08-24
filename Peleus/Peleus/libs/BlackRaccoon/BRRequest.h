@@ -1,4 +1,4 @@
-// ----------
+//----------
 //
 //				BRRequest.h
 //
@@ -12,11 +12,11 @@
 //
 // created:		Jul 04, 2012
 //
-// description:
+// description:	
 //
 // notes:		none
 //
-// revisions:
+// revisions:	
 //
 // license:     Permission is hereby granted, free of charge, to any person obtaining a copy
 //              of this software and associated documentation files (the "Software"), to deal
@@ -37,57 +37,165 @@
 //              THE SOFTWARE.
 //
 
+/// It also defines the protocol. The three required delegate methods for
+/// BlackRaccoon are:
+///
+/// * **requestCompleted:request** - this indicates that the request was completed
+/// successfully. Note, depending on the FTP server you may get a successful
+/// completion even though what you expected to happen failed. This is rare,
+/// fortunately.
+///
+/// * **requestFailed:request** - this indicates that the request failed. You can
+/// examine the **error** object for further details of why it failed.
+///
+/// * **shouldOverwriteFileWithRequest:request** - the users code should return a
+/// boolean value indicating whether or not is is okay to overwrite the data.
+/// TYPICALLY the user will return no.
+///
+/// There are also four **optional** delegate methods are:
+///
+/// * **percentCompleted:request** - this is called on every packet sent or
+/// recieved so the user can display, in real time, the percentage of the of the
+/// file uploaded/downloaded. If this is not required for the application, it is
+/// not required that it is implemented.
+///
+/// * **requestDataAvailable:request** -
+///
+/// * **requestDataSendSize:request** -
+///
+/// * **requestDataToSend:request** -
+///
+
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRGlobal.h"
 #import "BRRequestError.h"
 #import "BRStreamInfo.h"
 
-@class  BRRequest;
-@class  BRRequestDownload;
-@class  BRRequestUpload;
-@protocol BRRequestDelegate <NSObject>
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+@class BRRequest;
+@class BRRequestDownload;
+@class BRRequestUpload;
+@protocol BRRequestDelegate  <NSObject>
 
 @required
-- (void)requestCompleted:(BRRequest *)request;
-- (void)requestFailed:(BRRequest *)request;
+/// requestCompleted
+/// Indicates when a request has completed without errors.
+/// \param request The request object
+- (void)brRequestCompleted:(BRRequest *)request;
+
+/// requestFailed
+/// \param request The request object
+- (void)brRequestFailed:(BRRequest *)request;
+
+/// shouldOverwriteFileWithRequest
+/// \param request The request object;
 - (BOOL)shouldOverwriteFileWithRequest:(BRRequest *)request;
 
 @optional
-- (void)percentCompleted:(BRRequest *)request;
+- (void)percentCompleted:(BRRequest *) request;
 - (void)requestDataAvailable:(BRRequestDownload *)request;
 - (long)requestDataSendSize:(BRRequestUpload *)request;
 - (NSData *)requestDataToSend:(BRRequestUpload *)request;
 @end
 
-// ---------- classes
+//---------- classes
+
+/// BRRequest is the main structure used throughout BlackRaccoon. It contains
+/// important items such as the username, password, hostname, percent complete,
+/// etc.
+
 @interface BRRequest : NSObject <NSStreamDelegate>
 {
-    @protected
-    NSString    *path;
-    NSString    *hostname;
-
+@protected
+    NSString * path;
+    NSString * hostname;
+    
+    /// Error code and string.
     BRRequestError *error;
 }
-@property NSString                  *username;
-@property NSString                  *password;
-@property NSString                  *hostname;
-@property (readonly) NSURL          *fullURL;
-@property NSString                  *path;
-@property (strong) BRRequestError   *error;
-@property float                     maximumSize;
-@property float                     percentCompleted;
-@property long                      timeout;
 
-@property NSString                      *tag;
-@property BRRequest                     *nextRequest;
-@property BRRequest                     *prevRequest;
+@property BOOL passiveMode;
+
+@property NSMutableDictionary *userDictionary;                                  // contains user values
+
+/// String used to log into the server.
+@property NSString *username;
+
+/// Password used to log into the server.
+@property NSString *password;
+
+/// Ftp host name.
+@property NSString *hostname;
+
+/// URL to the ftp host.
+@property (readonly) NSURL *fullURL;
+@property NSString *path;
+@property (strong) BRRequestError *error;
+@property float maximumSize;
+@property float percentCompleted;
+@property long timeout;
+
+@property BRRequest *nextRequest;
+@property BRRequest *prevRequest;
 @property (weak) id <BRRequestDelegate> delegate;
-@property  BRStreamInfo                 *streamInfo;
-@property BOOL                          didOpenStream;                          // whether the stream opened or not
-@property (readonly) long               bytesSent;                              // will have bytes from the last FTP call
-@property (readonly) long               totalBytesSent;                         // will have bytes total sent
-@property BOOL                          cancelDoesNotCallDelegate;              // cancel closes stream without calling delegate
+@property  BRStreamInfo *streamInfo;
+@property BOOL didOpenStream;                                                   // whether the stream opened or not
+@property (readonly) long bytesSent;                                            // will have bytes from the last FTP call
+@property (readonly) long totalBytesSent;                                       // will have bytes total sent
+@property BOOL cancelDoesNotCallDelegate;                                       // cancel closes stream without calling delegate
+
+@property NSString *tag;
 
 - (NSURL *)fullURLWithEscape;
+
+- (instancetype)initWithDelegate:(id)delegate;
 
 - (void)start;
 - (void)cancelRequest;

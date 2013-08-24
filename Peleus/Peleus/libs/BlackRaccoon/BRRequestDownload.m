@@ -1,31 +1,103 @@
+//----------
+//
+//				BRRequestDownload.m
+//
+// filename:	BRRequestDownload.m
+//
+// author:		Created by Valentin Radu on 8/23/11.
+//              Copyright 2011 Valentin Radu. All rights reserved.
+//
+//              Modified and/or redesigned by Lloyd Sargent to be ARC compliant.
+//              Copyright 2012 Lloyd Sargent. All rights reserved.
+//
+// created:		Jul 04, 2012
+//
+// description:	
+//
+// notes:		none
+//
+// revisions:	
+//
+// license:     Permission is hereby granted, free of charge, to any person obtaining a copy
+//              of this software and associated documentation files (the "Software"), to deal
+//              in the Software without restriction, including without limitation the rights
+//              to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//              copies of the Software, and to permit persons to whom the Software is
+//              furnished to do so, subject to the following conditions:
+//
+//              The above copyright notice and this permission notice shall be included in
+//              all copies or substantial portions of the Software.
+//
+//              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//              IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//              FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//              AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//              LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//              THE SOFTWARE.
+//
+
+
+
+//---------- pragmas
+
+
+
+//---------- include files
 #import "BRRequestDownload.h"
+
+
+
+//---------- enumerated data types
+
+
+
+//---------- typedefs
+
+
+
+//---------- definitions
+
+
+
+//---------- structs
+
+
+
+//---------- external functions
+
+
+
+//---------- external variables
+
+
+
+//---------- global functions
+
+
+
+//---------- local functions
+
+
+
+//---------- global variables
+
+
+
+//---------- local variables
+
+
+
+//---------- protocols
+
+
+
+//---------- classes
 
 @implementation BRRequestDownload
 
-@synthesize tag, receivedData;
+@synthesize receivedData;
 
-//-----
-//
-//				initWithDelegate
-//
-// synopsis:	retval = [BRRequestDownload initWithDelegate:inDelegate];
-//					BRRequestDownload *retval	-
-//					id inDelegate            	-
-//
-// description:	initWithDelegate is designed to
-//
-// errors:		none
-//
-// returns:		Variable of type BRRequestDownload *
-//
-+ (BRRequestDownload *) initWithDelegate: (id) inDelegate
-{
-    BRRequestDownload *downloadFile = [[BRRequestDownload alloc] init];
-    if (downloadFile)
-        downloadFile.delegate = inDelegate;
-    
-    return downloadFile;
-}
 
 //-----
 //
@@ -39,7 +111,8 @@
 //
 // returns:		none
 //
--(void) start
+
+- (void)start
 {
     if (![self.delegate respondsToSelector:@selector(requestDataAvailable:)])
     {
@@ -69,6 +142,7 @@
 //
 // returns:		none
 //
+
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
     //----- see if we have cancelled the runloop
@@ -84,8 +158,9 @@
             self.didOpenStream = YES;
             self.streamInfo.bytesTotal = 0;
             self.receivedData = [NSMutableData data];
-            break;
-        }            
+        } 
+        break;
+            
         case NSStreamEventHasBytesAvailable: 
         {
             self.receivedData = [self.streamInfo read: self];
@@ -100,27 +175,52 @@
                 InfoLog(@"Stream opened, but failed while trying to read from it.");
                 [self.streamInfo streamError: self errorCode: kBRFTPClientCantReadStream];
             }
-            break;
         } 
+        break;
+            
         case NSStreamEventHasSpaceAvailable: 
         {
-            break;
-        }            
+            
+        } 
+        break;
+            
         case NSStreamEventErrorOccurred: 
         {
             [self.streamInfo streamError: self errorCode: [BRRequestError errorCodeWithError: [theStream streamError]]];
             InfoLog(@"%@", self.error.message);
-            break;
-        }            
+        }
+        break;
+            
         case NSStreamEventEndEncountered: 
         {
             [self.streamInfo streamComplete: self];
-            break;
         }
-        case NSStreamEventNone:
+        break;
+
+        default:
             break;
     }
 }
 
+
+
+//-----
+//
+//				fullRemotePath
+//
+// synopsis:	retval = [self fullRemotePath];
+//					NSString *retval	-
+//
+// description:	fullRemotePath is designed to
+//
+// errors:		none
+//
+// returns:		Variable of type NSString *
+//
+
+- (NSString *)fullRemotePath
+{
+    return [self.hostname stringByAppendingPathComponent:self.path];
+}
 
 @end

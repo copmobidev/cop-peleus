@@ -1,8 +1,8 @@
 //
 //  LCDrivePiece.m
-//  core
+//  MyApp
 //
-//  Created by chris.liu on 5/21/13.
+//  Created by chris.liu on 8/1/13.
 //  Copyright (c) 2013 cop-studio. All rights reserved.
 //
 

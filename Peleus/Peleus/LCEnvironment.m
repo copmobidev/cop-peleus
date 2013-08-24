@@ -34,16 +34,16 @@ static LCEnvironment *_sharedEnvironment = nil;
 
 - (NSString *)userAgent
 {
-    return [NSString stringWithFormat:@"MApi 1.0 achilles %@ %@ %@ %@",
-           [self version],
-           [self deviceModel],
-           [[UIDevice currentDevice] systemVersion],
-           [self platform]];
+    return [NSString stringWithFormat:@"MApi 1.0 %@ %@ %@ IOS %@",
+            [self bundleId],
+            [self appVersion],
+            [self platformString],
+            [self deviceVersion]];
 }
 
 - (NSString *)token
 {
-    return nil;
+    return @"6c25e31d8fda33258dcfcc2046ba5121e0c78784e32032bd06a8bd2b3d96cb72";
 }
 
 - (void)setToken:(NSString *)token
@@ -51,7 +51,7 @@ static LCEnvironment *_sharedEnvironment = nil;
     _token = token;
 }
 
-- (NSString *)version
+- (NSString *)appVersion
 {
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 }
@@ -61,9 +61,9 @@ static LCEnvironment *_sharedEnvironment = nil;
     return [[UIDevice currentDevice] model];
 }
 
-- (NSString *)platform
+- (NSString *)deviceVersion
 {
-    return @"IOS";
+    return [[UIDevice currentDevice] systemVersion];
 }
 
 - (NSString *)appId
@@ -73,7 +73,66 @@ static LCEnvironment *_sharedEnvironment = nil;
 
 - (NSString *)bundleId
 {
-    return @"com.cop.achilles";
+    return @"achilles";
+}
+
+- (NSString *)platform
+{
+    size_t size;
+
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
+    free(machine);
+    return platform;
+}
+
+- (NSString *)platformString
+{
+    NSString *platform = [self platform];
+
+    if ([platform isEqualToString:@"iPhone1,1"]) {
+        return @"iPhone 1G";
+    }
+
+    if ([platform isEqualToString:@"iPhone1,2"]) {
+        return @"iPhone 3G";
+    }
+
+    if ([platform isEqualToString:@"iPhone2,1"]) {
+        return @"iPhone 3GS";
+    }
+
+    if ([platform isEqualToString:@"iPhone3,1"]) {
+        return @"iPhone 4";
+    }
+
+    if ([platform isEqualToString:@"iPod1,1"]) {
+        return @"iPod Touch 1G";
+    }
+
+    if ([platform isEqualToString:@"iPod2,1"]) {
+        return @"iPod Touch 2G";
+    }
+
+    if ([platform isEqualToString:@"iPod3,1"]) {
+        return @"iPod Touch 3G";
+    }
+
+    if ([platform isEqualToString:@"iPod4,1"]) {
+        return @"iPod Touch 4G";
+    }
+
+    if ([platform isEqualToString:@"iPad1,1"]) {
+        return @"iPad";
+    }
+
+    if ([platform isEqualToString:@"i386"] || [platform isEqualToString:@"x86_64"]) {
+        return @"iPhone Simulator";
+    }
+
+    return platform;
 }
 
 @end
