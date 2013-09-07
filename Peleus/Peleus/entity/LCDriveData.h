@@ -15,7 +15,7 @@
 
 @property (nonatomic, readwrite) NSNumber *acc; // 行程总急加速次数
 @property (nonatomic, readwrite) NSNumber *avgCoolTemp; // 平均水箱温度
-@property (nonatomic, readwrite) NSString *avgFuel; // 行程平均油耗
+@property (nonatomic, readwrite) NSNumber *avgFuel; // 行程平均油耗
 @property (nonatomic, readwrite) NSNumber *avgPadPos; // 节气门位置平均值
 @property (nonatomic, readwrite) NSNumber *avgRPM; // 平均转速
 @property (nonatomic, readwrite) NSString *avgSPD;
@@ -25,6 +25,7 @@
 @property (nonatomic, readwrite) NSNumber *bstSPD; // 行程最佳速度
 @property (nonatomic, readwrite) NSNumber *count;
 @property (nonatomic, readwrite) NSNumber *dist; // 行程总里程
+@property (nonatomic, readwrite) NSNumber *beginTime; // 开始时间
 @property (nonatomic, readwrite) NSNumber *endTime; // 结束时间
 @property (nonatomic, readwrite) NSNumber *fast; // 本次行程顺畅的时间比率
 @property (nonatomic, readwrite) NSNumber *fuel; // 行程总耗油量
@@ -37,6 +38,7 @@
 @property (nonatomic, readwrite) NSNumber *slow; // 本次行程缓慢的时间比率
 @property (nonatomic, readwrite) NSNumber *temp; // 环境温度
 @property (nonatomic, readwrite) NSNumber *timeSpace;
+@property (nonatomic, readwrite) NSMutableArray *drivePieces; // 行程切片数据
 
 
 //@property (nonatomic, readwrite) NSNumber *errDist; // 故障灯亮起后行驶里程数,最大65535
@@ -51,7 +53,6 @@
 //@property (nonatomic, readwrite) NSString *errCodes; // 错误码
 //@property (nonatomic, readwrite) NSString *minuteData; // 每分钟行程数据
 //@property (nonatomic, readwrite) NSNumber *score; // 行程得分
-//@property (nonatomic, readwrite) NSNumber *beginTime; // 开始时间
 //@property (nonatomic, readwrite) NSNumber *beginLat; // 开始纬度
 //@property (nonatomic, readwrite) NSNumber *beginLng; // 开始经度
 

@@ -18,6 +18,7 @@
 + (NSDictionary *)parseOBDConfig:(NSString *)config
 {
     NSRange range;
+
     range.location = 86;
     range.length = 32;
     NSString *cid = [config substringWithRange:range];
@@ -25,18 +26,21 @@
     NSLog(@"%@", config);
     int     length = [config length];
     char    tmp[length / 2];
+
     for (int i = 0; i < length / 2; ++i) {
         tmp[i] = 0;
     }
+
     for (int i = 0; i < length; i += 2) {
         range.location = i;
         NSString *hex = [config substringWithRange:range];
         tmp[i / 2] = [self hex2char:hex];
     }
-    
+
     char    vinArray[17] = {0};
     char    obdArray[8] = {0};
     char    calidArray[8] = {0};
+
     for (int i = 0; i < length / 2; ++i) {
         if ((i > 16) && (i < 33)) {
             vinArray[i - 16] = tmp[i];
@@ -46,6 +50,7 @@
             calidArray[i - 112] = tmp[i];
         }
     }
+
     NSString *vin = [NSString stringWithCString:vinArray encoding:NSASCIIStringEncoding];
     NSLog(@"vin:%s", vinArray);
     NSString *obd = [NSString stringWithCString:obdArray encoding:NSASCIIStringEncoding];
@@ -59,7 +64,6 @@
 /*
  *   解析行程数据
  */
-/*
 + (LCDriveData *)parseDriveData:(NSString *)data
 {
     int     piece_num = data.length / 90 - 1;
@@ -67,25 +71,25 @@
 
     range.location = 0;
     range.length = 90;
-
+    NSMutableArray *drivePieces = [[NSMutableArray alloc] init];
     for (int i = 0; i < piece_num; ++i) {
         range.location = i * 90;
         NSString        *piece = [data substringWithRange:range];
         LCDrivePiece    *drivePiece = [self parseDrivePiece:piece];
-        NSLog(@"%f", drivePiece.maxSPD);
+        [drivePieces addObject:drivePiece];
+        NSLog(@"%@", drivePiece.maxSPD);
     }
 
     NSString    *summary = [data substringFromIndex:piece_num * 90];
     LCDriveData *driveData = [self parseDriveSummary:summary];
-    driveData.minuteData = [data substringToIndex:piece_num * 90];
-    NSLog(@"%f", driveData.maxSPD);
+    NSLog(@"%@", driveData.maxSPD);
+    driveData.drivePieces = drivePieces;
     return driveData;
 }
-*/
+
 /*
  *   解析行程摘要数据
  */
-/*
 + (LCDriveData *)parseDriveSummary:(NSString *)data
 {
     LCDriveData     *driveData = [[LCDriveData alloc] init];
@@ -95,8 +99,7 @@
 
     int     year = 0, month = 0, day = 0;
     int     hour = 0, minute = 0, second = 0;
-    double  lat = 0.0, lng = 0.0;
-    int     ele = 0, dist = 0, errDist = 0, clrDist = 0, fuel = 0, avgFeul = 0, avgRPM = 0, maxRPM = 0;
+    NSNumber     *dist = 0, *fuel = 0, *avgFeul = 0, *avgRPM = 0;
     NSRange range;
     range.length = 2;
 
@@ -134,58 +137,22 @@
                     NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d %d:%d:%d",
                         year, month, day, hour, minute, second];
                     NSDate *date = [dateFormat dateFromString:dateStr];
-                    driveData.beginTime = [date timeIntervalSince1970];
+                    driveData.beginTime = [[NSNumber alloc] initWithLong:[date timeIntervalSince1970]];
                     break;
                 }
 
             case 16:
-                lat = [hex integerValue];
-                break;
-
             case 18:
-                lat += [hex integerValue] / 100.0;
-                break;
-
             case 20:
-                lat += [hex integerValue] / 10000.0;
-                break;
-
             case 22:
-                lat += [hex integerValue] / 1000000.0;
-                driveData.beginLat = lat;
-                break;
-
             case 24:
-                break;
-
             case 26:
-                lng = [hex integerValue] * 100.0;
-                break;
-
             case 28:
-                lng += [hex integerValue];
-                break;
-
             case 30:
-                lng += [hex integerValue] / 100.0;
-                break;
-
             case 32:
-                lng += [hex integerValue] / 10000.0;
-                break;
-
             case 34:
-                lng += [hex integerValue] / 1000000.0;
-                driveData.beginLng = lng;
-                break;
-
             case 38:
-                ele = [hex integerValue];
-                break;
-
             case 40:
-                ele = [hex integerValue] + ele * 100;
-                driveData.beginEle = ele;
                 break;
 
             case 42:
@@ -214,94 +181,53 @@
                     NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d %d:%d:%d",
                         year, month, day, hour, minute, second];
                     NSDate *date = [dateFormat dateFromString:dateStr];
-                    driveData.endTime = [date timeIntervalSince1970];
+                    driveData.endTime = [[NSNumber alloc] initWithLong:[date timeIntervalSince1970]];
                     break;
                 }
 
+            // end lat
             case 54:
-                lat = [hex integerValue];
-                break;
-
             case 56:
-                lat += [hex integerValue] / 100.0;
-                break;
-
             case 58:
-                lat += [hex integerValue] / 10000.0;
-                break;
-
             case 60:
-                lat += [hex integerValue] / 1000000.0;
-                driveData.endLat = lat;
-                break;
-
             case 62:
                 break;
 
+            // end lng
             case 64:
-                lng = [hex integerValue] * 100.0;
-                break;
-
             case 66:
-                lng += [hex integerValue];
-                break;
-
             case 68:
-                lng += [hex integerValue] / 100.0;
-                break;
-
             case 70:
-                lng += [hex integerValue] / 10000.0;
-                break;
-
             case 72:
-                lng += [hex integerValue] / 1000000.0;
-                driveData.endLng = lng;
                 break;
 
+            // dir
             case 74:
                 break;
 
+            // end ele
             case 76:
-                ele = [hex integerValue];
-                break;
-
             case 78:
-                ele = [hex integerValue] + ele * 100;
-                driveData.endEle = ele;
                 break;
 
             case 80:
                 break;
-
+                // airPressure
             case 82:
-                driveData.airPressure = [self hex2int:hex];
                 break;
-
+                // fuelLV
             case 84:
-                driveData.FuelLV = [self hex2int:hex];
                 break;
-
+                // bat
             case 86:
-                driveData.bat = [self hex2int:hex];
                 break;
-
+                // errDist
             case 88:
-                errDist = [self hex2int:hex];
-                break;
-
             case 90:
-                errDist = [self hex2int:hex] + errDist * 256;
-                driveData.errDist = errDist;
                 break;
-
+                // clrDist
             case 92:
-                clrDist = [self hex2int:hex];
-                break;
-
             case 94:
-                clrDist = [self hex2int:hex] + clrDist * 256;
-                driveData.clrDist = clrDist;
                 break;
 
             case 96:
@@ -313,7 +239,7 @@
                 break;
 
             case 100:
-                dist = [self hex2int:hex] + dist * 256;
+                dist = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [dist integerValue] * 256];
                 driveData.dist = dist;
                 break;
 
@@ -322,7 +248,7 @@
                 break;
 
             case 104:
-                driveData.bstFeul = [self hex2int:hex];
+                driveData.bstFuel = [self hex2int:hex];
                 break;
 
             case 106:
@@ -334,7 +260,7 @@
                 break;
 
             case 110:
-                fuel = [self hex2int:hex] + fuel * 256;
+                fuel = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [fuel integerValue] * 256];
                 driveData.fuel = fuel;
                 break;
 
@@ -343,20 +269,18 @@
                 break;
 
             case 114:
-                avgFeul = [self hex2int:hex] + fuel * 256;
+                avgFeul = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [fuel integerValue] * 256];
                 driveData.avgFuel = avgFeul;
                 break;
-
+                // lst fuel lv
             case 116:
-                driveData.lstFuelLV = [self hex2int:hex];
                 break;
 
             case 118:
                 driveData.avgCoolTemp = [self hex2int:hex];
                 break;
-
+                // max cool temp
             case 120:
-                driveData.maxCoolTemp = [self hex2int:hex];
                 break;
 
             case 122:
@@ -366,9 +290,8 @@
             case 124:
                 driveData.maxPadPos = [self hex2int:hex];
                 break;
-
+                // min pad pos
             case 126:
-                driveData.minPadPos = [self hex2int:hex];
                 break;
 
             case 128:
@@ -376,17 +299,12 @@
                 break;
 
             case 130:
-                avgRPM = [self hex2int:hex] + avgRPM * 256;
+                avgRPM = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [avgRPM integerValue] * 256];
                 driveData.avgRPM = avgRPM;
                 break;
-
+                // max rpm
             case 132:
-                maxRPM = [self hex2int:hex];
-                break;
-
             case 134:
-                maxRPM = [self hex2int:hex] + maxRPM * 256;
-                driveData.maxRPM = maxRPM;
                 break;
 
             case 136:
@@ -426,12 +344,10 @@
     return driveData;
 }
 
-*/
-
 /*
  *   解析行程切片数据
  */
-/*
+
 + (LCDrivePiece *)parseDrivePiece:(NSString *)data
 {
     LCDrivePiece    *drivePiece = [[LCDrivePiece alloc] init];
@@ -439,11 +355,10 @@
 
     [dateFormat setDateFormat:@"yy-MM-dd HH:mm:ss"];                // 设定时间格式,这里可以设置成自己需要的格式
 
-    int     year = 0, month = 0, day = 0;
-    int     hour = 0, minute = 0, second = 0;
-    double  lat = 0.0, lng = 0.0;
-    int     ele = 0, dist = 0, avgFeul = 0, avgRPM = 0, maxRPM = 0;
-    NSRange range;
+    int         year = 0, month = 0, day = 0;
+    int         hour = 0, minute = 0, second = 0;
+    NSNumber    *dist = 0, *avgFeul = 0, *avgRPM = 0, *maxRPM = 0;
+    NSRange     range;
     range.length = 2;
 
     for (int i = 0; i < [data length]; i += 2) {
@@ -480,59 +395,28 @@
                     NSString *dateStr = [NSString stringWithFormat:@"%d-%d-%d %d:%d:%d",
                         year, month, day, hour, minute, second];
                     NSDate *date = [dateFormat dateFromString:dateStr];
-                    drivePiece.timestamp = [date timeIntervalSince1970];
+                    drivePiece.timestamp = [[NSNumber alloc] initWithLong:[date timeIntervalSince1970]];
                     break;
                 }
-
+                // lat
             case 16:
-                lat = 0.0;
-                lat = [hex integerValue];
-                break;
-
             case 18:
-                lat += [hex integerValue] / 100.0;
-                break;
-
             case 20:
-                lat += [hex integerValue] / 10000.0;
-                break;
-
             case 22:
-                lat += [hex integerValue] / 1000000.0;
-                drivePiece.lat = lat;
                 break;
-
+                // dir
             case 24:
                 break;
-
+                // lng
             case 26:
-                lng = [hex integerValue] * 100.0;
-                break;
-
             case 28:
-                lng += [hex integerValue];
-                break;
-
             case 30:
-                lng += [hex integerValue] / 100.0;
-                break;
-
             case 32:
-                lng += [hex integerValue] / 10000.0;
-                break;
-
             case 34:
-                lng += [hex integerValue] / 1000000.0;
-                drivePiece.lng = lng;
                 break;
-
+                // ele
             case 38:
-                ele = [hex integerValue];
-                break;
-
             case 40:
-                ele = [hex integerValue] + ele * 100;
-                drivePiece.ele = ele;
                 break;
 
             case 42:
@@ -552,7 +436,7 @@
                 break;
 
             case 50:
-                dist = [self hex2int:hex] + dist * 256;
+                dist = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [dist integerValue] * 256];
                 drivePiece.dist = dist;
                 break;
 
@@ -565,7 +449,7 @@
                 break;
 
             case 56:
-                avgRPM = [self hex2int:hex] + avgRPM * 256;
+                avgRPM = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [avgRPM integerValue] * 256];
                 drivePiece.avgRPM = avgRPM;
                 break;
 
@@ -574,7 +458,7 @@
                 break;
 
             case 60:
-                maxRPM = [self hex2int:hex] + maxRPM * 256;
+                maxRPM = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [maxRPM integerValue] * 256];
                 drivePiece.maxRPM = maxRPM;
                 break;
 
@@ -587,7 +471,7 @@
                 break;
 
             case 66:
-                avgFeul = [self hex2int:hex] + avgFeul * 256;
+                avgFeul = [[NSNumber alloc] initWithInt:[[self hex2int:hex] integerValue] + [avgFeul integerValue] * 256];
                 drivePiece.avgFeul = avgFeul;
                 break;
 
@@ -639,7 +523,6 @@
 
     return drivePiece;
 }
-*/
 
 + (char)hex2char:(NSString *)hex
 {
@@ -653,13 +536,13 @@
     }
 }
 
-+ (int)hex2int:(NSString *)hex
++ (NSNumber *)hex2int:(NSString *)hex
 {
     @try {
         unichar hex_char1 = [hex characterAtIndex:0];
         unichar hex_char2 = [hex characterAtIndex:1];
 
-        return [self char2int:hex_char1] * 16 + [self char2int:hex_char2];
+        return [[NSNumber alloc] initWithInt:[self char2int:hex_char1] * 16 + [self char2int:hex_char2] ];
     }
     @catch(NSException *exception) {
         return 0;
@@ -685,24 +568,5 @@
         return 0;
     }
 }
-
-
-/*
-+ (double)score:(LCDrivePiece *)drivePiece withLevel:(int)level
-{
-    double score = 0.0;
-
-    if (drivePiece.avgSPD < 120.0) {
-        score = (144 - (120 - drivePiece.avgSPD) * (120 - drivePiece.avgSPD) / 100) * (drivePiece.sliding / 100) -
-            (drivePiece.acc + drivePiece.brk) * (sqrt(level) + 1);
-    } else {
-        score = -(drivePiece.avgSPD - 120) * (drivePiece.avgSPD - 120) / 100 * (drivePiece.sliding / 100) -
-            (drivePiece.acc + drivePiece.brk) * (sqrt(level) + 1);
-    }
-
-    score = score > 0.0 ? score : 0.0;
-    return score;
-}
- */
 
 @end

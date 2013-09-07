@@ -183,15 +183,14 @@ static LCDataService *_sharedDataService = nil;
 }
 
 /*
- *   暂时不在本地做数据解析
+ *   本地做数据解析,注意本地解析只做简单数据提取，未实现数据切片的合并操作，上层业
+ *   务可根据自身的需求灵活处理切片数据的合并
  */
+- (LCDriveData *)parseOriginData:(NSString *)originData
+{
+    return [LCDataParser parseDriveData:originData];
+}
 
-/*
- *   - (LCDriveData *)parseOriginData:(NSString *)originData
- *   {
- *    return nil;
- *   }
- */
 
 #pragma mark -
 #pragma mark BRRequestDelegate implement
